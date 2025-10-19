@@ -134,6 +134,37 @@ body {
     box-shadow: none;
 }
 
+/* Register button in navbar (desktop) */
+.main-nav ul li a.btn.nav-register {
+    background-color: var(--primary);
+    color: #fff;
+    border: var(--border-width) solid var(--border);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--border);
+    font-weight: 900;
+    padding: 0.5rem 1.25rem;
+    margin-left: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: var(--transition);
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    text-decoration: none;
+}
+.main-nav ul li a.btn.nav-register:hover {
+    background-color: var(--accent);
+    color: #fff;
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--border);
+}
+.main-nav ul li a.btn.nav-register:active {
+    background-color: var(--primary);
+    color: #fff;
+    transform: translate(0, 0);
+    box-shadow: none;
+}
+
 /* Hide close button on desktop */
 .nav-close {
     display: none;
@@ -1149,6 +1180,78 @@ body {
     
     .item-card:has(.btn:hover) {
         box-shadow: 3px 3px 0 var(--border);
+    }
+}
+
+/* Mobile nav: remove blue background, match desktop buttons, add margin */
+@media (max-width: 1023px) {
+    .main-nav {
+        background: var(--bg-white);
+        color: var(--text);
+        box-shadow: -8px 0 0 var(--border);
+        border-left: var(--border-width) solid var(--border);
+        overflow-y: auto;
+        height: 100vh;
+        min-width: 320px;
+        width: 100vw;
+        max-width: none;
+        padding-bottom: 2rem;
+    }
+    .main-nav ul {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        margin: 4rem 0 0 0;
+        padding: 0;
+    }
+    .main-nav li {
+        width: 100%;
+        border-bottom: var(--border-width) solid var(--border);
+        margin: 0;
+        padding: 0;
+    }
+    .main-nav li:last-child {
+        border-bottom: none;
+    }
+    .main-nav a,
+    .main-nav ul li a.btn.nav-register {
+        display: block;
+        width: 100%;
+        text-align: left;
+        color: var(--text);
+        font-size: 1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        padding: 0.5rem 1rem;
+        background-color: var(--bg-white);
+        border: var(--border-width) solid var(--border);
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--border);
+        margin: 0.5rem 0.5rem;
+        transition: var(--transition);
+        position: relative;
+        z-index: 1;
+        text-decoration: none;
+    }
+    .main-nav ul li a.btn.nav-register {
+        background-color: var(--primary);
+        color: #fff;
+        margin: 0.5rem 0.5rem;
+    }
+    .main-nav a:hover,
+    .main-nav ul li a.btn.nav-register:hover {
+        background-color: var(--accent);
+        color: #fff;
+        transform: translate(-2px, -2px);
+        box-shadow: 6px 6px 0 var(--border);
+    }
+    .main-nav a:active,
+    .main-nav ul li a.btn.nav-register:active {
+        background-color: var(--primary);
+        color: #fff;
+        transform: translate(0, 0);
+        box-shadow: none;
     }
 }
 
