@@ -50,7 +50,7 @@ function parseFrontmatter(markdown: string): MarkdownContent {
 /**
  * Markdown to HTML converter using marked
  */
-import { marked } from 'marked';
+declare const marked: any;
 
 function markdownToHtml(markdown: string): string {
     return marked.parse(markdown) as string;

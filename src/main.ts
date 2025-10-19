@@ -4,7 +4,7 @@
  */
 
 import { fetchMarkdown, type Frontmatter, type MarkdownContent } from './markdown-loader.js';
-import './ui.js'; // Import UI interactions (dark mode, mobile menu)
+import './ui.js'; // Import UI interactions (mobile menu)
 
 // Hardcoded file lists (since we can't dynamically list files in browser)
 const GAMES_FILES = [

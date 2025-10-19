@@ -6,6 +6,10 @@
     <title>Loading... - TTRPG Club</title>
     <link rel="stylesheet" href="/style.css">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='50%' x='50%' dominant-baseline='middle' text-anchor='middle' font-size='48'%3E🎲%3C/text%3E%3C/svg%3E">
+    <script type="module">
+        import { marked } from 'https://cdn.jsdelivr.net/npm/marked@11.0.0/+esm';
+        window.marked = marked;
+    </script>
 </head>
 <body>
     <!-- Static Header -->
@@ -14,9 +18,6 @@
             <div class="logo">
                 <h1>🎲 TTRPG Club</h1>
             </div>
-            <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode" type="button">
-                <span id="darkModeIcon">🌙</span>
-            </button>
             <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" type="button">
                 <span>☰</span>
             </button>

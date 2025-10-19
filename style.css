@@ -32,22 +32,6 @@
     font-weight: 600;
 }
 
-
-/* Dark mode colors */
-[data-theme="dark"] {
-    --primary: #60a5fa;      /* Lighter blue for dark mode */
-    --secondary: #3b82f6;    /* Medium blue */
-    --accent: #fbbf24;       /* Yellow (same) */
-    --accent-dark: #f59e0b;  /* Darker yellow */
-    
-    --bg-main: #1e293b;      /* Dark slate */
-    --bg-alt: #0f172a;       /* Darker slate */
-    --bg-white: #334155;     /* Card background */
-    
-    --text: #ffffff;
-    --border: #ffffff;
-}
-
 body {
     font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Arial Black', sans-serif;
     line-height: 1.5;
@@ -92,31 +76,6 @@ body {
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: -1px;
-}
-
-/* Dark mode toggle button */
-.dark-mode-toggle {
-    padding: 0.5rem 1rem;
-    border: var(--border-width) solid var(--border);
-    background-color: var(--accent);
-    color: var(--text);
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 0.875rem;
-    cursor: pointer;
-    transition: var(--transition);
-    border-radius: var(--border-radius);
-    margin-left: auto;
-}
-
-.dark-mode-toggle:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 4px 4px 0 var(--border);
-}
-
-.dark-mode-toggle:active {
-    transform: translate(0, 0);
-    box-shadow: none;
 }
 
 /* Mobile menu toggle */
@@ -370,15 +329,15 @@ body {
 /* Card hover effect - entire card moves when hovering button */
 .item-card:hover {
     transform: translate(-3px, -3px);
-    box-shadow: 9px 9px 0 var(--border);
+    box-shadow: calc(var(--shadow-offset) + 1px) calc(var(--shadow-offset) + 1px) 0 var(--border);
 }
 .item-card:has(.card-btn:hover) {
     transform: translate(6px, 6px);
-    box-shadow: 3px 3px 0 var(--border);
+    box-shadow: calc(var(--shadow-offset) - 4px) calc(var(--shadow-offset) - 4px) 0 var(--border);
 }
 
 .item-card:has(.card-btn:active) {
-    transform: translate(9px, 9px);
+    transform: translate(var(--shadow-offset), var(--shadow-offset));
     box-shadow: none;
 }
 
@@ -394,7 +353,7 @@ body {
     letter-spacing: 0.5px;
     border: none;
     border-top: var(--border-width) solid var(--border);
-    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    border-radius: 0 0 4px 4px;
     padding: 1rem 0;
     align-self: stretch;
     transition: var(--transition);
@@ -413,6 +372,7 @@ body {
     overflow: hidden;
     background-color: var(--bg-main);
     border-bottom: var(--border-width) solid var(--border);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
 
 .item-thumbnail img {
