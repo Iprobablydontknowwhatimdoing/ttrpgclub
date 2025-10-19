@@ -1,12 +1,4 @@
-/* ============================================================================
-   TTRPG CLUB - NEOBRUTALISM STYLESHEET
-   A bold, high-contrast design with thick borders, hard shadows, and vibrant colors
-   ============================================================================ */
-
-/* ============================================================================
-   1. RESET & BASE STYLES
-   ============================================================================ */
-
+/* Neobrutalism Reset and Base Styles */
 * {
     margin: 0;
     padding: 0;
@@ -14,30 +6,30 @@
 }
 
 :root {
-    /* Color Palette - Blue & Yellow */
-    --primary: #3b82f6;
-    --secondary: #1e40af;
-    --accent: #fbbf24;
-    --accent-dark: #f59e0b;
+    /* Blue & Yellow Color Palette */
+    --primary: #3b82f6;      /* Bright blue */
+    --secondary: #1e40af;    /* Darker blue */
+    --accent: #fbbf24;       /* Yellow */
+    --accent-dark: #f59e0b;  /* Darker yellow */
     
-    /* Backgrounds */
-    --bg-main: #fef3c7;
-    --bg-alt: #dbeafe;
+    --bg-main: #fef3c7;      /* Warm beige/cream */
+    --bg-alt: #dbeafe;       /* Light blue */
     --bg-white: #ffffff;
     
-    /* Core */
     --text: #000000;
     --border: #000000;
     
-    /* Neobrutalism Design Tokens */
+    /* Neobrutalism specifics */
     --border-width: 4px;
-    --border-radius: 8px;
+    --border-radius: 8px;    /* Universal border radius */
     --shadow-offset: 8px;
     --transition: all 0.15s ease;
 }
-
-html {
-    scroll-behavior: smooth;
+/* Loading text utility */
+.loading-text {
+    text-align: center;
+    padding: 2rem;
+    font-weight: 600;
 }
 
 body {
@@ -48,36 +40,13 @@ body {
     font-weight: 700;
 }
 
-::selection {
-    background-color: var(--accent);
-    color: var(--text);
-}
-
-*:focus-visible {
-    outline: 3px solid var(--primary);
-    outline-offset: 3px;
-}
-
-/* ============================================================================
-   2. LAYOUT UTILITIES
-   ============================================================================ */
-
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
-.loading-text {
-    text-align: center;
-    padding: 2rem;
-    font-weight: 600;
-}
-
-/* ============================================================================
-   3. HEADER & NAVIGATION
-   ============================================================================ */
-
+/* Neobrutalism Header */
 .site-header {
     background-color: var(--bg-white);
     color: var(--text);
@@ -109,73 +78,13 @@ body {
     letter-spacing: -1px;
 }
 
-/* Desktop Navigation */
-.main-nav ul {
-    display: flex;
-    list-style: none;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-}
-
-.main-nav a {
-    color: var(--text);
-    text-decoration: none;
-    font-weight: 700;
-    padding: 0.5rem 1rem;
-    border: var(--border-width) solid var(--border);
-    background-color: var(--bg-white);
-    transition: var(--transition);
-    text-transform: uppercase;
-    font-size: 0.875rem;
-    display: block;
-    border-radius: var(--border-radius);
-}
-
-.main-nav a:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 4px 4px 0 var(--border);
-}
-
-.main-nav a:active {
-    transform: translate(0, 0);
-    box-shadow: none;
-}
-
-/* Register Button (Desktop) */
-.main-nav ul li a.btn.nav-register {
-    background-color: var(--primary);
-    color: #fff;
-    border: var(--border-width) solid var(--border);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--border);
-    font-weight: 900;
-    padding: 0.5rem 1.25rem;
-    margin-left: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.main-nav ul li a.btn.nav-register:hover {
-    background-color: var(--accent);
-    transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0 var(--border);
-}
-
-.main-nav ul li a.btn.nav-register:active {
-    background-color: var(--primary);
-    transform: translate(0, 0);
-    box-shadow: none;
-}
-
-/* Mobile Menu Toggle (Hidden on Desktop) */
+/* Mobile menu toggle */
 .menu-toggle {
     display: none;
     padding: 0.5rem 1rem;
-    padding-bottom: 0.5rem;
     border: var(--border-width) solid var(--border);
     background-color: var(--bg-white);
     color: var(--text);
-    box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--border);
     font-weight: 700;
     text-transform: uppercase;
     font-size: 0.875rem;
@@ -194,108 +103,117 @@ body {
     box-shadow: none;
 }
 
-/* Mobile Navigation Close Button (Hidden on Desktop) */
+.main-nav ul {
+    display: flex;
+    list-style: none;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.main-nav a {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 700;
+    width: 100vw;
+    max-width: 100vw;
+    border: var(--border-width) solid var(--border);
+    background-color: var(--bg-white);
+    transition: var(--transition);
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    display: block;
+    border-radius: var(--border-radius);
+}
+    /* Hide register in list on mobile; show bottom CTA instead */
+
+.main-nav a:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 var(--border);
+}
+
+.main-nav a:active {
+    transform: translate(0, 0);
+    box-shadow: none;
+}
+
+    /* Bottom CTA area */
+    .nav-cta {
+        margin-top: auto;
+        padding: 1rem;
+        border-top: var(--border-width) solid var(--border);
+        background: var(--bg-white);
+    }
+    .nav-cta-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+    }
+    .nav-cta .cta-btn {
+        display: block;
+        text-align: center;
+        padding: 0.75rem 1rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border: var(--border-width) solid var(--border);
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--border);
+        background: var(--bg-white);
+        color: var(--text);
+        text-decoration: none;
+        transition: var(--transition);
+    }
+    .nav-cta .cta-register {
+        background: var(--primary);
+        color: #fff;
+    }
+    .nav-cta .cta-btn:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 4px 4px 0 var(--border);
+    }
+/* Register button in navbar (desktop) */
+.main-nav ul li a.btn.nav-register {
+    background-color: var(--primary);
+    color: #fff;
+    border: var(--border-width) solid var(--border);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--border);
+    font-weight: 900;
+    padding: 0.5rem 1.25rem;
+    margin-left: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: var(--transition);
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    text-decoration: none;
+}
+.main-nav ul li a.btn.nav-register:hover {
+    background-color: var(--accent);
+    color: #fff;
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--border);
+}
+.main-nav ul li a.btn.nav-register:active {
+    background-color: var(--primary);
+    color: #fff;
+    transform: translate(0, 0);
+    box-shadow: none;
+}
+
+/* Hide close button on desktop */
 .nav-close {
     display: none;
 }
 
-/* Mobile Navigation CTA (Hidden on Desktop) */
-.nav-cta {
-    display: none;
-}
-
-/* Mobile Navigation Overlay (Hidden on Desktop) */
-.nav-overlay {
-    display: none;
-}
-
-/* ============================================================================
-   4. BUTTONS
-   ============================================================================ */
-
-.btn {
-    display: inline-block;
-    padding: 0.875rem 2rem;
-    text-decoration: none;
-    font-weight: 800;
-    transition: var(--transition);
-    cursor: pointer;
-    border: var(--border-width) solid var(--border);
-    text-transform: uppercase;
-    font-size: 0.95rem;
-    letter-spacing: 0.5px;
-    position: relative;
-    border-radius: var(--border-radius);
-    text-align: center;
-}
-
-.btn-primary {
-    background-color: var(--accent);
-    color: var(--text);
-    box-shadow: 6px 6px 0 var(--border);
-}
-
-.btn-primary:hover {
-    transform: translate(3px, 3px);
-    box-shadow: 3px 3px 0 var(--border);
-}
-
-.btn-primary:active {
-    transform: translate(6px, 6px);
-    box-shadow: none;
-}
-
-.btn-outline {
-    background-color: var(--bg-white);
-    color: var(--text);
-    box-shadow: 6px 6px 0 var(--border);
-}
-
-.btn-outline:hover {
-    transform: translate(3px, 3px);
-    box-shadow: 3px 3px 0 var(--border);
-}
-
-.btn-outline:active {
-    transform: translate(6px, 6px);
-    box-shadow: none;
-}
-
-.btn-large {
-    padding: 1.25rem 3rem;
-    font-size: 1.1rem;
-}
-
-/* Card Button (Bottom of Item Cards) */
-.card-btn {
-    display: block;
-    width: 100%;
-    margin: 0;
-    background-color: var(--primary);
-    color: #000;
-    font-weight: 800;
-    text-transform: uppercase;
-    font-size: 1rem;
-    letter-spacing: 0.5px;
-    border: none;
-    border-top: var(--border-width) solid var(--border);
-    border-radius: 0 0 4px 4px;
-    padding: 1rem 0;
-    transition: var(--transition);
-    text-align: center;
-    cursor: pointer;
-}
-
-/* ============================================================================
-   5. HERO SECTION
-   ============================================================================ */
-
+/* Neobrutalism Hero Section */
 .hero {
     background-color: var(--primary);
     color: var(--text);
     padding: 6rem 2rem;
     text-align: center;
-    border-bottom: var(--border-width) solid var(--border);
+    border-bottom: 2px solid var(--border);
     position: relative;
 }
 
@@ -331,10 +249,63 @@ body {
     line-height: 1.6;
 }
 
-/* ============================================================================
-   6. CONTENT SECTIONS
-   ============================================================================ */
+/* Neobrutalism Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.875rem 2rem;
+    text-decoration: none;
+    font-weight: 800;
+    transition: var(--transition);
+    cursor: pointer;
+    border: var(--border-width) solid var(--border);
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    position: relative;
+    border-radius: var(--border-radius);
+    text-align: center;
+}
 
+.btn-primary {
+    background-color: var(--accent);
+    color: var(--text);
+    box-shadow: 6px 6px 0 var(--border);
+}
+
+.btn-primary:hover {
+    transform: translate(3px, 3px);
+    box-shadow: 3px 3px 0 var(--border);
+}
+
+.btn-primary:active {
+    transform: translate(6px, 6px);
+    box-shadow: none;
+}
+
+
+
+.btn-outline {
+    background-color: var(--bg-white);
+    color: var(--text);
+    box-shadow: 6px 6px 0 var(--border);
+}
+
+.btn-outline:hover {
+    transform: translate(3px, 3px);
+    box-shadow: 3px 3px 0 var(--border);
+}
+
+.btn-outline:active {
+    transform: translate(6px, 6px);
+    box-shadow: none;
+}
+
+.btn-large {
+    padding: 1.25rem 3rem;
+    font-size: 1.1rem;
+}
+
+/* Neobrutalism Content Sections */
 .content-section {
     padding: 4rem 2rem;
     border-bottom: var(--border-width) solid var(--border);
@@ -364,7 +335,7 @@ body {
     background-color: var(--bg-white);
     padding: 2rem;
     border: var(--border-width) solid var(--border);
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius) !important;
     box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--border);
     transition: var(--transition);
 }
@@ -391,10 +362,7 @@ body {
     line-height: 1.7;
 }
 
-/* ============================================================================
-   7. RECENT ITEMS SECTIONS (Games & Events)
-   ============================================================================ */
-
+/* Neobrutalism Recent Items Sections (Games & Events) */
 .recent-items-section {
     padding: 4rem 2rem;
     border-bottom: var(--border-width) solid var(--border);
@@ -434,7 +402,6 @@ body {
     margin-top: 2rem;
 }
 
-/* Item Card */
 .item-card {
     background-color: var(--bg-white);
     border: var(--border-width) solid var(--border);
@@ -446,11 +413,11 @@ body {
     flex-direction: column;
 }
 
+/* Card hover effect - entire card moves when hovering button */
 .item-card:hover {
     transform: translate(-3px, -3px);
     box-shadow: calc(var(--shadow-offset) + 1px) calc(var(--shadow-offset) + 1px) 0 var(--border);
 }
-
 .item-card:has(.card-btn:hover) {
     transform: translate(6px, 6px);
     box-shadow: calc(var(--shadow-offset) - 4px) calc(var(--shadow-offset) - 4px) 0 var(--border);
@@ -460,6 +427,31 @@ body {
     transform: translate(var(--shadow-offset), var(--shadow-offset));
     box-shadow: none;
 }
+
+.card-btn {
+    display: block;
+    width: 100%;
+    margin: 0;
+    background-color: var(--primary);
+    color: #000;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    border: none;
+    border-top: var(--border-width) solid var(--border);
+    border-radius: 0 0 4px 4px;
+    padding: 1rem 0;
+    align-self: stretch;
+    transition: var(--transition);
+    position: relative;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    text-align: center;
+}
+
 
 .item-thumbnail {
     width: 100%;
@@ -497,10 +489,11 @@ body {
     flex: 1;
 }
 
-/* ============================================================================
-   8. RESOURCES SECTION
-   ============================================================================ */
+/* Full-width button at bottom of card */
 
+/* Remove old .item-content .btn rules, now handled by .item-card > .btn-secondary */
+
+/* Neobrutalism Resources Section */
 .resources-section {
     padding: 4rem 2rem;
     background-color: var(--bg-alt);
@@ -566,10 +559,7 @@ body {
     transform: translateX(2px);
 }
 
-/* ============================================================================
-   9. CALL TO ACTION SECTION
-   ============================================================================ */
-
+/* Neobrutalism Call to Action Section */
 .cta-section {
     background-color: var(--accent);
     color: var(--text);
@@ -607,10 +597,7 @@ body {
     flex-wrap: wrap;
 }
 
-/* ============================================================================
-   10. FOOTER
-   ============================================================================ */
-
+/* Neobrutalism Footer */
 .site-footer {
     background-color: var(--secondary);
     color: var(--bg-white);
@@ -666,11 +653,7 @@ body {
     font-weight: 700;
 }
 
-/* ============================================================================
-   11. ARTICLE PAGES
-   ============================================================================ */
-
-/* Article Header */
+/* --- Article Page Styles --- */
 .article-header {
     background-color: var(--primary);
     background-size: cover;
@@ -680,7 +663,6 @@ body {
     border-bottom: var(--border-width) solid var(--border);
     position: relative;
 }
-
 .article-header::before {
     content: '';
     position: absolute;
@@ -691,7 +673,6 @@ body {
     background-color: rgba(0, 0, 0, 0.6);
     z-index: 0;
 }
-
 .article-header::after {
     content: '';
     position: absolute;
@@ -702,13 +683,11 @@ body {
     background-color: var(--border);
     z-index: -1;
 }
-
 .article-header .container {
     max-width: 900px;
     position: relative;
     z-index: 1;
 }
-
 .back-link {
     display: inline-block;
     margin-bottom: 1.5rem;
@@ -723,17 +702,14 @@ body {
     font-size: 0.875rem;
     border-radius: var(--border-radius);
 }
-
 .back-link:hover {
     transform: translate(-2px, -2px);
     box-shadow: 4px 4px 0 var(--border);
 }
-
 .back-link:active {
     transform: translate(0, 0);
     box-shadow: none;
 }
-
 .article-title {
     font-size: 3rem;
     margin-bottom: 1rem;
@@ -744,7 +720,6 @@ body {
     color: #ffffff;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
-
 .article-description {
     font-size: 1.25rem;
     font-weight: 600;
@@ -752,7 +727,6 @@ body {
     color: #ffffff;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
 }
-
 .article-meta {
     display: flex;
     gap: 1.5rem;
@@ -760,7 +734,6 @@ body {
     font-weight: 600;
     margin-top: 1.5rem;
 }
-
 .meta-item {
     display: inline-block;
     padding: 0.5rem 1rem;
@@ -768,21 +741,25 @@ body {
     border: var(--border-width) solid var(--border);
     border-radius: var(--border-radius);
 }
-
-/* Article Content */
 .article-content {
     padding: 4rem 2rem;
     background-color: var(--bg-white);
 }
-
 .article-content .container {
     max-width: 1200px;
 }
 
+/* Article Layout - Responsive Grid */
 .article-layout {
     display: grid;
     gap: 2rem;
     grid-template-columns: 1fr;
+}
+
+@media (min-width: 1024px) {
+    .article-layout {
+        grid-template-columns: 250px 1fr;
+    }
 }
 
 /* Table of Contents */
@@ -793,6 +770,17 @@ body {
     padding: 1.5rem;
     box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--border);
     order: 1;
+}
+
+@media (min-width: 1024px) {
+    .table-of-contents {
+        position: sticky;
+        top: 100px;
+        align-self: start;
+        max-height: calc(100vh - 120px);
+        overflow-y: auto;
+        order: 1;
+    }
 }
 
 .table-of-contents h3 {
@@ -813,11 +801,25 @@ body {
     margin-bottom: 0.5rem;
 }
 
-.toc-h2 { padding-left: 0; }
-.toc-h3 { padding-left: 1rem; }
-.toc-h4 { padding-left: 2rem; }
-.toc-h5 { padding-left: 3rem; }
-.toc-h6 { padding-left: 4rem; }
+.toc-h2 {
+    padding-left: 0;
+}
+
+.toc-h3 {
+    padding-left: 1rem;
+}
+
+.toc-h4 {
+    padding-left: 2rem;
+}
+
+.toc-h5 {
+    padding-left: 3rem;
+}
+
+.toc-h6 {
+    padding-left: 4rem;
+}
 
 .toc-link {
     color: var(--text);
@@ -834,7 +836,6 @@ body {
     transform: translateX(4px);
 }
 
-/* Article Body */
 .article-body {
     background-color: var(--bg-white);
     padding: 3rem;
@@ -845,6 +846,11 @@ body {
     order: 2;
 }
 
+@media (min-width: 1024px) {
+    .article-body {
+        order: 2;
+    }
+}
 .article-body h1,
 .article-body h2,
 .article-body h3 {
@@ -854,35 +860,36 @@ body {
     margin-bottom: 1rem;
     letter-spacing: -0.5px;
 }
-
 .article-body h1 {
     font-size: 2.5rem;
     border-bottom: var(--border-width) solid var(--border);
     padding-bottom: 0.5rem;
 }
-
-.article-body h2 { font-size: 2rem; }
-.article-body h3 { font-size: 1.5rem; }
-
+.article-body h2 {
+    font-size: 2rem;
+}
+.article-body h3 {
+    font-size: 1.5rem;
+}
 .article-body p {
     margin-bottom: 1.25rem;
     font-weight: 500;
 }
-
 .article-body ul,
 .article-body ol {
     margin-bottom: 1.25rem;
     padding-left: 2rem;
 }
-
 .article-body li {
     margin-bottom: 0.5rem;
     font-weight: 500;
 }
-
-.article-body strong { font-weight: 900; }
-.article-body em { font-style: italic; }
-
+.article-body strong {
+    font-weight: 900;
+}
+.article-body em {
+    font-style: italic;
+}
 .article-body a {
     color: var(--text);
     font-weight: 700;
@@ -890,11 +897,9 @@ body {
     text-decoration: none;
     transition: var(--transition);
 }
-
 .article-body a:hover {
-    background-color: var(--accent);
+    background-color: var(--yellow);
 }
-
 .article-body blockquote {
     border-left: var(--border-width) solid var(--border);
     padding-left: 1.5rem;
@@ -903,7 +908,6 @@ body {
     background-color: var(--bg-main);
     padding: 1.5rem;
 }
-
 .article-body code {
     background-color: var(--bg-main);
     padding: 0.25rem 0.5rem;
@@ -911,7 +915,6 @@ body {
     font-family: 'Courier New', monospace;
     font-weight: 700;
 }
-
 .article-body pre {
     background-color: var(--bg-main);
     padding: 1.5rem;
@@ -919,23 +922,35 @@ body {
     overflow-x: auto;
     margin: 1.5rem 0;
 }
-
 .article-body pre code {
     background: none;
     border: none;
     padding: 0;
 }
-
 .article-body hr {
     border: none;
     border-top: var(--border-width) solid var(--border);
     margin: 2rem 0;
 }
+@media (max-width: 768px) {
+    .article-title {
+        font-size: 2rem;
+    }
+    .article-body {
+        padding: 1.5rem;
+    }
+    .article-body h1 {
+        font-size: 1.75rem;
+    }
+    .article-body h2 {
+        font-size: 1.5rem;
+    }
+    .article-body h3 {
+        font-size: 1.25rem;
+    }
+}
 
-/* ============================================================================
-   12. ARCHIVE PAGES (Games & Events)
-   ============================================================================ */
-
+/* Archive Pages Styles */
 .archive-section {
     padding: 4rem 2rem;
     background-color: var(--bg-white);
@@ -1044,44 +1059,18 @@ body {
     box-shadow: none;
 }
 
-/* ============================================================================
-   13. RESPONSIVE STYLES
-   ============================================================================ */
-
-/* Desktop - Table of Contents Sticky */
-@media (min-width: 1024px) {
-    .article-layout {
-        grid-template-columns: 250px 1fr;
-    }
-    
-    .table-of-contents {
-        position: sticky;
-        top: 100px;
-        align-self: start;
-        max-height: calc(100vh - 120px);
-        overflow-y: auto;
-        order: 1;
-    }
-    
-    .article-body {
-        order: 2;
-    }
-}
-
-/* Mobile & Tablet - Below 1024px */
 @media (max-width: 1024px) {
-    /* Header & Logo */
     .site-header .container {
         justify-content: space-between;
     }
     
-    /* Show Mobile Menu Toggle */
+    /* Show hamburger menu toggle */
     .menu-toggle {
         display: block;
         order: 3;
     }
     
-    /* Mobile Navigation - Slide-out Panel */
+    /* Hide nav by default on mobile */
     .main-nav {
         position: fixed;
         top: 0;
@@ -1090,8 +1079,9 @@ body {
         width: 100vw;
         max-width: none;
         background: var(--bg-white);
-        border-left: var(--border-width) solid var(--border);
+        color: var(--text);
         box-shadow: -8px 0 0 var(--border);
+        border-left: var(--border-width) solid var(--border);
         z-index: 2000;
         display: flex;
         flex-direction: column;
@@ -1099,183 +1089,130 @@ body {
         transition: transform 0.26s cubic-bezier(.2,.8,.2,1);
         padding: 0 0 2rem 0;
         overflow-y: auto;
+        box-sizing: border-box;
     }
-    
+    .main-nav ul .nav-register { display: none; }
     .main-nav.active {
         transform: translateX(0);
     }
-    
-    /* Mobile Nav List */
     .main-nav ul {
-        align-items: stretch;
         display: flex;
         flex-direction: column;
-        margin: 5%;
-        padding: 0;
-        width: 90%;
-        gap: 20px;
-        margin-top: 5rem;
+        margin: 4rem 0 0 0;
+        padding: 0.25rem;
+        width: 100%;
+        align-items: stretch;
+        box-sizing: border-box;
+        gap: 0.25rem;
     }
-    
     .main-nav li {
         width: 100%;
         margin: 0;
         padding: 0;
+        border: 0;
     }
-    
-    .main-nav li:last-child {
-        border-bottom: none;
-    }
-    
-    /* Mobile Nav Links */
     .main-nav a {
         display: block;
         width: calc(100% - 1rem);
         margin: 0.5rem;
         text-align: center;
-        padding: 0.75rem 1rem;
-        font-size: 1.5rem;
+        color: var(--text);
+        font-size: 1rem;
         font-weight: 800;
+        text-transform: uppercase;
         letter-spacing: 1px;
+        padding: 0.75rem 1rem;
         background-color: var(--bg-white);
         border: var(--border-width) solid var(--border);
         border-radius: var(--border-radius);
+        text-decoration: none;
+        transition: var(--transition);
         box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--border);
         transform: none;
+        box-sizing: border-box;
+        word-break: break-word;
     }
-    
+    /* Hide register in the list on mobile; use bottom CTA */
+    .main-nav ul .nav-register { display: none; }
     .main-nav a:hover {
         transform: translate(-2px, -2px);
         box-shadow: 4px 4px 0 var(--border);
     }
-    
     .main-nav a:active {
         transform: translate(0, 0);
         box-shadow: none;
     }
     
-    /* Hide Desktop Register Button */
-    .main-nav ul .nav-register {
-        display: none;
-    }
-    
-    /* Show Mobile Close Button */
     .nav-close {
         display: block;
         position: absolute;
         top: 1rem;
-        right: calc(6%);
+        right: 1rem;
         background-color: var(--bg-white);
         color: var(--text);
         border: var(--border-width) solid var(--border);
-        box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--border);
         border-radius: var(--border-radius);
         font-size: 1.5rem;
-        padding: 0.5rem 1rem;
+        padding-left: 10px;
+        padding-right: 10px;
         font-weight: 700;
         cursor: pointer;
         transition: var(--transition);
         text-transform: uppercase;
         z-index: 2100;
     }
-    
     .nav-close:hover {
         transform: translate(-2px, -2px);
         box-shadow: 4px 4px 0 var(--border);
     }
-    
     .nav-close:active {
         transform: translate(0, 0);
         box-shadow: none;
     }
-    
-    /* Show Mobile CTA Section */
-    .nav-cta {
-        display: block;
-        margin-top: auto;
-        padding: 1rem;
-        border-top: var(--border-width) solid var(--border);
-        background: var(--bg-white);
-    }
-    
-    .nav-cta-inner {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 0.75rem;
-    }
-    
-    .nav-cta .cta-btn {
-        display: block;
-        text-align: center;
-        padding: 0.75rem 1rem;
-        font-weight: 900;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        border: var(--border-width) solid var(--border);
-        border-radius: var(--border-radius);
-        box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--border);
-        background: var(--bg-white);
-        color: var(--text);
-        text-decoration: none;
-        transition: var(--transition);
-    }
-    
-    .nav-cta .cta-register {
-        background: var(--primary);
-        color: #fff;
-    }
-    
-    .nav-cta .cta-btn:hover {
-        transform: translate(-2px, -2px);
-        box-shadow: 4px 4px 0 var(--border);
-    }
-    
-    /* Typography Adjustments */
+
     .hero h2 {
         font-size: 2.25rem;
     }
-    
+
     .hero p {
         font-size: 1rem;
     }
-    
+
     .content-section h2,
     .recent-items-section h2,
     .resources-section h2,
     .cta-content h2 {
         font-size: 2rem;
     }
-    
-    /* Grid Adjustments */
+
     .content-grid,
     .items-grid,
     .resources-grid {
         grid-template-columns: 1fr;
     }
-    
-    /* CTA Buttons */
+
     .cta-buttons {
         flex-direction: column;
         align-items: stretch;
     }
-    
+
     .btn-large {
         width: 100%;
         max-width: 350px;
         margin: 0 auto;
     }
-    
-    /* Reduce Shadow Offset */
+
+    /* Reduce shadow offset on mobile */
     :root {
         --shadow-offset: 6px;
     }
-    
+
     .content-card,
     .item-card,
     .resource-card {
         box-shadow: 6px 6px 0 var(--border);
     }
-    
+
     .content-card:hover,
     .resource-card:hover {
         box-shadow: 9px 9px 0 var(--border);
@@ -1286,25 +1223,91 @@ body {
     }
 }
 
-/* Mobile - Below 768px */
-@media (max-width: 768px) {
-    .article-title {
-        font-size: 2rem;
+/* Mobile nav: remove blue background, match desktop buttons, add margin */
+@media (max-width: 1023px) {
+    .main-nav {
+        background: var(--bg-white);
+        color: var(--text);
+        box-shadow: -8px 0 0 var(--border);
+        border-left: var(--border-width) solid var(--border);
+        overflow-y: auto;
+        height: 100vh;
+        min-width: 320px;
+        width: 100vw;
+        max-width: none;
+        padding-bottom: 2rem;
     }
-    
-    .article-body {
-        padding: 1.5rem;
+    .main-nav ul {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        margin: 4rem 0 0 0;
+        padding: 0;
     }
-    
-    .article-body h1 {
-        font-size: 1.75rem;
+    .main-nav li {
+        width: 100%;
+        border-bottom: var(--border-width) solid var(--border);
+        margin: 0;
+        padding: 0;
     }
-    
-    .article-body h2 {
-        font-size: 1.5rem;
+    .main-nav li:last-child {
+        border-bottom: none;
     }
-    
-    .article-body h3 {
-        font-size: 1.25rem;
+    .main-nav a,
+    .main-nav ul li a.btn.nav-register {
+        display: block;
+        width: 100%;
+        text-align: left;
+        color: var(--text);
+        font-size: 1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        padding: 0.5rem 1rem;
+        background-color: var(--bg-white);
+        border: var(--border-width) solid var(--border);
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--border);
+        margin: 0.5rem 0.5rem;
+        transition: var(--transition);
+        position: relative;
+        z-index: 1;
+        text-decoration: none;
     }
+    .main-nav ul li a.btn.nav-register {
+        background-color: var(--primary);
+        color: #fff;
+        margin: 0.5rem 0.5rem;
+    }
+    .main-nav a:hover,
+    .main-nav ul li a.btn.nav-register:hover {
+        background-color: var(--accent);
+        color: #fff;
+        transform: translate(-2px, -2px);
+        box-shadow: 6px 6px 0 var(--border);
+    }
+    .main-nav a:active,
+    .main-nav ul li a.btn.nav-register:active {
+        background-color: var(--primary);
+        color: #fff;
+        transform: translate(0, 0);
+        box-shadow: none;
+    }
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Selection color */
+::selection {
+    background-color: var(--accent);
+    color: var(--text);
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 3px;
 }
