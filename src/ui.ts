@@ -12,7 +12,7 @@ function toggleMobileMenu() {
 
 // Close mobile menu when clicking a nav link
 function closeMobileMenu() {
-    if (mainNav && window.innerWidth <= 768) {
+    if (mainNav) {
         mainNav.classList.remove('active');
     }
 }
@@ -21,6 +21,15 @@ function closeMobileMenu() {
 if (menuToggle) {
     menuToggle.addEventListener('click', toggleMobileMenu);
 }
+
+// Use event delegation for close button to ensure it works
+document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    if (target && target.id === 'navClose') {
+        e.preventDefault();
+        closeMobileMenu();
+    }
+});
 
 // Close mobile menu when clicking nav links
 if (mainNav) {

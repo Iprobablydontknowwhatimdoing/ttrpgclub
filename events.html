@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Events - TTRPG Club</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='50%' x='50%' dominant-baseline='middle' text-anchor='middle' font-size='48'%3E🎲%3C/text%3E%3C/svg%3E">
+    <script type="module">
+        import { marked } from 'https://cdn.jsdelivr.net/npm/marked@11.0.0/+esm';
+        window.marked = marked;
+    </script>
+</head>
+<body>
+    <!-- Static Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">
+                <h1>🎲 TTRPG Club</h1>
+            </div>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" type="button">
+                <span>☰</span>
+            </button>
+            <nav class="main-nav" id="mainNav">
+                <button class="nav-close" id="navClose" aria-label="Close menu" type="button">&times;</button>
+                <ul>
+                    <li><a href="/#about">About</a></li>
+                    <li><a href="/games.html">Games</a></li>
+                    <li><a href="/events.html">Events</a></li>
+                    <li><a href="/#resources">Resources</a></li>
+                    <li><a href="/#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Events Archive Section -->
+    <section class="archive-section">
+        <div class="container">
+            <div class="archive-header">
+                <h1>All Events</h1>
+                <a href="/" class="back-link">← Back to Home</a>
+            </div>
+            
+            <!-- Filters -->
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="searchInput">Search:</label>
+                    <input type="text" id="searchInput" class="filter-input" placeholder="Search events...">
+                </div>
+                <div class="filter-group">
+                    <label for="sortSelect">Sort By:</label>
+                    <select id="sortSelect" class="filter-select">
+                        <option value="date-desc">Newest First</option>
+                        <option value="date-asc">Oldest First</option>
+                        <option value="title-asc">Title A-Z</option>
+                        <option value="title-desc">Title Z-A</option>
+                    </select>
+                </div>
+                <button type="button" id="clearFilters" class="btn btn-outline">Clear Filters</button>
+            </div>
+
+            <!-- Events Grid -->
+            <div class="items-grid" id="eventsGrid">
+                <p class="loading-text">Loading events...</p>
+            </div>
+        </div>
+    </section>
+
+    <script type="module" src="/dist/events-page.js"></script>
+</body>
+</html>

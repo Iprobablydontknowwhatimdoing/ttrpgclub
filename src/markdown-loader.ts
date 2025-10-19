@@ -102,6 +102,12 @@ async function loadArticlePage(path: string): Promise<void> {
         // Update page title
         document.title = `${frontmatter.title} - TTRPG Club`;
         
+        // Update article header background image
+        const headerElement = document.querySelector('.article-header') as HTMLElement;
+        if (headerElement && frontmatter.thumbnail) {
+            headerElement.style.backgroundImage = `url('${frontmatter.thumbnail}')`;
+        }
+        
         // Update article title
         const titleElement = document.querySelector('.article-title');
         if (titleElement) {
@@ -124,6 +130,9 @@ async function loadArticlePage(path: string): Promise<void> {
         const contentElement = document.querySelector('.article-body');
         if (contentElement) {
             contentElement.innerHTML = markdownToHtml(content);
+            
+            // Generate table of contents after content is loaded
+            generateTableOfContents();
         }
     } catch (error) {
         console.error('Error loading article:', error);
@@ -132,6 +141,52 @@ async function loadArticlePage(path: string): Promise<void> {
             contentElement.innerHTML = '<p><strong>Error loading content.</strong> Please try again later.</p>';
         }
     }
+}
+
+/**
+ * Generate table of contents from article headings
+ */
+function generateTableOfContents(): void {
+    const articleBody = document.querySelector('.article-body');
+    const tocNav = document.querySelector('#tocNav');
+    
+    if (!articleBody || !tocNav) return;
+    
+    // Get all headings except h1
+    const headings = articleBody.querySelectorAll('h2, h3, h4, h5, h6');
+    
+    if (headings.length === 0) {
+        // Hide TOC if no headings
+        const tocContainer = document.querySelector('.table-of-contents');
+        if (tocContainer) {
+            (tocContainer as HTMLElement).style.display = 'none';
+        }
+        return;
+    }
+    
+    const tocList = document.createElement('ul');
+    tocList.className = 'toc-list';
+    
+    headings.forEach((heading, index) => {
+        // Add ID to heading if it doesn't have one
+        if (!heading.id) {
+            const id = `heading-${index}`;
+            heading.id = id;
+        }
+        
+        const listItem = document.createElement('li');
+        listItem.className = `toc-item toc-${heading.tagName.toLowerCase()}`;
+        
+        const link = document.createElement('a');
+        link.href = `#${heading.id}`;
+        link.textContent = heading.textContent || '';
+        link.className = 'toc-link';
+        
+        listItem.appendChild(link);
+        tocList.appendChild(listItem);
+    });
+    
+    tocNav.appendChild(tocList);
 }
 
 /**

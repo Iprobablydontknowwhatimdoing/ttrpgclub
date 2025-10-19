@@ -1,7 +1,7 @@
 ---
 title: Game Master Workshop
 description: Learn to run your own games! This workshop covers encounter design, improvisation, and creating memorable NPCs.
-thumbnail: /images/gm-workshop.jpg
+thumbnail: https://cdn.pixabay.com/photo/2025/06/11/07/42/creepers-9653850_1280.jpg
 date: 2025-11-15
 time: 2:00 PM - 5:00 PM
 location: Community Center, Room 204

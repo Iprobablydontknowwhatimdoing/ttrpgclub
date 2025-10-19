@@ -22,10 +22,11 @@
                 <span>☰</span>
             </button>
             <nav class="main-nav" id="mainNav">
+                <button class="nav-close" id="navClose" aria-label="Close menu" type="button">&times;</button>
                 <ul>
                     <li><a href="#about">About</a></li>
-                    <li><a href="#games">Games</a></li>
-                    <li><a href="#events">Events</a></li>
+                    <li><a href="/games.html">Games</a></li>
+                    <li><a href="/events.html">Events</a></li>
                     <li><a href="#resources">Resources</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
@@ -87,7 +88,10 @@
     <!-- Games Section (Dynamic Content) -->
     <section id="games" class="recent-items-section">
         <div class="container">
-            <h2>Current Games</h2>
+            <div class="section-header">
+                <h2>Current Games</h2>
+                <a href="/games.html" class="btn btn-outline">View All Games</a>
+            </div>
             <div class="items-grid">
                 <!-- Content loaded dynamically by TypeScript -->
                 <p class="loading-text">Loading games...</p>
@@ -98,7 +102,10 @@
     <!-- Events Section (Dynamic Content) -->
     <section id="events" class="recent-items-section alt-bg">
         <div class="container">
-            <h2>Upcoming Events</h2>
+            <div class="section-header">
+                <h2>Upcoming Events</h2>
+                <a href="/events.html" class="btn btn-outline">View All Events</a>
+            </div>
             <div class="items-grid">
                 <!-- Content loaded dynamically by TypeScript -->
                 <p class="loading-text">Loading events...</p>
@@ -177,8 +184,8 @@
                     <h3>Quick Links</h3>
                     <ul>
                         <li><a href="#about">About</a></li>
-                        <li><a href="#games">Current Games</a></li>
-                        <li><a href="#events">Events</a></li>
+                        <li><a href="/games.html">Current Games</a></li>
+                        <li><a href="/events.html">Events</a></li>
                         <li><a href="#resources">Resources</a></li>
                     </ul>
                 </div>

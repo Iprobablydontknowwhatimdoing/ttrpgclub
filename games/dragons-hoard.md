@@ -1,7 +1,7 @@
 ---
 title: The Dragon's Hoard
 description: A classic D&D 5e adventure where heroes must stop an ancient dragon from awakening. Perfect for levels 5-8.
-thumbnail: /images/dragon-quest.jpg
+thumbnail: https://i.pximg.net/img-master/img/2025/07/07/00/07/43/132398358_p0_master1200.jpg
 date: 2025-10-01
 system: D&D 5e
 dm: Sarah Chen

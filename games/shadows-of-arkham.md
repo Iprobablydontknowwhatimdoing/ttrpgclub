@@ -1,10 +1,10 @@
 ---
 title: Shadows of Arkham
 description: Investigate eldritch horrors in this Call of Cthulhu campaign. Mystery, suspense, and cosmic terror await.
-thumbnail: /images/cthulhu-campaign.jpg
+thumbnail: https://cdn.pixabay.com/photo/2025/06/11/07/42/creepers-9653850_1280.jpg
 date: 2025-09-15
 system: Call of Cthulhu 7e
-keeper: Marcus Webb
+gamemaster: Marcus Webb
 status: Active
 players: 4/5
 ---

@@ -1,7 +1,7 @@
 ---
 title: Newbie Night: One-Shot Special
 description: First Friday of every month! Try TTRPGs with pre-made characters and experienced GMs. No experience needed!
-thumbnail: /images/oneshot-night.jpg
+thumbnail: https://i.pximg.net/img-master/img/2025/07/07/00/07/43/132398358_p0_master1200.jpg
 date: 2025-11-01
 time: 7:00 PM - 10:00 PM
 location: Community Center, Main Hall
