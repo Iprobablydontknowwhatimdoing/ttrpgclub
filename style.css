@@ -142,29 +142,9 @@ body {
 }
 
 /* Register Button (Desktop) */
-.main-nav ul li a.btn.nav-register {
-    background-color: var(--primary);
-    color: #fff;
-    border: var(--border-width) solid var(--border);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--border);
-    font-weight: 900;
-    padding: 0.5rem 1.25rem;
-    margin-left: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.main-nav ul li a.btn.nav-register:hover {
-    background-color: var(--accent);
-    transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0 var(--border);
-}
-
-.main-nav ul li a.btn.nav-register:active {
-    background-color: var(--primary);
-    transform: translate(0, 0);
-    box-shadow: none;
+.main-nav .nav-register {
+    background-color: var(--accent) !important;
+    color: var(--text) !important; 
 }
 
 /* Mobile Menu Toggle (Hidden on Desktop) */
@@ -175,7 +155,6 @@ body {
     border: var(--border-width) solid var(--border);
     background-color: var(--bg-white);
     color: var(--text);
-    box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--border);
     font-weight: 700;
     text-transform: uppercase;
     font-size: 0.875rem;
@@ -271,7 +250,7 @@ body {
     display: block;
     width: 100%;
     margin: 0;
-    background-color: var(--primary);
+    background-color: var(--accent);
     color: #000;
     font-weight: 800;
     text-transform: uppercase;
@@ -374,11 +353,6 @@ body {
     box-shadow: 12px 12px 0 var(--border);
 }
 
-.content-card:active {
-    transform: translate(0, 0);
-    box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--border);
-}
-
 .content-card h3 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
@@ -447,12 +421,12 @@ body {
 }
 
 .item-card:hover {
-    transform: translate(-3px, -3px);
-    box-shadow: calc(var(--shadow-offset) + 1px) calc(var(--shadow-offset) + 1px) 0 var(--border);
+    transform: translate(-4px, -4px);
+    box-shadow: 9px 9px 0 var(--border);
 }
 
 .item-card:has(.card-btn:hover) {
-    transform: translate(6px, 6px);
+    transform: translate(4px, 4px);
     box-shadow: calc(var(--shadow-offset) - 4px) calc(var(--shadow-offset) - 4px) 0 var(--border);
 }
 
@@ -936,6 +910,40 @@ body {
    12. ARCHIVE PAGES (Games & Events)
    ============================================================================ */
 
+/* Archive top band with primary background */
+.archive-hero {
+    background-color: var(--primary);
+    color: var(--text);
+    padding: 3rem 2rem 2rem;
+    border-bottom: var(--border-width) solid var(--border);
+    position: relative;
+}
+
+.archive-hero::after {
+    content: '';
+    position: absolute;
+    bottom: calc(var(--border-width) * -1);
+    left: 0;
+    right: 0;
+    height: var(--shadow-offset);
+    background-color: var(--border);
+    z-index: -1;
+}
+
+.archive-hero .archive-header {
+    margin-bottom: 1.5rem;
+}
+
+/* Filters inside the archive-hero should not be in a card */
+.archive-hero .filters {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+    gap: 1rem 1.5rem;
+}
+
 .archive-section {
     padding: 4rem 2rem;
     background-color: var(--bg-white);
@@ -983,6 +991,7 @@ body {
 .filter-group:first-child {
     flex: 1;
     width: auto;
+    min-width: 250px;
 }
 
 .filter-group label {
@@ -1145,12 +1154,12 @@ body {
     }
     
     .main-nav a:hover {
-        transform: translate(-2px, -2px);
-        box-shadow: 4px 4px 0 var(--border);
+        transform: translate(3px, 3px);
+        box-shadow: 3px 3px 0 var(--border);
     }
     
     .main-nav a:active {
-        transform: translate(0, 0);
+        transform: translate(6px, 6px);
         box-shadow: none;
     }
     
@@ -1168,7 +1177,6 @@ body {
         background-color: var(--bg-white);
         color: var(--text);
         border: var(--border-width) solid var(--border);
-        box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--border);
         border-radius: var(--border-radius);
         font-size: 1.5rem;
         padding: 0.5rem 1rem;
@@ -1226,8 +1234,7 @@ body {
     }
     
     .nav-cta .cta-btn:hover {
-        transform: translate(-2px, -2px);
-        box-shadow: 4px 4px 0 var(--border);
+        transform: translate(3px, 3px);
     }
     
     /* Typography Adjustments */

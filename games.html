@@ -16,7 +16,7 @@
     <header class="site-header">
         <div class="container">
             <div class="logo">
-                <h1>🎲 TTRPG Club</h1>
+                <h1>🎲 <abbr title="Tabletop Role-Playing Game">TTRPG</abbr> Club</h1>
             </div>
             <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-controls="mainNav" aria-expanded="false" type="button">
                 <span>☰</span>
@@ -28,6 +28,7 @@
                     <li><a href="/games.html">Games</a></li>
                     <li><a href="/events.html">Events</a></li>
                     <li><a href="mailto:1eaunger@gmail.com">Contact</a></li>
+                    <li><a href="#register" class="btn nav-register">Register</a></li>
                 </ul>
                 <div class="nav-cta" id="navCta">
                     <div class="nav-cta-inner">
@@ -40,15 +41,15 @@
         </div>
     </header>
 
-    <!-- Games Archive Section -->
-    <section class="archive-section">
+    <!-- Games Archive Header Band -->
+    <section class="archive-hero">
         <div class="container">
             <div class="archive-header">
                 <h1>All Games</h1>
                 <a href="/" class="back-link">← Back to Home</a>
             </div>
-            <!-- Filters -->
-            <div class="filters">
+            <!-- Filters in header band (search on its own row) -->
+            <div class="filters filters--games">
                 <div class="filter-group">
                     <label for="searchInput">Search:</label>
                     <input type="text" id="searchInput" class="filter-input" placeholder="Search games...">
@@ -66,12 +67,6 @@
                     </select>
                 </div>
                 <div class="filter-group">
-                    <label for="dmFilter">DM:</label>
-                    <select id="dmFilter" class="filter-select">
-                        <option value="">All DMs</option>
-                    </select>
-                </div>
-                <div class="filter-group">
                     <label for="sortSelect">Sort By:</label>
                     <select id="sortSelect" class="filter-select">
                         <option value="date-desc">Newest First</option>
@@ -82,7 +77,12 @@
                 </div>
                 <button type="button" id="clearFilters" class="btn btn-outline">Clear Filters</button>
             </div>
+        </div>
+    </section>
 
+    <!-- Games Archive Section -->
+    <section class="archive-section">
+        <div class="container">
             <!-- Games Grid -->
             <div class="items-grid" id="gamesGrid">
                 <p class="loading-text">Loading games...</p>

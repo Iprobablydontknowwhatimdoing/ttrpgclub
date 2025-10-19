@@ -16,7 +16,7 @@
     <header class="site-header">
         <div class="container">
             <div class="logo">
-                <h1>🎲 TTRPG Club</h1>
+                <h1>🎲 <abbr title="Tabletop Role-Playing Game">TTRPG</abbr> Club</h1>
             </div>
             <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-controls="mainNav" aria-expanded="false" type="button">
                 <span>☰</span>
@@ -28,6 +28,7 @@
                     <li><a href="/games.html">Games</a></li>
                     <li><a href="/events.html">Events</a></li>
                     <li><a href="mailto:1eaunger@gmail.com">Contact</a></li>
+                    <li><a href="#register" class="btn nav-register">Register</a></li>
                 </ul>
                 <div class="nav-cta" id="navCta">
                     <div class="nav-cta-inner">
@@ -40,14 +41,14 @@
         </div>
     </header>
 
-    <!-- Events Archive Section -->
-    <section class="archive-section">
+    <!-- Events Archive Header Band -->
+    <section class="archive-hero">
         <div class="container">
             <div class="archive-header">
                 <h1>All Events</h1>
                 <a href="/" class="back-link">← Back to Home</a>
             </div>
-            <!-- Filters -->
+            <!-- Filters in header band -->
             <div class="filters">
                 <div class="filter-group">
                     <label for="searchInput">Search:</label>
@@ -64,7 +65,12 @@
                 </div>
                 <button type="button" id="clearFilters" class="btn btn-outline">Clear Filters</button>
             </div>
+        </div>
+    </section>
 
+    <!-- Events Archive Section -->
+    <section class="archive-section">
+        <div class="container">
             <!-- Events Grid -->
             <div class="items-grid" id="eventsGrid">
                 <p class="loading-text">Loading events...</p>
