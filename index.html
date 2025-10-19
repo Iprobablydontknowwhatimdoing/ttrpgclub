@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TTRPG Club - Roll for Adventure</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='50%' x='50%' dominant-baseline='middle' text-anchor='middle' font-size='48'%3E🎲%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+    <!-- Static Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">
+                <h1>🎲 TTRPG Club</h1>
+            </div>
+            <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode" type="button">
+                <span id="darkModeIcon">🌙</span>
+            </button>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" type="button">
+                <span>☰</span>
+            </button>
+            <nav class="main-nav" id="mainNav">
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#games">Games</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#resources">Resources</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Roll for Adventure</h2>
+            <p>Join our community of storytellers, dungeon masters, and adventurers. Whether you're a seasoned player or brand new to tabletop RPGs, there's a seat at our table for you.</p>
+            <a href="#join" class="btn btn-primary">Join Our Club</a>
+        </div>
+    </section>
+
+    <!-- Content Section 1: About -->
+    <section id="about" class="content-section">
+        <div class="container">
+            <h2>About Our Club</h2>
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>🎭 Weekly Sessions</h3>
+                    <p>We meet every week for exciting campaigns across multiple game systems including D&amp;D 5e, Pathfinder, Call of Cthulhu, and more.</p>
+                </div>
+                <div class="content-card">
+                    <h3>👥 Welcoming Community</h3>
+                    <p>Our club is open to all experience levels. New to TTRPGs? We offer beginner-friendly one-shots and mentorship programs.</p>
+                </div>
+                <div class="content-card">
+                    <h3>🏰 Multiple Tables</h3>
+                    <p>With several concurrent games running, you'll find the perfect adventure for your playstyle and schedule.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Section 2: Why Join -->
+    <section class="content-section alt-bg">
+        <div class="container">
+            <h2>Why Join Us?</h2>
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>📚 Learn &amp; Grow</h3>
+                    <p>Develop storytelling skills, strategic thinking, and creative problem-solving in a supportive environment.</p>
+                </div>
+                <div class="content-card">
+                    <h3>🤝 Make Friends</h3>
+                    <p>Connect with like-minded individuals who share your passion for narrative adventures and collaborative storytelling.</p>
+                </div>
+                <div class="content-card">
+                    <h3>🎨 Express Yourself</h3>
+                    <p>Bring your characters to life, explore new worlds, and experience stories limited only by imagination.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Games Section (Dynamic Content) -->
+    <section id="games" class="recent-items-section">
+        <div class="container">
+            <h2>Current Games</h2>
+            <div class="items-grid">
+                <!-- Content loaded dynamically by TypeScript -->
+                <p class="loading-text">Loading games...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section (Dynamic Content) -->
+    <section id="events" class="recent-items-section alt-bg">
+        <div class="container">
+            <h2>Upcoming Events</h2>
+            <div class="items-grid">
+                <!-- Content loaded dynamically by TypeScript -->
+                <p class="loading-text">Loading events...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources" class="resources-section">
+        <div class="container">
+            <h2>Resources</h2>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3>📖 Rulebooks &amp; Guides</h3>
+                    <ul>
+                        <li><a href="#">D&amp;D 5e Basic Rules (Free)</a></li>
+                        <li><a href="#">Pathfinder 2e SRD</a></li>
+                        <li><a href="#">Call of Cthulhu Quick-Start</a></li>
+                        <li><a href="#">GM Tips &amp; Tricks Guide</a></li>
+                    </ul>
+                </div>
+                <div class="resource-card">
+                    <h3>🎲 Character Tools</h3>
+                    <ul>
+                        <li><a href="#">D&amp;D Beyond</a></li>
+                        <li><a href="#">Pathbuilder 2e</a></li>
+                        <li><a href="#">Character Sheet Generator</a></li>
+                        <li><a href="#">Dice Roller App</a></li>
+                    </ul>
+                </div>
+                <div class="resource-card">
+                    <h3>🗺️ Virtual Tabletops</h3>
+                    <ul>
+                        <li><a href="#">Roll20</a></li>
+                        <li><a href="#">Foundry VTT</a></li>
+                        <li><a href="#">Fantasy Grounds</a></li>
+                        <li><a href="#">Discord for Voice</a></li>
+                    </ul>
+                </div>
+                <div class="resource-card">
+                    <h3>📚 Learning Materials</h3>
+                    <ul>
+                        <li><a href="#">How to Play TTRPGs</a></li>
+                        <li><a href="#">New Player FAQ</a></li>
+                        <li><a href="#">Safety Tools (X-Card, Lines &amp; Veils)</a></li>
+                        <li><a href="#">Recommended Podcasts</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section id="join" class="cta-section">
+
+                <script type="module" src="/dist/main.js"></script>
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Start Your Adventure?</h2>
+                <p>Join our community today and discover the magic of collaborative storytelling. New members are always welcome!</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary btn-large">Join on Discord</a>
+                    <a href="#contact" class="btn btn-outline btn-large">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>TTRPG Club</h3>
+                    <p>Building community through collaborative storytelling and tabletop adventures.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#games">Current Games</a></li>
+                        <li><a href="#events">Events</a></li>
+                        <li><a href="#resources">Resources</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <ul>
+                        <li><a href="#">Discord Server</a></li>
+                        <li><a href="#">Email Us</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Twitter</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Meeting Info</h3>
+                    <p>Every Wednesday, 6:00 PM<br>
+                    Community Center<br>
+                    Room 204</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TTRPG Club. May your rolls be high and your stories epic.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="/dist/main.js"></script>
+</body>
+</html>
