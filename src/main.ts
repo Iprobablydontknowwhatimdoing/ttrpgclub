@@ -4,6 +4,7 @@
  */
 
 import { fetchMarkdown, type Frontmatter, type MarkdownContent } from './markdown-loader.js';
+import { createPreviewCard } from './cards.js';
 import './ui.js'; // Import UI interactions (mobile menu)
 
 // Hardcoded file lists (since we can't dynamically list files in browser)
@@ -17,30 +18,7 @@ const EVENTS_FILES = [
     'events/gm-workshop-november.md'
 ];
 
-/**
- * Create a card HTML element for games/events
- */
-function createCard(data: MarkdownContent, type: 'game' | 'event', filename: string): string {
-    const { frontmatter } = data;
-    const thumbnail = frontmatter.thumbnail || `https://via.placeholder.com/400x250/4a5568/ffffff?text=${encodeURIComponent(frontmatter.title)}`;
-    
-    // Create link to article page with markdown file as query parameter
-    const mdPath = `${type === 'game' ? 'games' : 'events'}/${filename}`;
-    const articleLink = `/article.html?md=${encodeURIComponent(mdPath)}`;
-    
-    return `
-        <div class="item-card">
-            <div class="item-thumbnail">
-                <img src="${thumbnail}" alt="${frontmatter.title}" onerror="this.onerror=null;this.src='https://via.placeholder.com/400x250/1e3a8a/ffffff?text=${encodeURIComponent(frontmatter.title)}';">
-            </div>
-            <div class="item-content">
-                <h3>${frontmatter.title}</h3>
-                <p>${frontmatter.description}</p>
-            </div>
-                <a href="${articleLink}" class="card-btn">Open</a>
-        </div>
-    `;
-}
+// Card creation now centralized in cards.ts
 
 /**
  * Load and display games
@@ -67,10 +45,7 @@ async function loadGames(): Promise<void> {
         const recentGames = games.slice(0, 3);
         
         // Generate HTML
-        const html = recentGames.map(({ data, file }) => {
-            const filename = file.split('/').pop() || '';
-            return createCard(data, 'game', filename);
-        }).join('');
+        const html = recentGames.map(({ data, file }) => createPreviewCard(data, 'game', file, 'home')).join('');
         
         container.innerHTML = html;
         
@@ -105,10 +80,7 @@ async function loadEvents(): Promise<void> {
         const recentEvents = events.slice(0, 3);
         
         // Generate HTML
-        const html = recentEvents.map(({ data, file }) => {
-            const filename = file.split('/').pop() || '';
-            return createCard(data, 'event', filename);
-        }).join('');
+        const html = recentEvents.map(({ data, file }) => createPreviewCard(data, 'event', file, 'home')).join('');
         
         container.innerHTML = html;
         

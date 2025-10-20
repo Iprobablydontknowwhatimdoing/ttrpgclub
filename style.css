@@ -65,7 +65,7 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 5vw;
 }
 
 .loading-text {
@@ -258,7 +258,6 @@ body {
     letter-spacing: 0.5px;
     border: none;
     border-top: var(--border-width) solid var(--border);
-    border-radius: 0 0 4px 4px;
     padding: 1rem 0;
     transition: var(--transition);
     text-align: center;
@@ -266,7 +265,22 @@ body {
 }
 
 /* ============================================================================
-   5. HERO SECTION
+   5. CARDS
+   ============================================================================ */
+.card {
+    background-color: var(--bg-white);
+    padding: 2rem;
+    border: var(--border-width) solid var(--border);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--border);
+    transition: var(--transition);
+}
+.card:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 12px 12px 0 var(--border);
+}
+/* ============================================================================
+   6. HERO SECTION
    ============================================================================ */
 
 .hero {
@@ -311,11 +325,11 @@ body {
 }
 
 /* ============================================================================
-   6. CONTENT SECTIONS
+   7. CONTENT SECTIONS
    ============================================================================ */
 
 .content-section {
-    padding: 4rem 2rem;
+    padding: 5vw;
     border-bottom: var(--border-width) solid var(--border);
 }
 
@@ -339,21 +353,7 @@ body {
     margin-top: 2rem;
 }
 
-.content-card {
-    background-color: var(--bg-white);
-    padding: 2rem;
-    border: var(--border-width) solid var(--border);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--border);
-    transition: var(--transition);
-}
-
-.content-card:hover {
-    transform: translate(-4px, -4px);
-    box-shadow: 12px 12px 0 var(--border);
-}
-
-.content-card h3 {
+.content-section .content-card h3 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
     font-weight: 900;
@@ -366,11 +366,11 @@ body {
 }
 
 /* ============================================================================
-   7. RECENT ITEMS SECTIONS (Games & Events)
+   8. RECENT ITEMS SECTIONS (Games & Events)
    ============================================================================ */
 
 .recent-items-section {
-    padding: 4rem 2rem;
+    padding: 4rem 5vw;
     border-bottom: var(--border-width) solid var(--border);
 }
 
@@ -401,28 +401,80 @@ body {
     text-align: left;
 }
 
+/* Default grid for archive pages - responsive wrapping */
 .items-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 2.5rem;
     margin-top: 2rem;
+    justify-items: center;
 }
+.recent-items-section {
+    padding: 4rem 0;
+}
+.recent-items-section .container {
+    padding: 5vw 0;
+}
+.recent-items-section .section-header {
+    padding: 0 5vw;
+}
+/* Homepage specific: horizontal scrolling for recent items */
+.recent-items-section .items-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 1rem;
+    margin-top: calc(2rem - 1rem);
+}
+
+/* Add scroll padding to create space on both sides */
+.recent-items-section .items-grid::before,
+.recent-items-section .items-grid::after {
+    content: '';
+    flex: 0 0 5vw;
+    min-width: 2rem;
+}
+
+.recent-items-section .item-card {
+    flex: 0 0 340px;
+    scroll-snap-align: start;
+    min-width: 340px;
+}
+
+/* Custom scrollbar styling for horizontal scroll */
+.recent-items-section .items-grid::-webkit-scrollbar {
+    height: 12px;
+}
+
+.recent-items-section .items-grid::-webkit-scrollbar-track {
+    background: var(--bg-main);
+    border: var(--border-width) solid var(--border);
+    border-radius: 0;
+}
+
+.recent-items-section .items-grid::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    scrollbar-track-color: transparent;
+    border: var(--border-width) solid var(--border);
+    border-radius: 0;
+    box-shadow: 2px 2px 0 var(--border);
+}
+/* Firefox scrollbar styling */
+.recent-items-section .items-grid {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) transparent;
+}
+
+
 
 /* Item Card */
 .item-card {
-    background-color: var(--bg-white);
-    border: var(--border-width) solid var(--border);
-    border-radius: var(--border-radius);
     overflow: hidden;
-    box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--border);
-    transition: var(--transition);
     display: flex;
     flex-direction: column;
-}
-
-.item-card:hover {
-    transform: translate(-4px, -4px);
-    box-shadow: 9px 9px 0 var(--border);
+    padding: 0;
+    max-width: 400px;
 }
 
 .item-card:has(.card-btn:hover) {
@@ -441,7 +493,6 @@ body {
     overflow: hidden;
     background-color: var(--bg-main);
     border-bottom: var(--border-width) solid var(--border);
-    border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
 
 .item-thumbnail img {
@@ -471,8 +522,16 @@ body {
     flex: 1;
 }
 
+/* Tag Chips under description */
+.tag-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 0 1.5rem 1rem 1.5rem;
+}
+
 /* ============================================================================
-   8. RESOURCES SECTION
+   9. RESOURCES SECTION
    ============================================================================ */
 
 .resources-section {
@@ -541,7 +600,7 @@ body {
 }
 
 /* ============================================================================
-   9. CALL TO ACTION SECTION
+   10. CALL TO ACTION SECTION
    ============================================================================ */
 
 .cta-section {
@@ -582,7 +641,7 @@ body {
 }
 
 /* ============================================================================
-   10. FOOTER
+   11. FOOTER
    ============================================================================ */
 
 .site-footer {
@@ -641,7 +700,7 @@ body {
 }
 
 /* ============================================================================
-   11. ARTICLE PAGES
+   12. ARTICLE PAGES
    ============================================================================ */
 
 /* Article Header */
@@ -743,9 +802,16 @@ body {
     border-radius: var(--border-radius);
 }
 
+/* Smaller chips on cards */
+.item-card .meta-item {
+    padding: 0.35rem 0.7rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
 /* Article Content */
 .article-content {
-    padding: 4rem 2rem;
+    padding: 5vw 2vh;
     background-color: var(--bg-white);
 }
 
@@ -755,8 +821,6 @@ body {
 
 .article-layout {
     display: grid;
-    gap: 2rem;
-    grid-template-columns: 1fr;
 }
 
 /* Table of Contents */
@@ -767,6 +831,12 @@ body {
     padding: 1.5rem;
     box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--border);
     order: 1;
+    /* Stay visible while scrolling on all breakpoints */
+    position: sticky;
+    top: 80px;
+    align-self: start;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
 }
 
 .table-of-contents h3 {
@@ -907,7 +977,7 @@ body {
 }
 
 /* ============================================================================
-   12. ARCHIVE PAGES (Games & Events)
+   13. ARCHIVE PAGES (Games & Events)
    ============================================================================ */
 
 /* Archive top band with primary background */
@@ -1054,27 +1124,13 @@ body {
 }
 
 /* ============================================================================
-   13. RESPONSIVE STYLES
+   14. RESPONSIVE STYLES
    ============================================================================ */
 
-/* Desktop - Table of Contents Sticky */
+/* Slightly wider TOC on larger screens */
 @media (min-width: 1024px) {
-    .article-layout {
-        grid-template-columns: 250px 1fr;
-    }
-    
-    .table-of-contents {
-        position: sticky;
-        top: 100px;
-        align-self: start;
-        max-height: calc(100vh - 120px);
-        overflow-y: auto;
-        order: 1;
-    }
-    
-    .article-body {
-        order: 2;
-    }
+    .article-layout { grid-template-columns: 250px 1fr; }
+    .table-of-contents { top: 100px; max-height: calc(100vh - 120px); }
 }
 
 /* Mobile & Tablet - Below 1024px */
@@ -1106,7 +1162,7 @@ body {
         flex-direction: column;
         transform: translateX(100%);
         transition: transform 0.26s cubic-bezier(.2,.8,.2,1);
-        padding: 0 0 2rem 0;
+        padding: 0 0 0 0;
         overflow-y: auto;
     }
     
@@ -1119,10 +1175,11 @@ body {
         align-items: stretch;
         display: flex;
         flex-direction: column;
-        margin: 5%;
+        margin-left: 5%;
+        margin-right: 5%;
         padding: 0;
         width: 90%;
-        gap: 20px;
+        gap: 1vh;
         margin-top: 5rem;
     }
     
@@ -1143,7 +1200,7 @@ body {
         margin: 0.5rem;
         text-align: center;
         padding: 0.75rem 1rem;
-        font-size: 1.5rem;
+        font-size: 1.25rem;
         font-weight: 800;
         letter-spacing: 1px;
         background-color: var(--bg-white);
@@ -1203,7 +1260,7 @@ body {
         margin-top: auto;
         padding: 1rem;
         border-top: var(--border-width) solid var(--border);
-        background: var(--bg-white);
+        background: var(--accent);
     }
     
     .nav-cta-inner {
@@ -1253,13 +1310,6 @@ body {
         font-size: 2rem;
     }
     
-    /* Grid Adjustments */
-    .content-grid,
-    .items-grid,
-    .resources-grid {
-        grid-template-columns: 1fr;
-    }
-    
     /* CTA Buttons */
     .cta-buttons {
         flex-direction: column;
@@ -1276,25 +1326,12 @@ body {
     :root {
         --shadow-offset: 6px;
     }
-    
-    .content-card,
-    .item-card,
-    .resource-card {
-        box-shadow: 6px 6px 0 var(--border);
-    }
-    
-    .content-card:hover,
-    .resource-card:hover {
-        box-shadow: 9px 9px 0 var(--border);
-    }
-    
-    .item-card:has(.btn:hover) {
-        box-shadow: 3px 3px 0 var(--border);
-    }
 }
 
 /* Mobile - Below 768px */
 @media (max-width: 768px) {
+    .article-layout { grid-template-columns: 180px 1fr; }
+    
     .article-title {
         font-size: 2rem;
     }

@@ -7,6 +7,7 @@ system: Call of Cthulhu 7e
 gamemaster: Marcus Webb
 status: Active
 players: 4/5
+tags: [Horror, Investigation, 1920s]
 ---
 
 # Shadows of Arkham

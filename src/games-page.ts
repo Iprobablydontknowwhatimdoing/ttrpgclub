@@ -3,6 +3,7 @@
  */
 
 import { fetchMarkdown, type MarkdownContent } from './markdown-loader.js';
+import { createPreviewCard } from './cards.js';
 import './ui.js';
 
 const GAMES_FILES = [
@@ -11,33 +12,6 @@ const GAMES_FILES = [
 ];
 
 let allGames: Array<{ data: MarkdownContent; file: string }> = [];
-
-function createCard(data: MarkdownContent, filename: string): string {
-    const { frontmatter } = data;
-    const thumbnail = frontmatter.thumbnail || `https://via.placeholder.com/400x250/4a5568/ffffff?text=${encodeURIComponent(frontmatter.title)}`;
-    
-    const mdPath = `games/${filename}`;
-    const articleLink = `/article.html?md=${encodeURIComponent(mdPath)}`;
-    
-    return `
-        <div class="item-card" 
-             data-system="${frontmatter.system || ''}" 
-             data-status="${frontmatter.status || ''}" 
-             data-dm="${frontmatter.dm || ''}">
-            <div class="item-thumbnail">
-                <img src="${thumbnail}" alt="${frontmatter.title}" onerror="this.onerror=null;this.src='https://via.placeholder.com/400x250/1e3a8a/ffffff?text=${encodeURIComponent(frontmatter.title)}';">
-            </div>
-            <div class="item-content">
-                <h3>${frontmatter.title}</h3>
-                <p>${frontmatter.description}</p>
-                ${frontmatter.system ? `<p><strong>System:</strong> ${frontmatter.system}</p>` : ''}
-                ${frontmatter.dm ? `<p><strong>DM:</strong> ${frontmatter.dm}</p>` : ''}
-                ${frontmatter.status ? `<p><strong>Status:</strong> ${frontmatter.status}</p>` : ''}
-            </div>
-            <a href="${articleLink}" class="card-btn">Open</a>
-        </div>
-    `;
-}
 
 async function loadAllGames(): Promise<void> {
     const container = document.getElementById('gamesGrid');
@@ -121,10 +95,7 @@ function displayGames(games: Array<{ data: MarkdownContent; file: string }>): vo
         return;
     }
     
-    const html = games.map(({ data, file }) => {
-        const filename = file.split('/').pop() || '';
-        return createCard(data, filename);
-    }).join('');
+    const html = games.map(({ data, file }) => createPreviewCard(data, 'game', file, 'archive')).join('');
     
     container.innerHTML = html;
 }

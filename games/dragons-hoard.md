@@ -7,6 +7,7 @@ system: D&D 5e
 dm: Sarah Chen
 status: Active
 players: 5/6
+tags: [Fantasy, D&D 5e, Dragon]
 ---
 
 # The Dragon's Hoard

@@ -3,6 +3,7 @@
  */
 
 import { fetchMarkdown, type MarkdownContent } from './markdown-loader.js';
+import { createPreviewCard } from './cards.js';
 import './ui.js';
 
 const EVENTS_FILES = [
@@ -11,32 +12,6 @@ const EVENTS_FILES = [
 ];
 
 let allEvents: Array<{ data: MarkdownContent; file: string }> = [];
-
-function createCard(data: MarkdownContent, filename: string): string {
-    const { frontmatter } = data;
-    const thumbnail = frontmatter.thumbnail || `https://via.placeholder.com/400x250/4a5568/ffffff?text=${encodeURIComponent(frontmatter.title)}`;
-    
-    const mdPath = `events/${filename}`;
-    const articleLink = `/article.html?md=${encodeURIComponent(mdPath)}`;
-    
-    return `
-        <div class="item-card" 
-             data-date="${frontmatter.date || ''}" 
-             data-location="${frontmatter.location || ''}">
-            <div class="item-thumbnail">
-                <img src="${thumbnail}" alt="${frontmatter.title}" onerror="this.onerror=null;this.src='https://via.placeholder.com/400x250/1e3a8a/ffffff?text=${encodeURIComponent(frontmatter.title)}';">
-            </div>
-            <div class="item-content">
-                <h3>${frontmatter.title}</h3>
-                <p>${frontmatter.description}</p>
-                ${frontmatter.date ? `<p><strong>Date:</strong> ${frontmatter.date}</p>` : ''}
-                ${frontmatter.time ? `<p><strong>Time:</strong> ${frontmatter.time}</p>` : ''}
-                ${frontmatter.location ? `<p><strong>Location:</strong> ${frontmatter.location}</p>` : ''}
-            </div>
-            <a href="${articleLink}" class="card-btn">Open</a>
-        </div>
-    `;
-}
 
 async function loadAllEvents(): Promise<void> {
     const container = document.getElementById('eventsGrid');
@@ -81,10 +56,7 @@ function displayEvents(events: Array<{ data: MarkdownContent; file: string }>): 
         return;
     }
     
-    const html = events.map(({ data, file }) => {
-        const filename = file.split('/').pop() || '';
-        return createCard(data, filename);
-    }).join('');
+    const html = events.map(({ data, file }) => createPreviewCard(data, 'event', file, 'archive')).join('');
     
     container.innerHTML = html;
 }
