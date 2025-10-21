@@ -7,6 +7,7 @@ const mainNav = document.getElementById('mainNav');
 function toggleMobileMenu() {
     if (mainNav) {
         mainNav.classList.toggle('active');
+        document.body.classList.toggle('no-scroll', mainNav.classList.contains('active'));
     }
 }
 
@@ -14,6 +15,7 @@ function toggleMobileMenu() {
 function closeMobileMenu() {
     if (mainNav) {
         mainNav.classList.remove('active');
+        document.body.classList.remove('no-scroll');
     }
 }
 

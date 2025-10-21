@@ -1,3 +1,9 @@
+/* Prevent body scrolling when menu is open */
+.no-scroll {
+    overflow: hidden !important;
+    position: fixed;
+    width: 100vw;
+}
 /* ============================================================================
    TTRPG CLUB - NEOBRUTALISM STYLESHEET
    A bold, high-contrast design with thick borders, hard shadows, and vibrant colors
@@ -37,7 +43,7 @@
 
     /* Card sizing tokens */
     --card-min: 320px;     /* Minimum card width */
-    --card-pref: 60vw;     /* Preferred width for archive cards */
+    --card-pref: 400px;     /* Preferred width for archive cards */
     --card-aspect: 2 / 3;  /* Card aspect ratio */
     --card-max-h: 540px;   /* Maximum card height */
     --home-card: 340px;    /* Homepage scroller card width */
@@ -185,6 +191,35 @@ body {
     display: none;
 }
 
+/* Mobile Nav Header (Logo + Club Name) */
+.mobile-nav-header { display: none; }
+.mobile-logo { font-size: 2rem; font-weight: 900; line-height: 1; }
+.mobile-club-name {
+    font-size: 1.25rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    color: var(--text);
+    background: var(--bg-white);
+    border: var(--border-width) solid var(--border);
+    border-radius: var(--border-radius);
+    padding: 0.25rem 0.75rem;
+    box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--border);
+}
+
+/* Show only when mobile menu is open */
+@media (max-width: 1024px) {
+    .main-nav.active .mobile-nav-header {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        position: absolute;
+        top: 1rem;
+        left: 6%;
+        z-index: 2101;
+    }
+}
+
 /* Mobile Navigation CTA (Hidden on Desktop) */
 .nav-cta {
     display: none;
@@ -276,7 +311,7 @@ body {
    ============================================================================ */
 .card {
     background-color: var(--bg-white);
-    padding: 5vw;
+    padding: 2rem;
     border: var(--border-width) solid var(--border);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--border);
@@ -336,7 +371,8 @@ body {
    ============================================================================ */
 
 .content-section {
-    padding: 5vw;
+    padding: 2rem;
+    padding-bottom: 3rem;
     border-bottom: var(--border-width) solid var(--border);
 }
 
@@ -346,7 +382,6 @@ body {
 
 .content-section h2 {
     font-size: 2.75rem;
-    margin-bottom: 3rem;
     text-align: center;
     font-weight: 900;
     text-transform: uppercase;
@@ -377,7 +412,8 @@ body {
    ============================================================================ */
 
 .recent-items-section {
-    padding: 4rem 5vw;
+    padding: 1rem;
+    padding-bottom: 3rem;
     border-bottom: var(--border-width) solid var(--border);
 }
 
@@ -407,27 +443,19 @@ body {
     text-align: left;
 }
 
-/* Default grid for archive pages - responsive wrapping */
+/* Default layout (archive pages): responsive wrapping grid */
 .items-grid {
     display: grid;
-    /* Prefer ~60vw cards while never going below the min width */
-    grid-template-columns: repeat(auto-fit, minmax(var(--card-min), min(var(--card-pref), 1fr)));
-    gap: 2.5rem;
-    margin-top: 2rem;
-    justify-items: center;
-}
-
-.items-grid .item-card {
-    min-width: var(--card-min);
-    max-width: var(--card-pref);
-    aspect-ratio: var(--card-aspect);
-    max-height: var(--card-max-h);
-    width: 100%;
-    height: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(var(--card-min), 1fr));
+    gap: 2rem;
+    margin: 2rem 0 0;
+    padding: 0;
+    overflow: visible;
+    align-items: stretch;
 }
 
 .recent-items-section .section-header {
-    padding: 0 5vw;
+    padding: 0 2rem;
 }
 /* Homepage specific: horizontal scrolling for recent items */
 .recent-items-section .items-grid {
@@ -436,21 +464,26 @@ body {
     overflow-x: auto;
     overflow-y: hidden;
     padding: 1rem;
-    margin-top: calc(2rem - 1rem);
+    margin-top: 1rem;
 }
 
 /* Add scroll padding to create space on both sides */
 .recent-items-section .items-grid::before,
 .recent-items-section .items-grid::after {
     content: '';
-    flex: 0 0 5vw;
+    flex: 0 0 2rem;
     min-width: 2rem;
 }
 
 .recent-items-section .item-card {
-    flex: 0 0 var(--home-card);
+    /* Match width-driven sizing for homepage scroller */
+    width: var(--card-pref);
+    min-width: var(--card-pref);
+    max-width: var(--card-pref);
+    height: auto;
+    max-height: none;
+    flex: 0 0 var(--card-pref);
     scroll-snap-align: start;
-    min-width: var(--home-card);
 }
 
 /* Custom scrollbar styling for horizontal scroll */
@@ -488,8 +521,6 @@ body {
     padding: 0;
     aspect-ratio: var(--card-aspect);
     max-height: var(--card-max-h);
-    height: 100%;
-    width: 100%;
 }
 
 
@@ -555,8 +586,8 @@ body {
    ============================================================================ */
 
 .resources-section {
-    padding: 4rem 2rem;
-    background-color: var(--bg-alt);
+    padding:1rem;
+    padding-bottom: 3rem;
     border-bottom: var(--border-width) solid var(--border);
 }
 
@@ -626,7 +657,7 @@ body {
 .cta-section {
     background-color: var(--accent);
     color: var(--text);
-    padding: 5rem 2rem;
+    padding: 2rem;
     text-align: center;
     border-bottom: var(--border-width) solid var(--border);
 }
@@ -828,7 +859,7 @@ body {
 
 /* Article Content */
 .article-content {
-    padding: 5vw 2vh;
+    padding: 2rem 2rem;
     background-color: var(--bg-white);
 }
 
@@ -1158,13 +1189,15 @@ body {
     }
     .table-of-contents {
         position: sticky;
-        top: 2rem;
+        top: calc(var(--site-header-height, 72px) + 2rem);
         align-self: start;
-        max-height: calc(100vh - 4rem);
+        max-height: calc(100vh - var(--site-header-height, 72px) - 4rem);
         overflow-y: auto;
         margin-right: 15px;
         z-index: 10;
     }
+    /* Set --site-header-height dynamically if needed, or use 72px as default */
+    .site-header { --site-header-height: 72px; }
 }
 
 /* Mobile & Tablet - Below 1024px */
@@ -1276,6 +1309,9 @@ body {
         transition: var(--transition);
         text-transform: uppercase;
         z-index: 2100;
+    }
+    .mobile-nav-header {
+        display: flex;
     }
     
     .nav-close:hover {
