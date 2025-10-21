@@ -34,6 +34,13 @@
     --border-radius: 8px;
     --shadow-offset: 8px;
     --transition: all 0.15s ease;
+
+    /* Card sizing tokens */
+    --card-min: 320px;     /* Minimum card width */
+    --card-pref: 60vw;     /* Preferred width for archive cards */
+    --card-aspect: 2 / 3;  /* Card aspect ratio */
+    --card-max-h: 540px;   /* Maximum card height */
+    --home-card: 340px;    /* Homepage scroller card width */
 }
 
 html {
@@ -65,7 +72,6 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 5vw;
 }
 
 .loading-text {
@@ -81,7 +87,7 @@ body {
 .site-header {
     background-color: var(--bg-white);
     color: var(--text);
-    padding: 1.5rem 0;
+    padding: 1rem 0;
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -94,6 +100,7 @@ body {
     align-items: center;
     flex-wrap: wrap;
     gap: 1rem;
+    padding: 0 5vw;
 }
 
 .logo {
@@ -269,7 +276,7 @@ body {
    ============================================================================ */
 .card {
     background-color: var(--bg-white);
-    padding: 2rem;
+    padding: 5vw;
     border: var(--border-width) solid var(--border);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--border);
@@ -391,7 +398,6 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 3rem;
     flex-wrap: wrap;
     gap: 1.5rem;
 }
@@ -404,26 +410,22 @@ body {
 /* Default grid for archive pages - responsive wrapping */
 .items-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    /* Prefer ~60vw cards while never going below the min width */
+    grid-template-columns: repeat(auto-fit, minmax(var(--card-min), min(var(--card-pref), 1fr)));
     gap: 2.5rem;
     margin-top: 2rem;
     justify-items: center;
 }
 
 .items-grid .item-card {
-    min-width: 320px;
-    max-width: 360px;
-    aspect-ratio: 2 / 3;
-    max-height: 540px;
-    height: 100%;
+    min-width: var(--card-min);
+    max-width: var(--card-pref);
+    aspect-ratio: var(--card-aspect);
+    max-height: var(--card-max-h);
     width: 100%;
+    height: 100%;
 }
-.recent-items-section {
-    padding: 4rem 0;
-}
-.recent-items-section .container {
-    padding: 5vw 0;
-}
+
 .recent-items-section .section-header {
     padding: 0 5vw;
 }
@@ -446,9 +448,9 @@ body {
 }
 
 .recent-items-section .item-card {
-    flex: 0 0 340px;
+    flex: 0 0 var(--home-card);
     scroll-snap-align: start;
-    min-width: 340px;
+    min-width: var(--home-card);
 }
 
 /* Custom scrollbar styling for horizontal scroll */
@@ -484,8 +486,8 @@ body {
     display: flex;
     flex-direction: column;
     padding: 0;
-    aspect-ratio: 2 / 3;
-    max-height: 540px;
+    aspect-ratio: var(--card-aspect);
+    max-height: var(--card-max-h);
     height: 100%;
     width: 100%;
 }
@@ -815,7 +817,7 @@ body {
 
 .meta-item {
     display: inline-block;
-    padding: 0.08rem 0.4rem;
+    padding: 0.4rem;
     background-color: var(--bg-white);
     border: var(--border-width) solid var(--border);
     border-radius: var(--border-radius);
@@ -1290,7 +1292,7 @@ body {
     .nav-cta {
         display: block;
         margin-top: auto;
-        padding: 1rem;
+        padding: 5%;
         border-top: var(--border-width) solid var(--border);
         background: var(--accent);
     }
@@ -1304,7 +1306,7 @@ body {
     .nav-cta .cta-btn {
         display: block;
         text-align: center;
-        padding: 0.75rem 1rem;
+        padding: 0.75rem 0;
         font-weight: 900;
         text-transform: uppercase;
         letter-spacing: 1px;
