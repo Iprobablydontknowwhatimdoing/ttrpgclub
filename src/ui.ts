@@ -1,49 +1,51 @@
-// UI interactions for mobile menu
+// UI interactions for mobile menu (no includes)
 
-// Mobile menu toggle
-const menuToggle = document.getElementById('menuToggle');
-const mainNav = document.getElementById('mainNav');
+function bindNav() {
+    const menuToggle = document.getElementById('menuToggle');
+    const mainNav = document.getElementById('mainNav');
 
-function toggleMobileMenu() {
+    const toggleMobileMenu = () => {
+        if (mainNav) {
+            mainNav.classList.toggle('active');
+            document.body.classList.toggle('no-scroll', mainNav.classList.contains('active'));
+        }
+    };
+
+    const closeMobileMenu = () => {
+        if (mainNav) {
+            mainNav.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+        }
+    };
+
+    if (menuToggle) menuToggle.addEventListener('click', toggleMobileMenu);
+
+    document.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement;
+        if (target && target.id === 'navClose') {
+            e.preventDefault();
+            closeMobileMenu();
+        }
+    });
+
     if (mainNav) {
-        mainNav.classList.toggle('active');
-        document.body.classList.toggle('no-scroll', mainNav.classList.contains('active'));
+        const navLinks = mainNav.querySelectorAll('a');
+        navLinks.forEach(link => link.addEventListener('click', closeMobileMenu));
     }
-}
 
-// Close mobile menu when clicking a nav link
-function closeMobileMenu() {
-    if (mainNav) {
-        mainNav.classList.remove('active');
-        document.body.classList.remove('no-scroll');
-    }
-}
-
-// Event listeners
-if (menuToggle) {
-    menuToggle.addEventListener('click', toggleMobileMenu);
-}
-
-// Use event delegation for close button to ensure it works
-document.addEventListener('click', (e) => {
-    const target = e.target as HTMLElement;
-    if (target && target.id === 'navClose') {
-        e.preventDefault();
-        closeMobileMenu();
-    }
-});
-
-// Close mobile menu when clicking nav links
-if (mainNav) {
-    const navLinks = mainNav.querySelectorAll('a');
-    navLinks.forEach(link => {
-        link.addEventListener('click', closeMobileMenu);
+    window.addEventListener('resize', () => {
+        const nav = document.getElementById('mainNav');
+        if (window.innerWidth > 768 && nav) nav.classList.remove('active');
     });
 }
 
-// Close mobile menu when window is resized to desktop size
-window.addEventListener('resize', () => {
-    if (window.innerWidth > 768 && mainNav) {
-        mainNav.classList.remove('active');
+document.addEventListener('DOMContentLoaded', () => {
+    if ('customElements' in window && (customElements as any).whenDefined) {
+        // Ensure header web component is defined and connected, then bind
+        (customElements as any).whenDefined('site-header')
+            .then(() => requestAnimationFrame(bindNav))
+            .catch(() => bindNav());
+    } else {
+        bindNav();
     }
 });

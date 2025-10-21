@@ -106,7 +106,7 @@ body {
     align-items: center;
     flex-wrap: wrap;
     gap: 1rem;
-    padding: 0 5vw;
+    padding: 0 2rem;
 }
 
 .logo {
@@ -415,6 +415,8 @@ body {
     padding: 1rem;
     padding-bottom: 3rem;
     border-bottom: var(--border-width) solid var(--border);
+    margin-right: -1rem;
+    margin-left: -1rem;
 }
 
 .recent-items-section.alt-bg {
@@ -1064,7 +1066,6 @@ body {
 .archive-section {
     padding: 4rem 2rem;
     background-color: var(--bg-white);
-    min-height: 80vh;
 }
 
 .archive-header {
