@@ -1,5 +1,5 @@
-/* TTRPG Club - Minimal-Class SCSS (Heavy Element Nesting) */
-section[data-resources] .container > div > div, section[data-dynamic] .container > div:last-child > div, section[data-content] .container > div > div, section:nth-of-type(2) .container > div > div, section:nth-of-type(3) .container > div > div {
+/* Tabletop Role-Playing Game Club Club - Minimal-Class SCSS (Heavy Element Nesting) */
+.item-card, section[data-resources] .container > div > div, section[data-dynamic] .container > div:last-child > div, section[data-content] .container > div > div, section:nth-of-type(2) .container > div > div, section:nth-of-type(3) .container > div > div {
   background-color: #fff;
   padding: 2rem;
   border: 4px solid #000;
@@ -7,7 +7,7 @@ section[data-resources] .container > div > div, section[data-dynamic] .container
   box-shadow: 8px 8px 0 #000;
   transition: all 0.15s ease;
 }
-section[data-resources] .container > div > div:hover, section[data-dynamic] .container > div:last-child > div:hover, section[data-content] .container > div > div:hover, section:nth-of-type(2) .container > div > div:hover, section:nth-of-type(3) .container > div > div:hover {
+.item-card:hover, section[data-resources] .container > div > div:hover, section[data-dynamic] .container > div:last-child > div:hover, section[data-content] .container > div > div:hover, section:nth-of-type(2) .container > div > div:hover, section:nth-of-type(3) .container > div > div:hover {
   transform: translate(-3px, -3px);
   box-shadow: 11px 11px 0 #000;
 }
@@ -104,11 +104,11 @@ body > header nav a {
   border-radius: 8px;
 }
 body > header nav a:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 4px 4px 0 #000;
+  transform: translate(3px, 3px);
+  box-shadow: 3px 3px 0 #000;
 }
 body > header nav a:active {
-  transform: translate(0, 0);
+  transform: translate(6px, 6px);
   box-shadow: none;
 }
 body > header nav a[href*=register] {
@@ -132,8 +132,12 @@ body > header button:hover {
   box-shadow: 4px 4px 0 #000;
 }
 body > header button:active {
-  transform: translate(0, 0);
-  box-shadow: none;
+  transform: translate(-4px, -4px) !important;
+  box-shadow: none !important;
+  -webkit-transform: translate(-4px, -4px) !important;
+  -moz-transform: translate(-4px, -4px) !important;
+  -ms-transform: translate(-4px, -4px) !important;
+  -o-transform: translate(-4px, -4px) !important;
 }
 
 site-header header {
@@ -190,11 +194,15 @@ site-header header nav a {
   border-radius: 8px;
 }
 site-header header nav a:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 4px 4px 0 #000;
+  transform: translate(-3px, -3px);
+  box-shadow: 3px 3px 0 #000;
+  -webkit-transform: translate(-3px, -3px);
+  -moz-transform: translate(-3px, -3px);
+  -ms-transform: translate(-3px, -3px);
+  -o-transform: translate(-3px, -3px);
 }
 site-header header nav a:active {
-  transform: translate(0, 0);
+  transform: translate(6px, 6px);
   box-shadow: none;
 }
 site-header header nav a[href*=register] {
@@ -218,8 +226,12 @@ site-header header button:hover {
   box-shadow: 4px 4px 0 #000;
 }
 site-header header button:active {
-  transform: translate(0, 0);
-  box-shadow: none;
+  transform: translate(-4px, -4px) !important;
+  box-shadow: none !important;
+  -webkit-transform: translate(-4px, -4px) !important;
+  -moz-transform: translate(-4px, -4px) !important;
+  -ms-transform: translate(-4px, -4px) !important;
+  -o-transform: translate(-4px, -4px) !important;
 }
 
 section {
@@ -299,8 +311,11 @@ section[data-content] h2, section:nth-of-type(2) h2, section:nth-of-type(3) h2 {
 }
 section[data-content] .container > div, section:nth-of-type(2) .container > div, section:nth-of-type(3) .container > div {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
+}
+section[data-content] .container > div > div, section:nth-of-type(2) .container > div > div, section:nth-of-type(3) .container > div > div {
+  width: 100%;
 }
 section[data-content] .container > div > div h3, section:nth-of-type(2) .container > div > div h3, section:nth-of-type(3) .container > div > div h3 {
   font-size: 1.5rem;
@@ -320,8 +335,7 @@ section[data-content] .container > div > div ul li, section:nth-of-type(2) .cont
   font-weight: 500;
 }
 section[data-dynamic] {
-  padding: 4rem 2rem;
-  margin: 0;
+  padding: 4rem 0;
 }
 section[data-dynamic][data-alt] {
   background-color: #dbeafe;
@@ -382,55 +396,53 @@ section[data-dynamic] .container > div:last-child > div {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  padding: 0;
-  width: 400px;
-  min-width: 400px;
-  flex: 0 0 400px;
-  scroll-snap-align: start;
+  padding: 0 !important;
+  margin: 0;
+  max-width: 30rem;
 }
-section[data-dynamic] .container > div:last-child > div > div:first-child {
+section[data-dynamic] .container > div:last-child > div .item-thumbnail, section[data-dynamic] .container > div:last-child > div > div:first-child {
   width: 100%;
   height: 200px;
   overflow: hidden;
   background-color: #fef3c7;
   border-bottom: 4px solid #000;
 }
-section[data-dynamic] .container > div:last-child > div > div:first-child img {
+section[data-dynamic] .container > div:last-child > div .item-thumbnail img, section[data-dynamic] .container > div:last-child > div > div:first-child img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-section[data-dynamic] .container > div:last-child > div > div:nth-child(2) {
+section[data-dynamic] .container > div:last-child > div .item-content, section[data-dynamic] .container > div:last-child > div > div:nth-child(2) {
   padding: 1.5rem;
   flex: 1;
   display: flex;
   flex-direction: column;
 }
-section[data-dynamic] .container > div:last-child > div > div:nth-child(2) h3 {
+section[data-dynamic] .container > div:last-child > div .item-content h3, section[data-dynamic] .container > div:last-child > div > div:nth-child(2) h3 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
   font-weight: 900;
   text-transform: uppercase;
 }
-section[data-dynamic] .container > div:last-child > div > div:nth-child(2) p {
+section[data-dynamic] .container > div:last-child > div .item-content p, section[data-dynamic] .container > div:last-child > div > div:nth-child(2) p {
   font-weight: 500;
   margin-bottom: 0.5rem;
   line-height: 1.7;
   flex: 1;
 }
-section[data-dynamic] .container > div:last-child > div > div:nth-child(2) > div {
+section[data-dynamic] .container > div:last-child > div .item-content .tag-chips, section[data-dynamic] .container > div:last-child > div .item-content > div, section[data-dynamic] .container > div:last-child > div > div:nth-child(2) .tag-chips, section[data-dynamic] .container > div:last-child > div > div:nth-child(2) > div {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
 }
-section[data-dynamic] .container > div:last-child > div > div:nth-child(2) > div span {
+section[data-dynamic] .container > div:last-child > div .item-content .tag-chips .meta-item, section[data-dynamic] .container > div:last-child > div .item-content .tag-chips span, section[data-dynamic] .container > div:last-child > div .item-content > div .meta-item, section[data-dynamic] .container > div:last-child > div .item-content > div span, section[data-dynamic] .container > div:last-child > div > div:nth-child(2) .tag-chips .meta-item, section[data-dynamic] .container > div:last-child > div > div:nth-child(2) .tag-chips span, section[data-dynamic] .container > div:last-child > div > div:nth-child(2) > div .meta-item, section[data-dynamic] .container > div:last-child > div > div:nth-child(2) > div span {
   padding: 0.25rem 0.5rem;
   font-size: 0.75rem;
   border: 4px solid #000;
   background: #fbbf24;
   border-radius: 4px;
 }
-section[data-dynamic] .container > div:last-child > div > a {
+section[data-dynamic] .container > div:last-child > div > a, section[data-dynamic] .container > div:last-child > div > a.card-btn {
   display: block;
   width: 100%;
   background-color: #fbbf24;
@@ -446,8 +458,22 @@ section[data-dynamic] .container > div:last-child > div > a {
   transition: all 0.15s ease;
 }
 section[data-dynamic] .container > div:last-child > div:has(> a:hover) {
-  transform: translate(4px, 4px);
-  box-shadow: 4px 4px 0 #000;
+  transform: translate(2px, 2px);
+  box-shadow: 6px 6px 0 #000;
+  -webkit-transform: translate(2px, 2px);
+  -moz-transform: translate(2px, 2px);
+  -ms-transform: translate(2px, 2px);
+  -o-transform: translate(2px, 2px);
+}
+section[data-dynamic] .container > div:last-child > div:has(> a:active) {
+  transform: translate(6px, 6px);
+  box-shadow: none;
+}
+section[data-dynamic] .container > div:last-child > div {
+  width: 400px;
+  min-width: 400px;
+  flex: 0 0 400px;
+  scroll-snap-align: start;
 }
 section[data-resources] {
   padding: 1rem 1rem 3rem;
@@ -552,8 +578,8 @@ footer {
 }
 footer .container > div:first-child {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
   margin-bottom: 2rem;
 }
 footer .container > div:first-child > div h3 {
@@ -624,6 +650,7 @@ article > header .container {
 }
 article > header .container a {
   display: inline-block;
+  align-self: flex-start;
   margin-bottom: 1.5rem;
   color: #000;
   text-decoration: none;
@@ -641,8 +668,12 @@ article > header .container a:hover {
   box-shadow: 4px 4px 0 #000;
 }
 article > header .container a:active {
-  transform: translate(0, 0);
-  box-shadow: none;
+  transform: translate(-4px, -4px) !important;
+  box-shadow: none !important;
+  -webkit-transform: translate(-4px, -4px) !important;
+  -moz-transform: translate(-4px, -4px) !important;
+  -ms-transform: translate(-4px, -4px) !important;
+  -o-transform: translate(-4px, -4px) !important;
 }
 article > header .container h1 {
   font-size: 3rem;
@@ -683,8 +714,10 @@ article > div {
 article > div .container {
   max-width: 1200px;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
+  display: flex !important;
+  grid-template-columns: 1fr;
 }
 article > div .container aside {
   background-color: #fef3c7;
@@ -727,7 +760,12 @@ article > div .container > div:last-child {
   line-height: 1.8;
   border-radius: 8px;
 }
-article > div .container > div:last-child h1, article > div .container > div:last-child h2, article > div .container > div:last-child h3, article > div .container > div:last-child h4, article > div .container > div:last-child h5, article > div .container > div:last-child h6 {
+article > div .container > div:last-child h1,
+article > div .container > div:last-child h2,
+article > div .container > div:last-child h3,
+article > div .container > div:last-child h4,
+article > div .container > div:last-child h5,
+article > div .container > div:last-child h6 {
   font-weight: 900;
   text-transform: uppercase;
   margin-top: 2rem;
@@ -745,11 +783,14 @@ article > div .container > div:last-child h2 {
 article > div .container > div:last-child h3 {
   font-size: 1.5rem;
 }
-article > div .container > div:last-child p, article > div .container > div:last-child ul, article > div .container > div:last-child ol {
+article > div .container > div:last-child p,
+article > div .container > div:last-child ul,
+article > div .container > div:last-child ol {
   margin-bottom: 1.25rem;
   font-weight: 500;
 }
-article > div .container > div:last-child ul, article > div .container > div:last-child ol {
+article > div .container > div:last-child ul,
+article > div .container > div:last-child ol {
   padding-left: 2rem;
 }
 article > div .container > div:last-child li {
@@ -1105,3 +1146,563 @@ article > div .container > div:last-child hr {
     display: block;
   }
 }
+.loading-text {
+  text-align: center;
+  padding: 2rem;
+  font-weight: 600;
+}
+
+.items-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  align-items: stretch;
+}
+
+.item-card {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 0 !important;
+  margin: 0;
+  max-width: 30rem;
+}
+.item-card .item-thumbnail, .item-card > div:first-child {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background-color: #fef3c7;
+  border-bottom: 4px solid #000;
+}
+.item-card .item-thumbnail img, .item-card > div:first-child img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.item-card .item-content, .item-card > div:nth-child(2) {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.item-card .item-content h3, .item-card > div:nth-child(2) h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+.item-card .item-content p, .item-card > div:nth-child(2) p {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  line-height: 1.7;
+  flex: 1;
+}
+.item-card .item-content .tag-chips, .item-card .item-content > div, .item-card > div:nth-child(2) .tag-chips, .item-card > div:nth-child(2) > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.item-card .item-content .tag-chips .meta-item, .item-card .item-content .tag-chips span, .item-card .item-content > div .meta-item, .item-card .item-content > div span, .item-card > div:nth-child(2) .tag-chips .meta-item, .item-card > div:nth-child(2) .tag-chips span, .item-card > div:nth-child(2) > div .meta-item, .item-card > div:nth-child(2) > div span {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  border: 4px solid #000;
+  background: #fbbf24;
+  border-radius: 4px;
+}
+.item-card > a, .item-card > a.card-btn {
+  display: block;
+  width: 100%;
+  background-color: #fbbf24;
+  color: #000;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 1rem;
+  border: none;
+  border-top: 4px solid #000;
+  padding: 1rem 0;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+.item-card:has(> a:hover) {
+  transform: translate(2px, 2px);
+  box-shadow: 6px 6px 0 #000;
+  -webkit-transform: translate(2px, 2px);
+  -moz-transform: translate(2px, 2px);
+  -ms-transform: translate(2px, 2px);
+  -o-transform: translate(2px, 2px);
+}
+.item-card:has(> a:active) {
+  transform: translate(6px, 6px);
+  box-shadow: none;
+}
+
+.archive-hero {
+  background-color: #3b82f6;
+  color: #000;
+  padding: 3rem 2rem 2rem;
+  border-bottom: 4px solid #000;
+  position: relative;
+}
+.archive-hero::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background-color: #000;
+  z-index: -1;
+}
+
+.archive-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.archive-header h1 {
+  font-size: 3rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  color: #000;
+  text-decoration: none;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  border: 4px solid #000;
+  background-color: #fff;
+  transition: all 0.15s ease;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  border-radius: 8px;
+}
+.back-link:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 #000;
+}
+.back-link:active {
+  transform: translate(-4px, -4px) !important;
+  box-shadow: none !important;
+  -webkit-transform: translate(-4px, -4px) !important;
+  -moz-transform: translate(-4px, -4px) !important;
+  -ms-transform: translate(-4px, -4px) !important;
+  -o-transform: translate(-4px, -4px) !important;
+}
+
+.filters {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  padding: 2rem;
+  background-color: #dbeafe;
+  border: 4px solid #000;
+  border-radius: 8px;
+  box-shadow: 8px 8px 0 #000;
+  margin-bottom: 3rem;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 150px;
+  width: max-content;
+}
+.filter-group:first-child {
+  flex: 1;
+  width: auto;
+  min-width: 250px;
+}
+.filter-group label {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+}
+
+.filter-select, .filter-input {
+  padding: 0.875rem 1rem;
+  border: 4px solid #000;
+  background-color: #fff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  height: 3rem;
+  font-family: inherit;
+}
+
+.filter-input {
+  cursor: text;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 3rem;
+  padding: 0 1rem;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 4px solid #000;
+  border-radius: 8px;
+  transition: all 0.15s ease;
+  font-weight: 800;
+}
+
+.btn-outline {
+  background: #fff;
+  color: #000;
+}
+.btn-outline:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 #000;
+}
+.btn-outline:active {
+  transform: translate(-4px, -4px) !important;
+  box-shadow: none !important;
+  -webkit-transform: translate(-4px, -4px) !important;
+  -moz-transform: translate(-4px, -4px) !important;
+  -ms-transform: translate(-4px, -4px) !important;
+  -o-transform: translate(-4px, -4px) !important;
+}
+
+.archive-section {
+  padding: 4rem 2rem;
+}
+.archive-section .container {
+  max-width: 900px;
+  position: relative;
+  z-index: 1;
+}
+
+.article-header {
+  background-color: #3b82f6;
+  color: #000;
+  border-bottom: 4px solid #000;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 3rem 2rem;
+}
+.article-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 0;
+}
+.article-header::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background-color: #000;
+  z-index: -1;
+}
+.article-header .container {
+  max-width: 900px;
+  position: relative;
+  z-index: 1;
+  text-align: left;
+}
+.article-header .container > a.back-link {
+  display: inline-flex;
+  align-items: center;
+  color: #000;
+  text-decoration: none;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  border: 4px solid #000;
+  background-color: #fff;
+  transition: all 0.15s ease;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  margin-right: auto;
+}
+.article-header .container > a.back-link:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 #000;
+}
+.article-header .container > a.back-link:active {
+  transform: translate(-4px, -4px) !important;
+  box-shadow: none !important;
+  -webkit-transform: translate(-4px, -4px) !important;
+  -moz-transform: translate(-4px, -4px) !important;
+  -ms-transform: translate(-4px, -4px) !important;
+  -o-transform: translate(-4px, -4px) !important;
+}
+
+.article-title {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+  line-height: 1.1;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  text-align: left;
+}
+
+.article-description {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  color: #fff;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.article-meta {
+  display: flex;
+  gap: 0.7rem 0.9rem;
+  flex-wrap: wrap;
+  margin: 0.5rem 0;
+}
+.article-meta .meta-item {
+  transform: scale(1.15);
+  transform-origin: left center;
+}
+
+.meta-item {
+  display: inline-block;
+  padding: 0.4rem;
+  background-color: #fff;
+  border: 4px solid #000;
+  border-radius: 8px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.article-content {
+  padding: 2rem;
+  background-color: #fff;
+  display: flex !important;
+}
+.article-content .container {
+  max-width: 1200px;
+}
+
+.article-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.table-of-contents {
+  background-color: #fef3c7;
+  border: 4px solid #000;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 8px 8px 0 #000;
+  width: 100%;
+  min-width: 180px;
+  max-width: 100%;
+}
+.table-of-contents h3 {
+  font-size: 1rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.table-of-contents::-webkit-scrollbar {
+  width: 8px;
+}
+.table-of-contents::-webkit-scrollbar-track {
+  background: #fef3c7;
+  border: 2px solid #000;
+  border-radius: 4px;
+}
+.table-of-contents::-webkit-scrollbar-thumb {
+  background: #3b82f6;
+  border: 2px solid #000;
+  border-radius: 4px;
+}
+.table-of-contents::-webkit-scrollbar-thumb:hover {
+  background: #1e40af;
+}
+.table-of-contents {
+  scrollbar-width: thin;
+  scrollbar-color: #3b82f6 #fef3c7;
+}
+
+.toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toc-item {
+  margin-bottom: 0.5rem;
+}
+
+.toc-h2 {
+  padding-left: 0;
+}
+
+.toc-h3 {
+  padding-left: 1rem;
+}
+
+.toc-h4 {
+  padding-left: 2rem;
+}
+
+.toc-h5 {
+  padding-left: 3rem;
+}
+
+.toc-h6 {
+  padding-left: 4rem;
+}
+
+.toc-link {
+  color: #000;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.875rem;
+  display: block;
+  padding: 0.25rem 0;
+  transition: all 0.15s ease;
+}
+.toc-link:hover {
+  color: #3b82f6;
+  transform: translateX(4px);
+}
+
+.article-body {
+  background-color: #fff;
+  padding: 3rem;
+  border: 4px solid #000;
+  box-shadow: 8px 8px 0 #000;
+  line-height: 1.8;
+  font-size: clamp(1rem, 0.75rem + 1.1vw, 1.75rem);
+  border-radius: 8px;
+  flex: 1;
+}
+.article-body h1, .article-body h2, .article-body h3, .article-body h4, .article-body h5, .article-body h6 {
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  letter-spacing: -0.5px;
+}
+.article-body h1 {
+  font-size: clamp(2rem, 1.6rem + 2vw, 3.5rem);
+  border-bottom: 4px solid #000;
+  padding-bottom: 0.5rem;
+}
+.article-body h2 {
+  font-size: clamp(1.5rem, 1.25rem + 1.5vw, 2.5rem);
+}
+.article-body h3 {
+  font-size: clamp(1.25rem, 1.1rem + 1vw, 2rem);
+}
+.article-body p, .article-body ul, .article-body ol {
+  margin-bottom: 1.25rem;
+  font-weight: 500;
+  font-size: inherit;
+}
+.article-body ul, .article-body ol {
+  padding-left: 2rem;
+}
+.article-body li {
+  margin-bottom: 0.5rem;
+  font-size: inherit;
+}
+.article-body strong {
+  font-weight: 900;
+}
+.article-body em {
+  font-style: italic;
+}
+.article-body a {
+  color: #000;
+  font-weight: 700;
+  border-bottom: 2px solid #000;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+.article-body a:hover {
+  background-color: #fbbf24;
+}
+.article-body blockquote {
+  border-left: 4px solid #000;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  font-style: italic;
+  background-color: #fef3c7;
+}
+.article-body code {
+  background-color: #fef3c7;
+  padding: 0.25rem 0.5rem;
+  border: 2px solid #000;
+  font-family: "Courier New", monospace;
+  font-weight: 700;
+}
+.article-body pre {
+  background-color: #fef3c7;
+  padding: 1.5rem;
+  border: 4px solid #000;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+.article-body pre code {
+  background: none;
+  border: none;
+  padding: 0;
+}
+.article-body hr {
+  border: none;
+  border-top: 4px solid #000;
+  margin: 2rem 0;
+}
+
+.article-content {
+  display: flex !important;
+}
+
+@media (min-width: 1024px) {
+  .article-layout {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 3rem;
+  }
+  .table-of-contents {
+    position: sticky;
+    top: calc(72px + 2rem);
+    max-height: calc(100vh - 72px - 4rem);
+    overflow-y: auto;
+    z-index: 10;
+    max-width: 280px;
+    width: max-content;
+    flex-shrink: 0;
+  }
+  .article-body {
+    flex: 1;
+    min-width: 0;
+  }
+  .article-content .container {
+    max-width: none !important;
+    width: 100%;
+    padding: 0 2rem;
+  }
+}
+
+/*# sourceMappingURL=style-minimal.css.map */

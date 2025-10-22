@@ -1,4 +1,4 @@
-/* TTRPG Club - Minimal-Class SCSS (Heavy Element Nesting) */
+/* Tabletop Role-Playing Game Club Club - Minimal-Class SCSS (Heavy Element Nesting) */
 
 // Variables
 $primary: #3b82f6;
@@ -15,10 +15,121 @@ $shadow-offset: 8px;
 $transition: all .15s ease;
 
 // Mixins
-@mixin brutal-border { border: $border-width solid $border; }
-@mixin brutal-shadow { box-shadow: $shadow-offset $shadow-offset 0 $border; }
-@mixin brutal-hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 $border; }
-@mixin brutal-active { transform: translate(0, 0); box-shadow: none; }
+@mixin brutal-border {
+  border: $border-width solid $border;
+}
+
+@mixin brutal-shadow {
+  box-shadow: $shadow-offset $shadow-offset 0 $border;
+}
+
+@mixin brutal-hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 $border;
+}
+
+@mixin brutal-active {
+  transform: translate(-4px, -4px) !important;
+  box-shadow: none !important;
+  -webkit-transform: translate(-4px, -4px) !important;
+  -moz-transform: translate(-4px, -4px) !important;
+  -ms-transform: translate(-4px, -4px) !important;
+  -o-transform: translate(-4px, -4px) !important;
+}
+
+@mixin grid-gap {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+// Mixin for item card internals (shared by home scroller and archive grid)
+@mixin item-card-structure {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 0 !important;
+  margin: 0;
+  max-width: 30rem;
+
+  .item-thumbnail, > div:first-child {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background-color: $bg-main;
+    border-bottom: $border-width solid $border;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .item-content, > div:nth-child(2) {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    p {
+      font-weight: 500;
+      margin-bottom: .5rem;
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .tag-chips, > div {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+
+      .meta-item, span {
+        padding: .25rem .5rem;
+        font-size: .75rem;
+        @include brutal-border;
+        background: $accent;
+        border-radius: 4px;
+      }
+    }
+  }
+
+  > a, > a.card-btn {
+    display: block;
+    width: 100%;
+    background-color: $accent;
+    color: #000;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 1rem;
+    border: none;
+    border-top: $border-width solid $border;
+    padding: 1rem 0;
+    text-align: center;
+    text-decoration: none;
+    transition: $transition;
+  }
+
+  &:has(> a:hover) {
+    transform: translate(2px, 2px);
+    box-shadow: calc($shadow-offset - 2px) calc($shadow-offset - 2px) 0 $border;
+    -webkit-transform: translate(2px, 2px);
+    -moz-transform: translate(2px, 2px);
+    -ms-transform: translate(2px, 2px);
+    -o-transform: translate(2px, 2px);
+}
+
+  &:has(> a:active) {
+    transform: translate(6px, 6px);
+    box-shadow: none;
+}
+}
 
 // Placeholder selectors
 %card {
@@ -28,7 +139,7 @@ $transition: all .15s ease;
   border-radius: $border-radius;
   @include brutal-shadow;
   transition: $transition;
-  
+
   &:hover {
     transform: translate(-3px, -3px);
     box-shadow: 11px 11px 0 $border;
@@ -36,25 +147,48 @@ $transition: all .15s ease;
 }
 
 // Reset
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Arial Black', sans-serif;
   line-height: 1.5;
   color: $text;
   background-color: $bg-main;
   font-weight: 700;
-  
-  &.no-scroll { overflow: hidden !important; position: fixed; width: 100vw; }
+
+  &.no-scroll {
+    overflow: hidden !important;
+    position: fixed;
+    width: 100vw;
+  }
 }
-::selection { background-color: $accent; color: $text; }
-*:focus-visible { outline: 3px solid $primary; outline-offset: 3px; }
+
+::selection {
+  background-color: $accent;
+  color: $text;
+}
+
+*:focus-visible {
+  outline: 3px solid $primary;
+  outline-offset: 3px;
+}
 
 // Layout
-.container { max-width: 1200px; margin: 0 auto; }
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
 // Header - site navbar (top-level only)
-body > header {
+body>header {
   background-color: $bg-white;
   color: $text;
   padding: 1rem 0;
@@ -62,7 +196,7 @@ body > header {
   top: 0;
   z-index: 1000;
   border-bottom: $border-width solid $border;
-  
+
   .container {
     display: flex;
     justify-content: space-between;
@@ -70,13 +204,13 @@ body > header {
     flex-wrap: wrap;
     gap: 1rem;
     padding: 0 2rem;
-    
+
     // Logo (first div)
-    > div:first-child {
+    >div:first-child {
       display: flex;
       align-items: center;
       gap: 1rem;
-      
+
       h1 {
         font-size: 1.75rem;
         font-weight: 900;
@@ -85,14 +219,18 @@ body > header {
       }
     }
   }
-  
+
   // Navigation
   nav {
+
     // Hide mobile-only UI by default (desktop)
-    > div:first-child, // mobile header row
+    >div:first-child,
+    // mobile header row
     #navClose,
     #navCta,
-    + #navOverlay { display: none; }
+    +#navOverlay {
+      display: none;
+    }
 
     ul {
       display: flex;
@@ -100,7 +238,7 @@ body > header {
       gap: .5rem;
       flex-wrap: wrap;
     }
-    
+
     a {
       color: $text;
       text-decoration: none;
@@ -113,15 +251,25 @@ body > header {
       font-size: .875rem;
       display: block;
       border-radius: $border-radius;
-      
-      &:hover { @include brutal-hover; }
-      &:active { @include brutal-active; }
-      
+
+      // Hover/active: dip toward the shadow (down-right), consistent with hero CTA
+      &:hover {
+        transform: translate(3px, 3px);
+        box-shadow: 3px 3px 0 $border;
+      }
+
+      &:active {
+        transform: translate(6px, 6px);
+        box-shadow: none;
+      }
+
       // Target register link by href
-      &[href*="register"] { background-color: $accent !important; }
+      &[href*="register"] {
+        background-color: $accent !important;
+      }
     }
   }
-  
+
   // Mobile toggle button
   button {
     display: none;
@@ -135,9 +283,14 @@ body > header {
     cursor: pointer;
     transition: $transition;
     border-radius: $border-radius;
-    
-    &:hover { @include brutal-hover; }
-    &:active { @include brutal-active; }
+
+    &:hover {
+      @include brutal-hover;
+    }
+
+    &:active {
+      @include brutal-active;
+    }
   }
 }
 
@@ -152,7 +305,7 @@ site-header {
     z-index: 1000;
     border-bottom: $border-width solid $border;
 
-  .container {
+    .container {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -161,7 +314,7 @@ site-header {
       padding: 0 2rem;
 
       // Logo (first div)
-      > div:first-child {
+      >div:first-child {
         display: flex;
         align-items: center;
         gap: 1rem;
@@ -177,11 +330,16 @@ site-header {
 
     // Navigation
     nav {
+
       // Hide mobile-only UI by default (desktop)
-      > div:first-child, // mobile header row
+      >div:first-child,
+      // mobile header row
       #navClose,
       #navCta,
-      + #navOverlay { display: none; }
+      +#navOverlay {
+        display: none;
+      }
+
       ul {
         display: flex;
         list-style: none;
@@ -202,11 +360,25 @@ site-header {
         display: block;
         border-radius: $border-radius;
 
-        &:hover { @include brutal-hover; }
-        &:active { @include brutal-active; }
+        // Hover/active: dip toward the shadow (down-right), consistent with hero CTA
+        &:hover {
+          transform: translate(-3px, -3px);
+          box-shadow: 3px 3px 0 $border;
+          -webkit-transform: translate(-3px, -3px);
+          -moz-transform: translate(-3px, -3px);
+          -ms-transform: translate(-3px, -3px);
+          -o-transform: translate(-3px, -3px);
+}
+
+        &:active {
+          transform: translate(6px, 6px);
+          box-shadow: none;
+        }
 
         // Target register link by href
-        &[href*="register"] { background-color: $accent !important; }
+        &[href*="register"] {
+          background-color: $accent !important;
+        }
       }
     }
 
@@ -224,8 +396,13 @@ site-header {
       transition: $transition;
       border-radius: $border-radius;
 
-      &:hover { @include brutal-hover; }
-      &:active { @include brutal-active; }
+      &:hover {
+        @include brutal-hover;
+      }
+
+      &:active {
+        @include brutal-active;
+      }
     }
   }
 }
@@ -233,15 +410,16 @@ site-header {
 // Sections - semantic <section> elements
 section {
   border-bottom: $border-width solid $border;
-  
+
   // Hero section (first section or id="hero")
-  &:first-of-type, &[data-hero] {
+  &:first-of-type,
+  &[data-hero] {
     background-color: $primary;
     color: $text;
     padding: 6rem 2rem;
     text-align: center;
     position: relative;
-    
+
     &::after {
       content: '';
       position: absolute;
@@ -252,11 +430,11 @@ section {
       background-color: $border;
       z-index: -1;
     }
-    
-    > div {
+
+    >div {
       max-width: 800px;
       margin: 0 auto;
-      
+
       h2 {
         font-size: 3.5rem;
         margin-bottom: 1.5rem;
@@ -265,14 +443,14 @@ section {
         letter-spacing: -2px;
         line-height: 1.1;
       }
-      
+
       p {
         font-size: 1.25rem;
         margin-bottom: 2.5rem;
         font-weight: 600;
         line-height: 1.6;
       }
-      
+
       a {
         display: inline-block;
         padding: .875rem 2rem;
@@ -287,19 +465,30 @@ section {
         color: $text;
         box-shadow: 6px 6px 0 $border;
         transition: $transition;
-        
-        &:hover { transform: translate(3px, 3px); box-shadow: 3px 3px 0 $border; }
-        &:active { transform: translate(6px, 6px); box-shadow: none; }
+
+        &:hover {
+          transform: translate(3px, 3px);
+          box-shadow: 3px 3px 0 $border;
+        }
+
+        &:active {
+          transform: translate(6px, 6px);
+          box-shadow: none;
+        }
       }
     }
   }
-  
+
   // Content sections (using data attributes or :nth patterns)
-  &[data-content], &:nth-of-type(2), &:nth-of-type(3) {
+  &[data-content],
+  &:nth-of-type(2),
+  &:nth-of-type(3) {
     padding: 2rem 2rem 3rem;
-    
-    &:nth-of-type(even) { background-color: $bg-alt; }
-    
+
+    &:nth-of-type(even) {
+      background-color: $bg-alt;
+    }
+
     h2 {
       font-size: 2.75rem;
       text-align: center;
@@ -308,52 +497,60 @@ section {
       letter-spacing: -1px;
       margin-bottom: 2rem;
     }
-    
+
     // Grid container
-    .container > div {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      
+    .container>div {
+      @include grid-gap();
+
       // Cards (nested divs)
-      > div {
+      >div {
         @extend %card;
-        
+        width: 100%;
+
         h3 {
           font-size: 1.5rem;
           margin-bottom: 1rem;
           font-weight: 900;
           text-transform: uppercase;
         }
-        
-        p { font-weight: 500; line-height: 1.7; }
-        
+
+        p {
+          font-weight: 500;
+          line-height: 1.7;
+        }
+
         ul {
           padding-left: 1.5rem;
-          
-          li { margin-bottom: .5rem; font-weight: 500; }
+
+          li {
+            margin-bottom: .5rem;
+            font-weight: 500;
+          }
         }
       }
     }
   }
-  
+
   // Dynamic sections (games/events) - use data attributes
   &[data-dynamic] {
-    padding: 4rem 2rem;
-    margin: 0;
-    
-    &[data-alt] { background-color: $bg-alt; }
-    
-  .container {
+    padding: 4rem 0;
+
+
+    &[data-alt] {
+      background-color: $bg-alt;
+    }
+
+    .container {
+
       // Header with title and link
-      > div:first-child {
+      >div:first-child {
         display: flex;
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
-  gap: 1.5rem;
-  padding: 0 2rem;
-        
+        gap: 1.5rem;
+        padding: 0 2rem;
+
         h2 {
           font-size: 2.75rem;
           margin: 0;
@@ -361,7 +558,7 @@ section {
           text-transform: uppercase;
           letter-spacing: -1px;
         }
-        
+
         a {
           display: inline-block;
           padding: .875rem 2rem;
@@ -375,14 +572,21 @@ section {
           color: $text;
           box-shadow: 6px 6px 0 $border;
           transition: $transition;
-          
-          &:hover { transform: translate(3px, 3px); box-shadow: 3px 3px 0 $border; }
-          &:active { transform: translate(6px, 6px); box-shadow: none; }
+
+          &:hover {
+            transform: translate(3px, 3px);
+            box-shadow: 3px 3px 0 $border;
+          }
+
+          &:active {
+            transform: translate(6px, 6px);
+            box-shadow: none;
+          }
         }
       }
-      
+
       // Items scroller
-      > div:last-child {
+      >div:last-child {
         display: flex;
         flex-wrap: nowrap;
         overflow-x: auto;
@@ -391,104 +595,32 @@ section {
         margin-top: 1.5rem;
         scrollbar-width: thin;
         scrollbar-color: $primary transparent;
-        
-        &::before, &::after {
+
+        &::before,
+        &::after {
           content: '';
           flex: 0 0 2rem;
           min-width: 2rem;
         }
-        
+
         // Item cards
-        > div {
+        >div {
           @extend %card;
-          overflow: hidden;
-          display: flex;
-          flex-direction: column;
-          padding: 0;
+          @include item-card-structure;
           width: 400px;
           min-width: 400px;
           flex: 0 0 400px;
           scroll-snap-align: start;
-          
-          // Thumbnail (first nested div)
-          > div:first-child {
-            width: 100%;
-            height: 200px;
-            overflow: hidden;
-            background-color: $bg-main;
-            border-bottom: $border-width solid $border;
-            
-            img { width: 100%; height: 100%; object-fit: cover; }
-          }
-          
-          // Content (second nested div)
-          > div:nth-child(2) {
-            padding: 1.5rem;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            
-            h3 {
-              font-size: 1.5rem;
-              margin-bottom: 1rem;
-              font-weight: 900;
-              text-transform: uppercase;
-            }
-            
-            p {
-              font-weight: 500;
-              margin-bottom: .5rem;
-              line-height: 1.7;
-              flex: 1;
-            }
-            
-            // Tags container
-            > div {
-              display: flex;
-              flex-wrap: wrap;
-              gap: .5rem;
-              
-              span {
-                padding: .25rem .5rem;
-                font-size: .75rem;
-                @include brutal-border;
-                background: $accent;
-                border-radius: 4px;
-              }
-            }
-          }
-          
-          // Card button
-          > a {
-            display: block;
-            width: 100%;
-            background-color: $accent;
-            color: #000;
-            font-weight: 800;
-            text-transform: uppercase;
-            font-size: 1rem;
-            border: none;
-            border-top: $border-width solid $border;
-            padding: 1rem 0;
-            text-align: center;
-            text-decoration: none;
-            transition: $transition;
-          }
-          
-          &:has(> a:hover) {
-            transform: translate(4px, 4px);
-            box-shadow: calc($shadow-offset - 4px) calc($shadow-offset - 4px) 0 $border;
-          }
         }
       }
     }
   }
-  
+
   // Resources section
   &[data-resources] {
     padding: 1rem 1rem 3rem;
     background-color: $bg-alt;
-    
+
     h2 {
       font-size: 2.75rem;
       margin-bottom: 3rem;
@@ -497,34 +629,34 @@ section {
       text-transform: uppercase;
       letter-spacing: -1px;
     }
-    
-    .container > div {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      
-      > div {
+
+    .container>div {
+      @include grid-gap();
+
+      >div {
         @extend %card;
-        
+
         h3 {
           font-size: 1.5rem;
           margin-bottom: 1.5rem;
           font-weight: 900;
           text-transform: uppercase;
         }
-        
+
         ul {
           list-style: none;
-          
-          li { margin-bottom: .875rem; }
-          
+
+          li {
+            margin-bottom: .875rem;
+          }
+
           a {
             color: $text;
             text-decoration: none;
             font-weight: 600;
             border-bottom: 2px solid transparent;
             transition: $transition;
-            
+
             &:hover {
               border-bottom: 2px solid $text;
               transform: translateX(2px);
@@ -534,15 +666,15 @@ section {
       }
     }
   }
-  
+
   // CTA section
   &[data-cta] {
     background-color: $accent;
     color: $text;
     padding: 2rem;
     text-align: center;
-    
-    .container > div {
+
+    .container>div {
       h2 {
         font-size: 3rem;
         margin-bottom: 1.5rem;
@@ -550,7 +682,7 @@ section {
         text-transform: uppercase;
         letter-spacing: -1px;
       }
-      
+
       p {
         font-size: 1.25rem;
         margin-bottom: 2.5rem;
@@ -559,14 +691,14 @@ section {
         margin-left: auto;
         margin-right: auto;
       }
-      
+
       // Buttons container
-      > div {
+      >div {
         display: flex;
         gap: 1.5rem;
         justify-content: center;
         flex-wrap: wrap;
-        
+
         a {
           display: inline-block;
           padding: .875rem 2rem;
@@ -578,12 +710,26 @@ section {
           border-radius: $border-radius;
           box-shadow: 6px 6px 0 $border;
           transition: $transition;
-          
-          &[data-primary] { background-color: $accent; color: $text; }
-          &:not([data-primary]) { background-color: $bg-white; color: $text; }
-          
-          &:hover { transform: translate(3px, 3px); box-shadow: 3px 3px 0 $border; }
-          &:active { transform: translate(6px, 6px); box-shadow: none; }
+
+          &[data-primary] {
+            background-color: $accent;
+            color: $text;
+          }
+
+          &:not([data-primary]) {
+            background-color: $bg-white;
+            color: $text;
+          }
+
+          &:hover {
+            transform: translate(3px, 3px);
+            box-shadow: 3px 3px 0 $border;
+          }
+
+          &:active {
+            transform: translate(6px, 6px);
+            box-shadow: none;
+          }
         }
       }
     }
@@ -595,37 +741,41 @@ footer {
   background-color: $secondary;
   color: $bg-white;
   padding: 3rem 2rem 1rem;
-  
+
   .container {
+
     // Grid of footer columns
-    > div:first-child {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2.5rem;
+    >div:first-child {
+      @include grid-gap();
       margin-bottom: 2rem;
-      
-      > div {
+
+      >div {
         h3 {
           font-size: 1.25rem;
           margin-bottom: 1.25rem;
           font-weight: 900;
           text-transform: uppercase;
         }
-        
-        p { font-weight: 600; line-height: 1.8; }
-        
+
+        p {
+          font-weight: 600;
+          line-height: 1.8;
+        }
+
         ul {
           list-style: none;
-          
-          li { margin-bottom: .75rem; }
-          
+
+          li {
+            margin-bottom: .75rem;
+          }
+
           a {
             color: $bg-white;
             text-decoration: none;
             font-weight: 700;
             border-bottom: 2px solid transparent;
             transition: $transition;
-            
+
             &:hover {
               border-bottom: 2px solid $bg-white;
               transform: translateX(2px);
@@ -634,9 +784,9 @@ footer {
         }
       }
     }
-    
+
     // Footer bottom
-    > div:last-child {
+    >div:last-child {
       border-top: $border-width solid $bg-white;
       padding-top: 1.5rem;
       margin-top: 2rem;
@@ -648,8 +798,9 @@ footer {
 
 // Article pages - semantic <article> element
 article {
+
   // Article header
-  > header {
+  >header {
     background-color: $primary;
     background-size: cover;
     background-position: center;
@@ -657,7 +808,7 @@ article {
     border-bottom: $border-width solid $border;
     position: relative;
     top: auto;
-    
+
     &::before {
       content: '';
       position: absolute;
@@ -665,7 +816,7 @@ article {
       background-color: rgba(0, 0, 0, .6);
       z-index: 0;
     }
-    
+
     &::after {
       content: '';
       position: absolute;
@@ -676,15 +827,16 @@ article {
       background-color: $border;
       z-index: -1;
     }
-    
+
     .container {
       max-width: 900px;
       position: relative;
       z-index: 1;
-      
+
       // Back link
       a {
         display: inline-block;
+        align-self: flex-start;
         margin-bottom: 1.5rem;
         color: $text;
         text-decoration: none;
@@ -696,11 +848,16 @@ article {
         text-transform: uppercase;
         font-size: .875rem;
         border-radius: $border-radius;
-        
-        &:hover { @include brutal-hover; }
-        &:active { @include brutal-active; }
+
+        &:hover {
+          @include brutal-hover;
+        }
+
+        &:active {
+          @include brutal-active;
+        }
       }
-      
+
       h1 {
         font-size: 3rem;
         margin-bottom: 1rem;
@@ -711,7 +868,7 @@ article {
         color: #fff;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, .8);
       }
-      
+
       p {
         font-size: 1.25rem;
         font-weight: 600;
@@ -719,14 +876,14 @@ article {
         color: #fff;
         text-shadow: 1px 1px 3px rgba(0, 0, 0, .8);
       }
-      
+
       // Meta badges container
-      > div {
+      >div {
         display: flex;
         gap: .3rem .5rem;
         flex-wrap: wrap;
         margin: .5rem 0;
-        
+
         span {
           padding: .4rem;
           background-color: $bg-white;
@@ -739,18 +896,18 @@ article {
       }
     }
   }
-  
+
   // Article content area
-  > div {
+  >div {
     padding: 2rem;
     background-color: $bg-white;
-    
+
     .container {
       max-width: 1200px;
-      display: grid;
+      @include grid-gap();
+      display: flex !important;
       grid-template-columns: 1fr;
-      gap: 2rem;
-      
+
       // TOC (aside element)
       aside {
         background-color: $bg-main;
@@ -758,20 +915,22 @@ article {
         border-radius: $border-radius;
         padding: 1.5rem;
         @include brutal-shadow;
-        
+
         h3 {
           font-size: 1rem;
           font-weight: 900;
           text-transform: uppercase;
           margin-bottom: 1rem;
         }
-        
+
         ul {
           list-style: none;
           padding: 0;
-          
-          li { margin-bottom: .5rem; }
-          
+
+          li {
+            margin-bottom: .5rem;
+          }
+
           a {
             color: $text;
             text-decoration: none;
@@ -780,7 +939,7 @@ article {
             padding: .25rem 0;
             display: block;
             transition: $transition;
-            
+
             &:hover {
               color: $primary;
               transform: translateX(4px);
@@ -788,48 +947,79 @@ article {
           }
         }
       }
-      
+
       // Main content (last div)
-      > div:last-child {
+      >div:last-child {
         background-color: $bg-white;
         padding: 3rem;
         @include brutal-border;
         @include brutal-shadow;
         line-height: 1.8;
         border-radius: $border-radius;
-        
-        h1, h2, h3, h4, h5, h6 {
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
           font-weight: 900;
           text-transform: uppercase;
           margin-top: 2rem;
           margin-bottom: 1rem;
           letter-spacing: -.5px;
         }
-        
+
         h1 {
           font-size: 2.5rem;
           border-bottom: $border-width solid $border;
           padding-bottom: .5rem;
         }
-        h2 { font-size: 2rem; }
-        h3 { font-size: 1.5rem; }
-        
-        p, ul, ol { margin-bottom: 1.25rem; font-weight: 500; }
-        ul, ol { padding-left: 2rem; }
-        li { margin-bottom: .5rem; }
-        strong { font-weight: 900; }
-        em { font-style: italic; }
-        
+
+        h2 {
+          font-size: 2rem;
+        }
+
+        h3 {
+          font-size: 1.5rem;
+        }
+
+        p,
+        ul,
+        ol {
+          margin-bottom: 1.25rem;
+          font-weight: 500;
+        }
+
+        ul,
+        ol {
+          padding-left: 2rem;
+        }
+
+        li {
+          margin-bottom: .5rem;
+        }
+
+        strong {
+          font-weight: 900;
+        }
+
+        em {
+          font-style: italic;
+        }
+
         a {
           color: $text;
           font-weight: 700;
           border-bottom: 2px solid $text;
           text-decoration: none;
           transition: $transition;
-          
-          &:hover { background-color: $accent; }
+
+          &:hover {
+            background-color: $accent;
+          }
         }
-        
+
         blockquote {
           border-left: $border-width solid $border;
           padding: 1.5rem;
@@ -837,7 +1027,7 @@ article {
           font-style: italic;
           background-color: $bg-main;
         }
-        
+
         code {
           background-color: $bg-main;
           padding: .25rem .5rem;
@@ -845,17 +1035,21 @@ article {
           font-family: 'Courier New', monospace;
           font-weight: 700;
         }
-        
+
         pre {
           background-color: $bg-main;
           padding: 1.5rem;
           @include brutal-border;
           overflow-x: auto;
           margin: 1.5rem 0;
-          
-          code { background: none; border: none; padding: 0; }
+
+          code {
+            background: none;
+            border: none;
+            padding: 0;
+          }
         }
-        
+
         hr {
           border: none;
           border-top: $border-width solid $border;
@@ -868,9 +1062,9 @@ article {
 
 // Responsive
 @media (min-width: 1024px) {
-  article > div .container {
+  article>div .container {
     grid-template-columns: 250px 1fr;
-    
+
     aside {
       position: sticky;
       top: calc(72px + 2rem);
@@ -881,13 +1075,21 @@ article {
 }
 
 @media (max-width: 1024px) {
-  body > header {
-    .container { justify-content: space-between; }
-    
-    button { display: block; order: 3; }
+  body>header {
+    .container {
+      justify-content: space-between;
+    }
+
+    button {
+      display: block;
+      order: 3;
+    }
+
     // Ensure the main toggle button always shows
-    .container > #menuToggle { display: block !important; }
-    
+    .container>#menuToggle {
+      display: block !important;
+    }
+
     nav {
       display: grid;
       grid-template-rows: auto 1fr auto;
@@ -903,11 +1105,13 @@ article {
       transform: translateX(100%);
       transition: transform .26s cubic-bezier(.2, .8, .2, 1);
       overflow: hidden;
-      
-      &.active { transform: translateX(0); }
+
+      &.active {
+        transform: translateX(0);
+      }
 
       // Mobile header row (icon + title)
-      > div:first-child {
+      >div:first-child {
         display: flex;
         align-items: center;
         gap: .75rem;
@@ -916,7 +1120,7 @@ article {
         text-transform: uppercase;
         letter-spacing: -.5px;
       }
-      
+
       // Close button - positioned absolutely
       #navClose {
         position: absolute;
@@ -931,13 +1135,13 @@ article {
         font-weight: 900;
         cursor: pointer;
         transition: all .15s ease;
-        
+
         &:hover {
           transform: translate(3px, 3px);
           box-shadow: ($shadow-offset - 3px) ($shadow-offset - 3px) 0 $border;
         }
       }
-      
+
       ul {
         flex-direction: column;
         margin: .5rem 5% 0;
@@ -945,7 +1149,7 @@ article {
         gap: 1vh;
         min-height: 0;
         overflow-y: auto;
-        
+
         a {
           display: block;
           width: calc(100% - 1rem);
@@ -960,29 +1164,31 @@ article {
           box-shadow: $shadow-offset $shadow-offset 0 $border;
           text-decoration: none;
           transition: all .15s ease;
-          
+
           &:hover {
             transform: translate(3px, 3px);
             box-shadow: ($shadow-offset - 3px) ($shadow-offset - 3px) 0 $border;
           }
         }
-        
+
         // Hide register link in mobile menu
-        a[href*="#register"] { display: none; }
+        a[href*="#register"] {
+          display: none;
+        }
       }
-      
+
       // CTA shelf at bottom (grid row 3)
       #navCta {
         display: block;
         padding: 4% 5%;
         border-top: $border-width solid $border;
         background: $accent;
-        
-        > div {
+
+        >div {
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: .75rem;
-          
+
           a {
             display: block;
             text-align: center;
@@ -997,9 +1203,11 @@ article {
             color: $text;
             text-decoration: none;
             transition: all .15s ease;
-            
-            &:hover { transform: translate(3px, 3px); }
-            
+
+            &:hover {
+              transform: translate(3px, 3px);
+            }
+
             &[href*="register"] {
               background: $primary;
               color: $bg-white;
@@ -1010,10 +1218,19 @@ article {
     }
 
     // Overlay for mobile drawer
-    nav + #navOverlay { position: fixed; inset: 0; background: rgba(0,0,0,.4); display: none; z-index: 1500; }
-    nav.active + #navOverlay { display: block; }
+    nav+#navOverlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .4);
+      display: none;
+      z-index: 1500;
+    }
+
+    nav.active+#navOverlay {
+      display: block;
+    }
   }
-  
+
   // Apply the same styles to the web component
   site-header {
     header {
@@ -1033,23 +1250,28 @@ article {
         transition: transform .26s cubic-bezier(.2, .8, .2, 1);
         overflow: hidden;
 
-        &.active { transform: translateX(0); }
+        &.active {
+          transform: translateX(0);
+        }
 
-        > div:first-child {
+        >div:first-child {
           display: flex;
           align-items: center;
           gap: .75rem;
           padding: 1rem 6% .75rem;
         }
-        
+
         #navClose {
           position: absolute;
           top: 1rem;
           right: 6%;
         }
-        
+
         ul {
-          a[href*="#register"] { display: none; }
+          a[href*="#register"] {
+            display: none;
+          }
+
           flex-direction: column;
           margin: .5rem 5% 0;
           width: 90%;
@@ -1057,14 +1279,14 @@ article {
           min-height: 0;
           overflow-y: auto;
         }
-        
+
         #navCta {
           display: block;
           padding: 4% 5%;
           border-top: $border-width solid $border;
           background: $accent;
-          
-          > div {
+
+          >div {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: .75rem;
@@ -1073,35 +1295,61 @@ article {
       }
     }
   }
-  
+
   section {
-    &:first-of-type h2 { font-size: 2.25rem; }
-    &:first-of-type p { font-size: 1rem; }
-    
-    h2 { font-size: 2rem; }
+    &:first-of-type h2 {
+      font-size: 2.25rem;
+    }
+
+    &:first-of-type p {
+      font-size: 1rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+    }
   }
 }
 
 @media (max-width: 768px) {
   article {
-    > header h1 { font-size: 2rem; }
-    > div .container > div:last-child {
+    >header h1 {
+      font-size: 2rem;
+    }
+
+    >div .container>div:last-child {
       padding: 1.5rem;
-      
-      h1 { font-size: 1.75rem; }
-      h2 { font-size: 1.5rem; }
-      h3 { font-size: 1.25rem; }
+
+      h1 {
+        font-size: 1.75rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      h3 {
+        font-size: 1.25rem;
+      }
     }
   }
 
   // Mirror responsive header behavior for <site-header>
   site-header {
     header {
-      .container { justify-content: space-between; }
+      .container {
+        justify-content: space-between;
+      }
 
-      button { display: block; order: 3; }
+      button {
+        display: block;
+        order: 3;
+      }
+
       // Ensure the main toggle button always shows inside web component
-      .container > #menuToggle { display: block !important; }
+      .container>#menuToggle {
+        display: block !important;
+      }
 
       nav {
         display: grid;
@@ -1119,10 +1367,12 @@ article {
         transition: transform .26s cubic-bezier(.2, .8, .2, 1);
         overflow: hidden;
 
-        &.active { transform: translateX(0); }
+        &.active {
+          transform: translateX(0);
+        }
 
         // Header row
-        > div:first-child {
+        >div:first-child {
           display: flex;
           align-items: center;
           gap: .75rem;
@@ -1142,7 +1392,7 @@ article {
           border-top: $border-width solid $border;
           background: $accent;
 
-          > div {
+          >div {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: .75rem;
@@ -1156,8 +1406,10 @@ article {
           gap: 1vh;
           min-height: 0;
           overflow-y: auto;
-          
-          a[href*="#register"] { display: none; }
+
+          a[href*="#register"] {
+            display: none;
+          }
         }
 
         a {
@@ -1170,9 +1422,419 @@ article {
           @include brutal-shadow;
         }
       }
+
       // Overlay for mobile drawer
-      nav + #navOverlay { position: fixed; inset: 0; background: rgba(0,0,0,.4); display: none; z-index: 1500; }
-      nav.active + #navOverlay { display: block; }
+      nav+#navOverlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, .4);
+        display: none;
+        z-index: 1500;
+      }
+
+      nav.active+#navOverlay {
+        display: block;
+      }
     }
   }
 }
+
+// ---------------------------------------------------------
+// Shared utilities for archives and article class-based pages
+// ---------------------------------------------------------
+
+.loading-text {
+  text-align: center;
+  padding: 2rem;
+  font-weight: 600;
+}
+
+// Generic grid for archive pages
+.items-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin: 1.5rem 0 0;
+  padding: 0; // Remove padding so cards align to edges
+  align-items: stretch;
+}
+
+// Archive cards use the same mixin as home scroller cards
+.item-card {
+  @extend %card;
+  @include item-card-structure;
+}
+
+// Archive header band
+.archive-hero {
+  background-color: $primary;
+  color: $text;
+  padding: 3rem 2rem 2rem;
+  border-bottom: $border-width solid $border;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: calc($border-width * -1);
+    left: 0; right: 0;
+    height: $shadow-offset;
+    background-color: $border;
+    z-index: -1;
+  }
+}
+
+.archive-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  h1 {
+    font-size: 3rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+  }
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  color: $text;
+  text-decoration: none;
+  font-weight: 700;
+  padding: .5rem 1rem;
+  @include brutal-border;
+  background-color: $bg-white;
+  transition: $transition;
+  text-transform: uppercase;
+  font-size: .875rem;
+  border-radius: $border-radius;
+
+  &:hover { @include brutal-hover; }
+  &:active { @include brutal-active; }
+}
+
+.filters {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  padding: 2rem;
+  background-color: $bg-alt;
+  @include brutal-border;
+  border-radius: $border-radius;
+  @include brutal-shadow;
+  margin-bottom: 3rem;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  min-width: 150px;
+  width: max-content;
+
+  &:first-child {
+    flex: 1;
+    width: auto;
+    min-width: 250px;
+  }
+
+  label {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: .875rem;
+  }
+}
+
+.filter-select, .filter-input {
+  padding: .875rem 1rem;
+  @include brutal-border;
+  background-color: $bg-white;
+  font-weight: 600;
+  font-size: .95rem;
+  border-radius: $border-radius;
+  height: 3rem;
+  font-family: inherit;
+}
+
+.filter-input { cursor: text; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 3rem;
+  padding: 0 1rem;
+  font-size: .875rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  @include brutal-border;
+  border-radius: $border-radius;
+  transition: $transition;
+  font-weight: 800;
+}
+
+.btn-outline {
+  background: $bg-white;
+  color: $text;
+  &:hover { @include brutal-hover; }
+  &:active { @include brutal-active; }
+}
+
+.archive-section {
+  padding: 4rem 2rem;
+
+  .container { max-width: 900px; position: relative; z-index: 1; }
+}
+
+// Article page (class-based structure used in article.html)
+.article-header {
+  background-color: $primary;
+  color: $text;
+  border-bottom: $border-width solid $border;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 3rem 2rem;
+
+  &::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-color: rgba(0,0,0,.6);
+    z-index: 0;
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: calc($border-width * -1);
+    left: 0; right: 0;
+    height: $shadow-offset;
+    background-color: $border;
+    z-index: -1;
+  }
+
+  .container { 
+    max-width: 900px; 
+    position: relative; 
+    z-index: 1;
+    text-align: left; // ensure left alignment for inline elements like back-link
+  }
+
+  // Back button styled like nav buttons, positioned at top left
+  .container > a.back-link {
+    display: inline-flex; // align like nav buttons
+    align-items: center;
+    color: $text;
+    text-decoration: none;
+    font-weight: 700;
+    padding: .5rem 1rem;
+    @include brutal-border;
+    background-color: $bg-white;
+    transition: $transition;
+    text-transform: uppercase;
+    font-size: .875rem;
+    border-radius: $border-radius;
+    margin-bottom: 1.5rem;
+    margin-right: auto; // ensure left alignment even if container becomes flex
+
+    &:hover {
+      @include brutal-hover;
+    }
+
+    &:active {
+      @include brutal-active;
+    }
+  }
+}
+
+.article-title {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+  line-height: 1.1;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0,0,0,.8);
+  text-align: left;
+}
+
+.article-description {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  color: #fff;
+  text-shadow: 1px 1px 3px rgba(0,0,0,.8);
+}
+
+.article-meta {
+  display: flex;
+  gap: .7rem .9rem;
+  flex-wrap: wrap;
+  margin: .5rem 0;
+
+  .meta-item {
+    transform: scale(1.15); // Increase size of meta chips on article pages
+    transform-origin: left center;
+  }
+}
+
+.meta-item {
+  display: inline-block;
+  padding: .4rem;
+  background-color: $bg-white;
+  @include brutal-border;
+  border-radius: $border-radius;
+  font-size: .72rem;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.article-content {
+  padding: 2rem;
+  background-color: $bg-white;
+  display: flex !important;
+
+  .container {
+    max-width: 1200px; // Default constraint
+  }
+}
+
+.article-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.table-of-contents {
+  background-color: $bg-main;
+  @include brutal-border;
+  border-radius: $border-radius;
+  padding: 1.5rem;
+  @include brutal-shadow;
+  width: 100%; // Full width when stacked above article (mobile/tablet)
+  min-width: 180px; // Minimum reasonable width
+  max-width: 100%; // Don't overflow on mobile
+
+  h3 {
+    font-size: 1rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  // Custom scrollbar styling for long TOCs
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  &::-webkit-scrollbar-track {
+    background: $bg-main;
+    border: 2px solid $border;
+    border-radius: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $primary;
+    border: 2px solid $border;
+    border-radius: 4px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: $secondary;
+  }
+
+  // Firefox scrollbar
+  scrollbar-width: thin;
+  scrollbar-color: $primary $bg-main;
+}
+
+.toc-list { list-style: none; padding: 0; margin: 0; }
+.toc-item { margin-bottom: .5rem; }
+.toc-h2 { padding-left: 0; }
+.toc-h3 { padding-left: 1rem; }
+.toc-h4 { padding-left: 2rem; }
+.toc-h5 { padding-left: 3rem; }
+.toc-h6 { padding-left: 4rem; }
+
+.toc-link {
+  color: $text;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: .875rem;
+  display: block;
+  padding: .25rem 0;
+  transition: $transition;
+  &:hover { color: $primary; transform: translateX(4px); }
+}
+
+.article-body {
+  background-color: $bg-white;
+  padding: 3rem;
+  @include brutal-border;
+  @include brutal-shadow;
+  line-height: 1.8;
+  // Fluid typography: scales strongly with viewport width without breakpoints
+  // Even more dramatic growth for normal text (p, li, etc.)
+  font-size: clamp(1rem, 0.75rem + 1.1vw, 1.75rem);
+  border-radius: $border-radius;
+  flex: 1; // Take remaining space in flex layout
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    letter-spacing: -.5px;
+  }
+  h1 { font-size: clamp(2rem, 1.6rem + 2vw, 3.5rem); border-bottom: $border-width solid $border; padding-bottom: .5rem; }
+  h2 { font-size: clamp(1.5rem, 1.25rem + 1.5vw, 2.5rem); }
+  h3 { font-size: clamp(1.25rem, 1.1rem + 1vw, 2rem); }
+  // Paragraphs and lists inherit the fluid base size
+  p, ul, ol { margin-bottom: 1.25rem; font-weight: 500; font-size: inherit; }
+  ul, ol { padding-left: 2rem; }
+  li { margin-bottom: .5rem; font-size: inherit; }
+  strong { font-weight: 900; }
+  em { font-style: italic; }
+  a { color: $text; font-weight: 700; border-bottom: 2px solid $text; text-decoration: none; transition: $transition; &:hover { background-color: $accent; } }
+  blockquote { border-left: $border-width solid $border; padding: 1.5rem; margin: 2rem 0; font-style: italic; background-color: $bg-main; }
+  code { background-color: $bg-main; padding: .25rem .5rem; border: 2px solid $border; font-family: 'Courier New', monospace; font-weight: 700; }
+  pre { background-color: $bg-main; padding: 1.5rem; @include brutal-border; overflow-x: auto; margin: 1.5rem 0; code { background: none; border: none; padding: 0; } }
+  hr { border: none; border-top: $border-width solid $border; margin: 2rem 0; }
+}
+.article-content {
+  display: flex !important;
+}
+@media (min-width: 1024px) {
+  .article-layout {
+    flex-direction: row; // Side by side layout on desktop
+    align-items: flex-start;
+    gap: 3rem;
+  }
+  .table-of-contents {
+    position: sticky;
+    top: calc(72px + 2rem);
+    max-height: calc(100vh - 72px - 4rem);
+    overflow-y: auto;
+    z-index: 10;
+    max-width: 280px; // Cap maximum width
+    width: max-content; // Only as wide as content in desktop mode
+    flex-shrink: 0; // Don't shrink TOC
+  }
+  .article-body {
+    flex: 1; // Take all remaining space
+    min-width: 0; // Allow flexing below natural width if needed
+  }
+  .article-content {
+    .container {
+      max-width: none !important; // Override global container constraint
+      width: 100%;
+      padding: 0 2rem; // Maintain side padding
+    }
+  }
+}
+
+// (Removed fixed breakpoints for article text size in favor of fluid clamp sizing)

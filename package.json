@@ -6,6 +6,8 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
+    "css": "sass style-minimal.scss style-minimal.css",
+    "css:watch": "sass --watch style-minimal.scss:style-minimal.css",
     "dev": "tsc --watch & python3 -m http.server 8000"
   },
   "devDependencies": {
