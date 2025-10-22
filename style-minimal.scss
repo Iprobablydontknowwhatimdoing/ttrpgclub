@@ -1,0 +1,1178 @@
+/* TTRPG Club - Minimal-Class SCSS (Heavy Element Nesting) */
+
+// Variables
+$primary: #3b82f6;
+$secondary: #1e40af;
+$accent: #fbbf24;
+$bg-main: #fef3c7;
+$bg-alt: #dbeafe;
+$bg-white: #fff;
+$text: #000;
+$border: #000;
+$border-width: 4px;
+$border-radius: 8px;
+$shadow-offset: 8px;
+$transition: all .15s ease;
+
+// Mixins
+@mixin brutal-border { border: $border-width solid $border; }
+@mixin brutal-shadow { box-shadow: $shadow-offset $shadow-offset 0 $border; }
+@mixin brutal-hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 $border; }
+@mixin brutal-active { transform: translate(0, 0); box-shadow: none; }
+
+// Placeholder selectors
+%card {
+  background-color: $bg-white;
+  padding: 2rem;
+  @include brutal-border;
+  border-radius: $border-radius;
+  @include brutal-shadow;
+  transition: $transition;
+  
+  &:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 11px 11px 0 $border;
+  }
+}
+
+// Reset
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Arial Black', sans-serif;
+  line-height: 1.5;
+  color: $text;
+  background-color: $bg-main;
+  font-weight: 700;
+  
+  &.no-scroll { overflow: hidden !important; position: fixed; width: 100vw; }
+}
+::selection { background-color: $accent; color: $text; }
+*:focus-visible { outline: 3px solid $primary; outline-offset: 3px; }
+
+// Layout
+.container { max-width: 1200px; margin: 0 auto; }
+
+// Header - site navbar (top-level only)
+body > header {
+  background-color: $bg-white;
+  color: $text;
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: $border-width solid $border;
+  
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 0 2rem;
+    
+    // Logo (first div)
+    > div:first-child {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      
+      h1 {
+        font-size: 1.75rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: -1px;
+      }
+    }
+  }
+  
+  // Navigation
+  nav {
+    // Hide mobile-only UI by default (desktop)
+    > div:first-child, // mobile header row
+    #navClose,
+    #navCta,
+    + #navOverlay { display: none; }
+
+    ul {
+      display: flex;
+      list-style: none;
+      gap: .5rem;
+      flex-wrap: wrap;
+    }
+    
+    a {
+      color: $text;
+      text-decoration: none;
+      font-weight: 700;
+      padding: .5rem 1rem;
+      @include brutal-border;
+      background-color: $bg-white;
+      transition: $transition;
+      text-transform: uppercase;
+      font-size: .875rem;
+      display: block;
+      border-radius: $border-radius;
+      
+      &:hover { @include brutal-hover; }
+      &:active { @include brutal-active; }
+      
+      // Target register link by href
+      &[href*="register"] { background-color: $accent !important; }
+    }
+  }
+  
+  // Mobile toggle button
+  button {
+    display: none;
+    padding: .5rem 1rem;
+    @include brutal-border;
+    background-color: $bg-white;
+    color: $text;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: .875rem;
+    cursor: pointer;
+    transition: $transition;
+    border-radius: $border-radius;
+    
+    &:hover { @include brutal-hover; }
+    &:active { @include brutal-active; }
+  }
+}
+
+// Mirror header styles for <site-header> web component wrapper
+site-header {
+  header {
+    background-color: $bg-white;
+    color: $text;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: $border-width solid $border;
+
+  .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 0 2rem;
+
+      // Logo (first div)
+      > div:first-child {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        h1 {
+          font-size: 1.75rem;
+          font-weight: 900;
+          text-transform: uppercase;
+          letter-spacing: -1px;
+        }
+      }
+    }
+
+    // Navigation
+    nav {
+      // Hide mobile-only UI by default (desktop)
+      > div:first-child, // mobile header row
+      #navClose,
+      #navCta,
+      + #navOverlay { display: none; }
+      ul {
+        display: flex;
+        list-style: none;
+        gap: .5rem;
+        flex-wrap: wrap;
+      }
+
+      a {
+        color: $text;
+        text-decoration: none;
+        font-weight: 700;
+        padding: .5rem 1rem;
+        @include brutal-border;
+        background-color: $bg-white;
+        transition: $transition;
+        text-transform: uppercase;
+        font-size: .875rem;
+        display: block;
+        border-radius: $border-radius;
+
+        &:hover { @include brutal-hover; }
+        &:active { @include brutal-active; }
+
+        // Target register link by href
+        &[href*="register"] { background-color: $accent !important; }
+      }
+    }
+
+    // Mobile toggle button
+    button {
+      display: none;
+      padding: .5rem 1rem;
+      @include brutal-border;
+      background-color: $bg-white;
+      color: $text;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: .875rem;
+      cursor: pointer;
+      transition: $transition;
+      border-radius: $border-radius;
+
+      &:hover { @include brutal-hover; }
+      &:active { @include brutal-active; }
+    }
+  }
+}
+
+// Sections - semantic <section> elements
+section {
+  border-bottom: $border-width solid $border;
+  
+  // Hero section (first section or id="hero")
+  &:first-of-type, &[data-hero] {
+    background-color: $primary;
+    color: $text;
+    padding: 6rem 2rem;
+    text-align: center;
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: calc($border-width * -1);
+      left: 0;
+      right: 0;
+      height: $shadow-offset;
+      background-color: $border;
+      z-index: -1;
+    }
+    
+    > div {
+      max-width: 800px;
+      margin: 0 auto;
+      
+      h2 {
+        font-size: 3.5rem;
+        margin-bottom: 1.5rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: -2px;
+        line-height: 1.1;
+      }
+      
+      p {
+        font-size: 1.25rem;
+        margin-bottom: 2.5rem;
+        font-weight: 600;
+        line-height: 1.6;
+      }
+      
+      a {
+        display: inline-block;
+        padding: .875rem 2rem;
+        text-decoration: none;
+        font-weight: 800;
+        @include brutal-border;
+        text-transform: uppercase;
+        font-size: .95rem;
+        letter-spacing: .5px;
+        border-radius: $border-radius;
+        background-color: $accent;
+        color: $text;
+        box-shadow: 6px 6px 0 $border;
+        transition: $transition;
+        
+        &:hover { transform: translate(3px, 3px); box-shadow: 3px 3px 0 $border; }
+        &:active { transform: translate(6px, 6px); box-shadow: none; }
+      }
+    }
+  }
+  
+  // Content sections (using data attributes or :nth patterns)
+  &[data-content], &:nth-of-type(2), &:nth-of-type(3) {
+    padding: 2rem 2rem 3rem;
+    
+    &:nth-of-type(even) { background-color: $bg-alt; }
+    
+    h2 {
+      font-size: 2.75rem;
+      text-align: center;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -1px;
+      margin-bottom: 2rem;
+    }
+    
+    // Grid container
+    .container > div {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      
+      // Cards (nested divs)
+      > div {
+        @extend %card;
+        
+        h3 {
+          font-size: 1.5rem;
+          margin-bottom: 1rem;
+          font-weight: 900;
+          text-transform: uppercase;
+        }
+        
+        p { font-weight: 500; line-height: 1.7; }
+        
+        ul {
+          padding-left: 1.5rem;
+          
+          li { margin-bottom: .5rem; font-weight: 500; }
+        }
+      }
+    }
+  }
+  
+  // Dynamic sections (games/events) - use data attributes
+  &[data-dynamic] {
+    padding: 4rem 2rem;
+    margin: 0;
+    
+    &[data-alt] { background-color: $bg-alt; }
+    
+  .container {
+      // Header with title and link
+      > div:first-child {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 0 2rem;
+        
+        h2 {
+          font-size: 2.75rem;
+          margin: 0;
+          font-weight: 900;
+          text-transform: uppercase;
+          letter-spacing: -1px;
+        }
+        
+        a {
+          display: inline-block;
+          padding: .875rem 2rem;
+          text-decoration: none;
+          font-weight: 800;
+          @include brutal-border;
+          text-transform: uppercase;
+          font-size: .95rem;
+          border-radius: $border-radius;
+          background-color: $bg-white;
+          color: $text;
+          box-shadow: 6px 6px 0 $border;
+          transition: $transition;
+          
+          &:hover { transform: translate(3px, 3px); box-shadow: 3px 3px 0 $border; }
+          &:active { transform: translate(6px, 6px); box-shadow: none; }
+        }
+      }
+      
+      // Items scroller
+      > div:last-child {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding: 1rem;
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+        scrollbar-width: thin;
+        scrollbar-color: $primary transparent;
+        
+        &::before, &::after {
+          content: '';
+          flex: 0 0 2rem;
+          min-width: 2rem;
+        }
+        
+        // Item cards
+        > div {
+          @extend %card;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          padding: 0;
+          width: 400px;
+          min-width: 400px;
+          flex: 0 0 400px;
+          scroll-snap-align: start;
+          
+          // Thumbnail (first nested div)
+          > div:first-child {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            background-color: $bg-main;
+            border-bottom: $border-width solid $border;
+            
+            img { width: 100%; height: 100%; object-fit: cover; }
+          }
+          
+          // Content (second nested div)
+          > div:nth-child(2) {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            
+            h3 {
+              font-size: 1.5rem;
+              margin-bottom: 1rem;
+              font-weight: 900;
+              text-transform: uppercase;
+            }
+            
+            p {
+              font-weight: 500;
+              margin-bottom: .5rem;
+              line-height: 1.7;
+              flex: 1;
+            }
+            
+            // Tags container
+            > div {
+              display: flex;
+              flex-wrap: wrap;
+              gap: .5rem;
+              
+              span {
+                padding: .25rem .5rem;
+                font-size: .75rem;
+                @include brutal-border;
+                background: $accent;
+                border-radius: 4px;
+              }
+            }
+          }
+          
+          // Card button
+          > a {
+            display: block;
+            width: 100%;
+            background-color: $accent;
+            color: #000;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 1rem;
+            border: none;
+            border-top: $border-width solid $border;
+            padding: 1rem 0;
+            text-align: center;
+            text-decoration: none;
+            transition: $transition;
+          }
+          
+          &:has(> a:hover) {
+            transform: translate(4px, 4px);
+            box-shadow: calc($shadow-offset - 4px) calc($shadow-offset - 4px) 0 $border;
+          }
+        }
+      }
+    }
+  }
+  
+  // Resources section
+  &[data-resources] {
+    padding: 1rem 1rem 3rem;
+    background-color: $bg-alt;
+    
+    h2 {
+      font-size: 2.75rem;
+      margin-bottom: 3rem;
+      text-align: center;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -1px;
+    }
+    
+    .container > div {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      
+      > div {
+        @extend %card;
+        
+        h3 {
+          font-size: 1.5rem;
+          margin-bottom: 1.5rem;
+          font-weight: 900;
+          text-transform: uppercase;
+        }
+        
+        ul {
+          list-style: none;
+          
+          li { margin-bottom: .875rem; }
+          
+          a {
+            color: $text;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid transparent;
+            transition: $transition;
+            
+            &:hover {
+              border-bottom: 2px solid $text;
+              transform: translateX(2px);
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  // CTA section
+  &[data-cta] {
+    background-color: $accent;
+    color: $text;
+    padding: 2rem;
+    text-align: center;
+    
+    .container > div {
+      h2 {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: -1px;
+      }
+      
+      p {
+        font-size: 1.25rem;
+        margin-bottom: 2.5rem;
+        font-weight: 600;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      // Buttons container
+      > div {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        
+        a {
+          display: inline-block;
+          padding: .875rem 2rem;
+          text-decoration: none;
+          font-weight: 800;
+          @include brutal-border;
+          text-transform: uppercase;
+          font-size: .95rem;
+          border-radius: $border-radius;
+          box-shadow: 6px 6px 0 $border;
+          transition: $transition;
+          
+          &[data-primary] { background-color: $accent; color: $text; }
+          &:not([data-primary]) { background-color: $bg-white; color: $text; }
+          
+          &:hover { transform: translate(3px, 3px); box-shadow: 3px 3px 0 $border; }
+          &:active { transform: translate(6px, 6px); box-shadow: none; }
+        }
+      }
+    }
+  }
+}
+
+// Footer - semantic <footer> element
+footer {
+  background-color: $secondary;
+  color: $bg-white;
+  padding: 3rem 2rem 1rem;
+  
+  .container {
+    // Grid of footer columns
+    > div:first-child {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2.5rem;
+      margin-bottom: 2rem;
+      
+      > div {
+        h3 {
+          font-size: 1.25rem;
+          margin-bottom: 1.25rem;
+          font-weight: 900;
+          text-transform: uppercase;
+        }
+        
+        p { font-weight: 600; line-height: 1.8; }
+        
+        ul {
+          list-style: none;
+          
+          li { margin-bottom: .75rem; }
+          
+          a {
+            color: $bg-white;
+            text-decoration: none;
+            font-weight: 700;
+            border-bottom: 2px solid transparent;
+            transition: $transition;
+            
+            &:hover {
+              border-bottom: 2px solid $bg-white;
+              transform: translateX(2px);
+            }
+          }
+        }
+      }
+    }
+    
+    // Footer bottom
+    > div:last-child {
+      border-top: $border-width solid $bg-white;
+      padding-top: 1.5rem;
+      margin-top: 2rem;
+      text-align: center;
+      font-weight: 700;
+    }
+  }
+}
+
+// Article pages - semantic <article> element
+article {
+  // Article header
+  > header {
+    background-color: $primary;
+    background-size: cover;
+    background-position: center;
+    padding: 3rem 2rem;
+    border-bottom: $border-width solid $border;
+    position: relative;
+    top: auto;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, .6);
+      z-index: 0;
+    }
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: calc($border-width * -1);
+      left: 0;
+      right: 0;
+      height: $shadow-offset;
+      background-color: $border;
+      z-index: -1;
+    }
+    
+    .container {
+      max-width: 900px;
+      position: relative;
+      z-index: 1;
+      
+      // Back link
+      a {
+        display: inline-block;
+        margin-bottom: 1.5rem;
+        color: $text;
+        text-decoration: none;
+        font-weight: 700;
+        padding: .5rem 1rem;
+        @include brutal-border;
+        background-color: $bg-white;
+        transition: $transition;
+        text-transform: uppercase;
+        font-size: .875rem;
+        border-radius: $border-radius;
+        
+        &:hover { @include brutal-hover; }
+        &:active { @include brutal-active; }
+      }
+      
+      h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: -2px;
+        line-height: 1.1;
+        color: #fff;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, .8);
+      }
+      
+      p {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-top: 1rem;
+        color: #fff;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, .8);
+      }
+      
+      // Meta badges container
+      > div {
+        display: flex;
+        gap: .3rem .5rem;
+        flex-wrap: wrap;
+        margin: .5rem 0;
+        
+        span {
+          padding: .4rem;
+          background-color: $bg-white;
+          @include brutal-border;
+          border-radius: $border-radius;
+          font-size: .72rem;
+          font-weight: 600;
+          line-height: 1.1;
+        }
+      }
+    }
+  }
+  
+  // Article content area
+  > div {
+    padding: 2rem;
+    background-color: $bg-white;
+    
+    .container {
+      max-width: 1200px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      
+      // TOC (aside element)
+      aside {
+        background-color: $bg-main;
+        @include brutal-border;
+        border-radius: $border-radius;
+        padding: 1.5rem;
+        @include brutal-shadow;
+        
+        h3 {
+          font-size: 1rem;
+          font-weight: 900;
+          text-transform: uppercase;
+          margin-bottom: 1rem;
+        }
+        
+        ul {
+          list-style: none;
+          padding: 0;
+          
+          li { margin-bottom: .5rem; }
+          
+          a {
+            color: $text;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: .875rem;
+            padding: .25rem 0;
+            display: block;
+            transition: $transition;
+            
+            &:hover {
+              color: $primary;
+              transform: translateX(4px);
+            }
+          }
+        }
+      }
+      
+      // Main content (last div)
+      > div:last-child {
+        background-color: $bg-white;
+        padding: 3rem;
+        @include brutal-border;
+        @include brutal-shadow;
+        line-height: 1.8;
+        border-radius: $border-radius;
+        
+        h1, h2, h3, h4, h5, h6 {
+          font-weight: 900;
+          text-transform: uppercase;
+          margin-top: 2rem;
+          margin-bottom: 1rem;
+          letter-spacing: -.5px;
+        }
+        
+        h1 {
+          font-size: 2.5rem;
+          border-bottom: $border-width solid $border;
+          padding-bottom: .5rem;
+        }
+        h2 { font-size: 2rem; }
+        h3 { font-size: 1.5rem; }
+        
+        p, ul, ol { margin-bottom: 1.25rem; font-weight: 500; }
+        ul, ol { padding-left: 2rem; }
+        li { margin-bottom: .5rem; }
+        strong { font-weight: 900; }
+        em { font-style: italic; }
+        
+        a {
+          color: $text;
+          font-weight: 700;
+          border-bottom: 2px solid $text;
+          text-decoration: none;
+          transition: $transition;
+          
+          &:hover { background-color: $accent; }
+        }
+        
+        blockquote {
+          border-left: $border-width solid $border;
+          padding: 1.5rem;
+          margin: 2rem 0;
+          font-style: italic;
+          background-color: $bg-main;
+        }
+        
+        code {
+          background-color: $bg-main;
+          padding: .25rem .5rem;
+          border: 2px solid $border;
+          font-family: 'Courier New', monospace;
+          font-weight: 700;
+        }
+        
+        pre {
+          background-color: $bg-main;
+          padding: 1.5rem;
+          @include brutal-border;
+          overflow-x: auto;
+          margin: 1.5rem 0;
+          
+          code { background: none; border: none; padding: 0; }
+        }
+        
+        hr {
+          border: none;
+          border-top: $border-width solid $border;
+          margin: 2rem 0;
+        }
+      }
+    }
+  }
+}
+
+// Responsive
+@media (min-width: 1024px) {
+  article > div .container {
+    grid-template-columns: 250px 1fr;
+    
+    aside {
+      position: sticky;
+      top: calc(72px + 2rem);
+      max-height: calc(100vh - 72px - 4rem);
+      overflow-y: auto;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  body > header {
+    .container { justify-content: space-between; }
+    
+    button { display: block; order: 3; }
+    // Ensure the main toggle button always shows
+    .container > #menuToggle { display: block !important; }
+    
+    nav {
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100dvh;
+      width: 100vw;
+      background: $bg-white;
+      border-left: $border-width solid $border;
+      box-shadow: (-$shadow-offset) 0 0 $border;
+      z-index: 2000;
+      transform: translateX(100%);
+      transition: transform .26s cubic-bezier(.2, .8, .2, 1);
+      overflow: hidden;
+      
+      &.active { transform: translateX(0); }
+
+      // Mobile header row (icon + title)
+      > div:first-child {
+        display: flex;
+        align-items: center;
+        gap: .75rem;
+        padding: 1rem 6% .75rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: -.5px;
+      }
+      
+      // Close button - positioned absolutely
+      #navClose {
+        position: absolute;
+        top: 1rem;
+        right: 6%;
+        display: block;
+        background: $bg-white;
+        border: $border-width solid $border;
+        box-shadow: $shadow-offset $shadow-offset 0 $border;
+        padding: .25rem .75rem;
+        font-size: 1.5rem;
+        font-weight: 900;
+        cursor: pointer;
+        transition: all .15s ease;
+        
+        &:hover {
+          transform: translate(3px, 3px);
+          box-shadow: ($shadow-offset - 3px) ($shadow-offset - 3px) 0 $border;
+        }
+      }
+      
+      ul {
+        flex-direction: column;
+        margin: .5rem 5% 0;
+        width: 90%;
+        gap: 1vh;
+        min-height: 0;
+        overflow-y: auto;
+        
+        a {
+          display: block;
+          width: calc(100% - 1rem);
+          margin: .5rem;
+          padding: .75rem 1rem;
+          text-align: center;
+          font-size: 1.25rem;
+          font-weight: 800;
+          color: $text;
+          background: $bg-white;
+          border: $border-width solid $border;
+          box-shadow: $shadow-offset $shadow-offset 0 $border;
+          text-decoration: none;
+          transition: all .15s ease;
+          
+          &:hover {
+            transform: translate(3px, 3px);
+            box-shadow: ($shadow-offset - 3px) ($shadow-offset - 3px) 0 $border;
+          }
+        }
+        
+        // Hide register link in mobile menu
+        a[href*="#register"] { display: none; }
+      }
+      
+      // CTA shelf at bottom (grid row 3)
+      #navCta {
+        display: block;
+        padding: 4% 5%;
+        border-top: $border-width solid $border;
+        background: $accent;
+        
+        > div {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: .75rem;
+          
+          a {
+            display: block;
+            text-align: center;
+            padding: .75rem 0;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: $border-width solid $border;
+            border-radius: 8px;
+            box-shadow: $shadow-offset $shadow-offset 0 $border;
+            background: $bg-white;
+            color: $text;
+            text-decoration: none;
+            transition: all .15s ease;
+            
+            &:hover { transform: translate(3px, 3px); }
+            
+            &[href*="register"] {
+              background: $primary;
+              color: $bg-white;
+            }
+          }
+        }
+      }
+    }
+
+    // Overlay for mobile drawer
+    nav + #navOverlay { position: fixed; inset: 0; background: rgba(0,0,0,.4); display: none; z-index: 1500; }
+    nav.active + #navOverlay { display: block; }
+  }
+  
+  // Apply the same styles to the web component
+  site-header {
+    header {
+      nav {
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100dvh;
+        width: 100vw;
+        background: $bg-white;
+        border-left: $border-width solid $border;
+        box-shadow: (-$shadow-offset) 0 0 $border;
+        z-index: 2000;
+        transform: translateX(100%);
+        transition: transform .26s cubic-bezier(.2, .8, .2, 1);
+        overflow: hidden;
+
+        &.active { transform: translateX(0); }
+
+        > div:first-child {
+          display: flex;
+          align-items: center;
+          gap: .75rem;
+          padding: 1rem 6% .75rem;
+        }
+        
+        #navClose {
+          position: absolute;
+          top: 1rem;
+          right: 6%;
+        }
+        
+        ul {
+          a[href*="#register"] { display: none; }
+          flex-direction: column;
+          margin: .5rem 5% 0;
+          width: 90%;
+          gap: 1vh;
+          min-height: 0;
+          overflow-y: auto;
+        }
+        
+        #navCta {
+          display: block;
+          padding: 4% 5%;
+          border-top: $border-width solid $border;
+          background: $accent;
+          
+          > div {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: .75rem;
+          }
+        }
+      }
+    }
+  }
+  
+  section {
+    &:first-of-type h2 { font-size: 2.25rem; }
+    &:first-of-type p { font-size: 1rem; }
+    
+    h2 { font-size: 2rem; }
+  }
+}
+
+@media (max-width: 768px) {
+  article {
+    > header h1 { font-size: 2rem; }
+    > div .container > div:last-child {
+      padding: 1.5rem;
+      
+      h1 { font-size: 1.75rem; }
+      h2 { font-size: 1.5rem; }
+      h3 { font-size: 1.25rem; }
+    }
+  }
+
+  // Mirror responsive header behavior for <site-header>
+  site-header {
+    header {
+      .container { justify-content: space-between; }
+
+      button { display: block; order: 3; }
+      // Ensure the main toggle button always shows inside web component
+      .container > #menuToggle { display: block !important; }
+
+      nav {
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100dvh;
+        width: 100vw;
+        background: $bg-white;
+        border-left: $border-width solid $border;
+        box-shadow: (-$shadow-offset) 0 0 $border;
+        z-index: 2000;
+        transform: translateX(100%);
+        transition: transform .26s cubic-bezier(.2, .8, .2, 1);
+        overflow: hidden;
+
+        &.active { transform: translateX(0); }
+
+        // Header row
+        > div:first-child {
+          display: flex;
+          align-items: center;
+          gap: .75rem;
+          padding: 1rem 6% .75rem;
+        }
+
+        #navClose {
+          position: absolute;
+          top: 1rem;
+          right: 6%;
+          display: block;
+        }
+
+        #navCta {
+          display: block;
+          padding: 4% 5%;
+          border-top: $border-width solid $border;
+          background: $accent;
+
+          > div {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: .75rem;
+          }
+        }
+
+        ul {
+          flex-direction: column;
+          margin: .5rem 5% 0;
+          width: 90%;
+          gap: 1vh;
+          min-height: 0;
+          overflow-y: auto;
+          
+          a[href*="#register"] { display: none; }
+        }
+
+        a {
+          width: calc(100% - 1rem);
+          margin: .5rem;
+          text-align: center;
+          padding: .75rem 1rem;
+          font-size: 1.25rem;
+          font-weight: 800;
+          @include brutal-shadow;
+        }
+      }
+      // Overlay for mobile drawer
+      nav + #navOverlay { position: fixed; inset: 0; background: rgba(0,0,0,.4); display: none; z-index: 1500; }
+      nav.active + #navOverlay { display: block; }
+    }
+  }
+}

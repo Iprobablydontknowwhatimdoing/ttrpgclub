@@ -1,0 +1,1107 @@
+/* TTRPG Club - Minimal-Class SCSS (Heavy Element Nesting) */
+section[data-resources] .container > div > div, section[data-dynamic] .container > div:last-child > div, section[data-content] .container > div > div, section:nth-of-type(2) .container > div > div, section:nth-of-type(3) .container > div > div {
+  background-color: #fff;
+  padding: 2rem;
+  border: 4px solid #000;
+  border-radius: 8px;
+  box-shadow: 8px 8px 0 #000;
+  transition: all 0.15s ease;
+}
+section[data-resources] .container > div > div:hover, section[data-dynamic] .container > div:last-child > div:hover, section[data-content] .container > div > div:hover, section:nth-of-type(2) .container > div > div:hover, section:nth-of-type(3) .container > div > div:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 11px 11px 0 #000;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", "Arial Black", sans-serif;
+  line-height: 1.5;
+  color: #000;
+  background-color: #fef3c7;
+  font-weight: 700;
+}
+body.no-scroll {
+  overflow: hidden !important;
+  position: fixed;
+  width: 100vw;
+}
+
+::selection {
+  background-color: #fbbf24;
+  color: #000;
+}
+
+*:focus-visible {
+  outline: 3px solid #3b82f6;
+  outline-offset: 3px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+body > header {
+  background-color: #fff;
+  color: #000;
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 4px solid #000;
+}
+body > header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0 2rem;
+}
+body > header .container > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+body > header .container > div:first-child h1 {
+  font-size: 1.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+}
+body > header nav > div:first-child,
+body > header nav #navClose,
+body > header nav #navCta,
+body > header nav + #navOverlay {
+  display: none;
+}
+body > header nav ul {
+  display: flex;
+  list-style: none;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+body > header nav a {
+  color: #000;
+  text-decoration: none;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  border: 4px solid #000;
+  background-color: #fff;
+  transition: all 0.15s ease;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  display: block;
+  border-radius: 8px;
+}
+body > header nav a:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 #000;
+}
+body > header nav a:active {
+  transform: translate(0, 0);
+  box-shadow: none;
+}
+body > header nav a[href*=register] {
+  background-color: #fbbf24 !important;
+}
+body > header button {
+  display: none;
+  padding: 0.5rem 1rem;
+  border: 4px solid #000;
+  background-color: #fff;
+  color: #000;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border-radius: 8px;
+}
+body > header button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 #000;
+}
+body > header button:active {
+  transform: translate(0, 0);
+  box-shadow: none;
+}
+
+site-header header {
+  background-color: #fff;
+  color: #000;
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 4px solid #000;
+}
+site-header header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0 2rem;
+}
+site-header header .container > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+site-header header .container > div:first-child h1 {
+  font-size: 1.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+}
+site-header header nav > div:first-child,
+site-header header nav #navClose,
+site-header header nav #navCta,
+site-header header nav + #navOverlay {
+  display: none;
+}
+site-header header nav ul {
+  display: flex;
+  list-style: none;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+site-header header nav a {
+  color: #000;
+  text-decoration: none;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  border: 4px solid #000;
+  background-color: #fff;
+  transition: all 0.15s ease;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  display: block;
+  border-radius: 8px;
+}
+site-header header nav a:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 #000;
+}
+site-header header nav a:active {
+  transform: translate(0, 0);
+  box-shadow: none;
+}
+site-header header nav a[href*=register] {
+  background-color: #fbbf24 !important;
+}
+site-header header button {
+  display: none;
+  padding: 0.5rem 1rem;
+  border: 4px solid #000;
+  background-color: #fff;
+  color: #000;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border-radius: 8px;
+}
+site-header header button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 #000;
+}
+site-header header button:active {
+  transform: translate(0, 0);
+  box-shadow: none;
+}
+
+section {
+  border-bottom: 4px solid #000;
+}
+section:first-of-type, section[data-hero] {
+  background-color: #3b82f6;
+  color: #000;
+  padding: 6rem 2rem;
+  text-align: center;
+  position: relative;
+}
+section:first-of-type::after, section[data-hero]::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background-color: #000;
+  z-index: -1;
+}
+section:first-of-type > div, section[data-hero] > div {
+  max-width: 800px;
+  margin: 0 auto;
+}
+section:first-of-type > div h2, section[data-hero] > div h2 {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+  line-height: 1.1;
+}
+section:first-of-type > div p, section[data-hero] > div p {
+  font-size: 1.25rem;
+  margin-bottom: 2.5rem;
+  font-weight: 600;
+  line-height: 1.6;
+}
+section:first-of-type > div a, section[data-hero] > div a {
+  display: inline-block;
+  padding: 0.875rem 2rem;
+  text-decoration: none;
+  font-weight: 800;
+  border: 4px solid #000;
+  text-transform: uppercase;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  border-radius: 8px;
+  background-color: #fbbf24;
+  color: #000;
+  box-shadow: 6px 6px 0 #000;
+  transition: all 0.15s ease;
+}
+section:first-of-type > div a:hover, section[data-hero] > div a:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 3px 3px 0 #000;
+}
+section:first-of-type > div a:active, section[data-hero] > div a:active {
+  transform: translate(6px, 6px);
+  box-shadow: none;
+}
+section[data-content], section:nth-of-type(2), section:nth-of-type(3) {
+  padding: 2rem 2rem 3rem;
+}
+section[data-content]:nth-of-type(even), section:nth-of-type(2):nth-of-type(even), section:nth-of-type(3):nth-of-type(even) {
+  background-color: #dbeafe;
+}
+section[data-content] h2, section:nth-of-type(2) h2, section:nth-of-type(3) h2 {
+  font-size: 2.75rem;
+  text-align: center;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  margin-bottom: 2rem;
+}
+section[data-content] .container > div, section:nth-of-type(2) .container > div, section:nth-of-type(3) .container > div {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+section[data-content] .container > div > div h3, section:nth-of-type(2) .container > div > div h3, section:nth-of-type(3) .container > div > div h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+section[data-content] .container > div > div p, section:nth-of-type(2) .container > div > div p, section:nth-of-type(3) .container > div > div p {
+  font-weight: 500;
+  line-height: 1.7;
+}
+section[data-content] .container > div > div ul, section:nth-of-type(2) .container > div > div ul, section:nth-of-type(3) .container > div > div ul {
+  padding-left: 1.5rem;
+}
+section[data-content] .container > div > div ul li, section:nth-of-type(2) .container > div > div ul li, section:nth-of-type(3) .container > div > div ul li {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+section[data-dynamic] {
+  padding: 4rem 2rem;
+  margin: 0;
+}
+section[data-dynamic][data-alt] {
+  background-color: #dbeafe;
+}
+section[data-dynamic] .container > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 0 2rem;
+}
+section[data-dynamic] .container > div:first-child h2 {
+  font-size: 2.75rem;
+  margin: 0;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+}
+section[data-dynamic] .container > div:first-child a {
+  display: inline-block;
+  padding: 0.875rem 2rem;
+  text-decoration: none;
+  font-weight: 800;
+  border: 4px solid #000;
+  text-transform: uppercase;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  background-color: #fff;
+  color: #000;
+  box-shadow: 6px 6px 0 #000;
+  transition: all 0.15s ease;
+}
+section[data-dynamic] .container > div:first-child a:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 3px 3px 0 #000;
+}
+section[data-dynamic] .container > div:first-child a:active {
+  transform: translate(6px, 6px);
+  box-shadow: none;
+}
+section[data-dynamic] .container > div:last-child {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding: 1rem;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: #3b82f6 transparent;
+}
+section[data-dynamic] .container > div:last-child::before, section[data-dynamic] .container > div:last-child::after {
+  content: "";
+  flex: 0 0 2rem;
+  min-width: 2rem;
+}
+section[data-dynamic] .container > div:last-child > div {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  width: 400px;
+  min-width: 400px;
+  flex: 0 0 400px;
+  scroll-snap-align: start;
+}
+section[data-dynamic] .container > div:last-child > div > div:first-child {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background-color: #fef3c7;
+  border-bottom: 4px solid #000;
+}
+section[data-dynamic] .container > div:last-child > div > div:first-child img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+section[data-dynamic] .container > div:last-child > div > div:nth-child(2) {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+section[data-dynamic] .container > div:last-child > div > div:nth-child(2) h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+section[data-dynamic] .container > div:last-child > div > div:nth-child(2) p {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  line-height: 1.7;
+  flex: 1;
+}
+section[data-dynamic] .container > div:last-child > div > div:nth-child(2) > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+section[data-dynamic] .container > div:last-child > div > div:nth-child(2) > div span {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  border: 4px solid #000;
+  background: #fbbf24;
+  border-radius: 4px;
+}
+section[data-dynamic] .container > div:last-child > div > a {
+  display: block;
+  width: 100%;
+  background-color: #fbbf24;
+  color: #000;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 1rem;
+  border: none;
+  border-top: 4px solid #000;
+  padding: 1rem 0;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+section[data-dynamic] .container > div:last-child > div:has(> a:hover) {
+  transform: translate(4px, 4px);
+  box-shadow: 4px 4px 0 #000;
+}
+section[data-resources] {
+  padding: 1rem 1rem 3rem;
+  background-color: #dbeafe;
+}
+section[data-resources] h2 {
+  font-size: 2.75rem;
+  margin-bottom: 3rem;
+  text-align: center;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+}
+section[data-resources] .container > div {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+section[data-resources] .container > div > div h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+section[data-resources] .container > div > div ul {
+  list-style: none;
+}
+section[data-resources] .container > div > div ul li {
+  margin-bottom: 0.875rem;
+}
+section[data-resources] .container > div > div ul a {
+  color: #000;
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s ease;
+}
+section[data-resources] .container > div > div ul a:hover {
+  border-bottom: 2px solid #000;
+  transform: translateX(2px);
+}
+section[data-cta] {
+  background-color: #fbbf24;
+  color: #000;
+  padding: 2rem;
+  text-align: center;
+}
+section[data-cta] .container > div h2 {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+}
+section[data-cta] .container > div p {
+  font-size: 1.25rem;
+  margin-bottom: 2.5rem;
+  font-weight: 600;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+section[data-cta] .container > div > div {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+section[data-cta] .container > div > div a {
+  display: inline-block;
+  padding: 0.875rem 2rem;
+  text-decoration: none;
+  font-weight: 800;
+  border: 4px solid #000;
+  text-transform: uppercase;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  box-shadow: 6px 6px 0 #000;
+  transition: all 0.15s ease;
+}
+section[data-cta] .container > div > div a[data-primary] {
+  background-color: #fbbf24;
+  color: #000;
+}
+section[data-cta] .container > div > div a:not([data-primary]) {
+  background-color: #fff;
+  color: #000;
+}
+section[data-cta] .container > div > div a:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 3px 3px 0 #000;
+}
+section[data-cta] .container > div > div a:active {
+  transform: translate(6px, 6px);
+  box-shadow: none;
+}
+
+footer {
+  background-color: #1e40af;
+  color: #fff;
+  padding: 3rem 2rem 1rem;
+}
+footer .container > div:first-child {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2.5rem;
+  margin-bottom: 2rem;
+}
+footer .container > div:first-child > div h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1.25rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+footer .container > div:first-child > div p {
+  font-weight: 600;
+  line-height: 1.8;
+}
+footer .container > div:first-child > div ul {
+  list-style: none;
+}
+footer .container > div:first-child > div ul li {
+  margin-bottom: 0.75rem;
+}
+footer .container > div:first-child > div ul a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s ease;
+}
+footer .container > div:first-child > div ul a:hover {
+  border-bottom: 2px solid #fff;
+  transform: translateX(2px);
+}
+footer .container > div:last-child {
+  border-top: 4px solid #fff;
+  padding-top: 1.5rem;
+  margin-top: 2rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+article > header {
+  background-color: #3b82f6;
+  background-size: cover;
+  background-position: center;
+  padding: 3rem 2rem;
+  border-bottom: 4px solid #000;
+  position: relative;
+  top: auto;
+}
+article > header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 0;
+}
+article > header::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background-color: #000;
+  z-index: -1;
+}
+article > header .container {
+  max-width: 900px;
+  position: relative;
+  z-index: 1;
+}
+article > header .container a {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  color: #000;
+  text-decoration: none;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  border: 4px solid #000;
+  background-color: #fff;
+  transition: all 0.15s ease;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  border-radius: 8px;
+}
+article > header .container a:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 #000;
+}
+article > header .container a:active {
+  transform: translate(0, 0);
+  box-shadow: none;
+}
+article > header .container h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+  line-height: 1.1;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+article > header .container p {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  color: #fff;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+article > header .container > div {
+  display: flex;
+  gap: 0.3rem 0.5rem;
+  flex-wrap: wrap;
+  margin: 0.5rem 0;
+}
+article > header .container > div span {
+  padding: 0.4rem;
+  background-color: #fff;
+  border: 4px solid #000;
+  border-radius: 8px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.1;
+}
+article > div {
+  padding: 2rem;
+  background-color: #fff;
+}
+article > div .container {
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+article > div .container aside {
+  background-color: #fef3c7;
+  border: 4px solid #000;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 8px 8px 0 #000;
+}
+article > div .container aside h3 {
+  font-size: 1rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+article > div .container aside ul {
+  list-style: none;
+  padding: 0;
+}
+article > div .container aside ul li {
+  margin-bottom: 0.5rem;
+}
+article > div .container aside ul a {
+  color: #000;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.25rem 0;
+  display: block;
+  transition: all 0.15s ease;
+}
+article > div .container aside ul a:hover {
+  color: #3b82f6;
+  transform: translateX(4px);
+}
+article > div .container > div:last-child {
+  background-color: #fff;
+  padding: 3rem;
+  border: 4px solid #000;
+  box-shadow: 8px 8px 0 #000;
+  line-height: 1.8;
+  border-radius: 8px;
+}
+article > div .container > div:last-child h1, article > div .container > div:last-child h2, article > div .container > div:last-child h3, article > div .container > div:last-child h4, article > div .container > div:last-child h5, article > div .container > div:last-child h6 {
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  letter-spacing: -0.5px;
+}
+article > div .container > div:last-child h1 {
+  font-size: 2.5rem;
+  border-bottom: 4px solid #000;
+  padding-bottom: 0.5rem;
+}
+article > div .container > div:last-child h2 {
+  font-size: 2rem;
+}
+article > div .container > div:last-child h3 {
+  font-size: 1.5rem;
+}
+article > div .container > div:last-child p, article > div .container > div:last-child ul, article > div .container > div:last-child ol {
+  margin-bottom: 1.25rem;
+  font-weight: 500;
+}
+article > div .container > div:last-child ul, article > div .container > div:last-child ol {
+  padding-left: 2rem;
+}
+article > div .container > div:last-child li {
+  margin-bottom: 0.5rem;
+}
+article > div .container > div:last-child strong {
+  font-weight: 900;
+}
+article > div .container > div:last-child em {
+  font-style: italic;
+}
+article > div .container > div:last-child a {
+  color: #000;
+  font-weight: 700;
+  border-bottom: 2px solid #000;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+article > div .container > div:last-child a:hover {
+  background-color: #fbbf24;
+}
+article > div .container > div:last-child blockquote {
+  border-left: 4px solid #000;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  font-style: italic;
+  background-color: #fef3c7;
+}
+article > div .container > div:last-child code {
+  background-color: #fef3c7;
+  padding: 0.25rem 0.5rem;
+  border: 2px solid #000;
+  font-family: "Courier New", monospace;
+  font-weight: 700;
+}
+article > div .container > div:last-child pre {
+  background-color: #fef3c7;
+  padding: 1.5rem;
+  border: 4px solid #000;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+article > div .container > div:last-child pre code {
+  background: none;
+  border: none;
+  padding: 0;
+}
+article > div .container > div:last-child hr {
+  border: none;
+  border-top: 4px solid #000;
+  margin: 2rem 0;
+}
+
+@media (min-width: 1024px) {
+  article > div .container {
+    grid-template-columns: 250px 1fr;
+  }
+  article > div .container aside {
+    position: sticky;
+    top: calc(72px + 2rem);
+    max-height: calc(100vh - 72px - 4rem);
+    overflow-y: auto;
+  }
+}
+@media (max-width: 1024px) {
+  body > header .container {
+    justify-content: space-between;
+  }
+  body > header button {
+    display: block;
+    order: 3;
+  }
+  body > header .container > #menuToggle {
+    display: block !important;
+  }
+  body > header nav {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100dvh;
+    width: 100vw;
+    background: #fff;
+    border-left: 4px solid #000;
+    box-shadow: -8px 0 0 #000;
+    z-index: 2000;
+    transform: translateX(100%);
+    transition: transform 0.26s cubic-bezier(0.2, 0.8, 0.2, 1);
+    overflow: hidden;
+  }
+  body > header nav.active {
+    transform: translateX(0);
+  }
+  body > header nav > div:first-child {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 6% 0.75rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+  }
+  body > header nav #navClose {
+    position: absolute;
+    top: 1rem;
+    right: 6%;
+    display: block;
+    background: #fff;
+    border: 4px solid #000;
+    box-shadow: 8px 8px 0 #000;
+    padding: 0.25rem 0.75rem;
+    font-size: 1.5rem;
+    font-weight: 900;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  body > header nav #navClose:hover {
+    transform: translate(3px, 3px);
+    box-shadow: 5px 5px 0 #000;
+  }
+  body > header nav ul {
+    flex-direction: column;
+    margin: 0.5rem 5% 0;
+    width: 90%;
+    gap: 1vh;
+    min-height: 0;
+    overflow-y: auto;
+  }
+  body > header nav ul a {
+    display: block;
+    width: calc(100% - 1rem);
+    margin: 0.5rem;
+    padding: 0.75rem 1rem;
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #000;
+    background: #fff;
+    border: 4px solid #000;
+    box-shadow: 8px 8px 0 #000;
+    text-decoration: none;
+    transition: all 0.15s ease;
+  }
+  body > header nav ul a:hover {
+    transform: translate(3px, 3px);
+    box-shadow: 5px 5px 0 #000;
+  }
+  body > header nav ul a[href*="#register"] {
+    display: none;
+  }
+  body > header nav #navCta {
+    display: block;
+    padding: 4% 5%;
+    border-top: 4px solid #000;
+    background: #fbbf24;
+  }
+  body > header nav #navCta > div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  body > header nav #navCta > div a {
+    display: block;
+    text-align: center;
+    padding: 0.75rem 0;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 4px solid #000;
+    border-radius: 8px;
+    box-shadow: 8px 8px 0 #000;
+    background: #fff;
+    color: #000;
+    text-decoration: none;
+    transition: all 0.15s ease;
+  }
+  body > header nav #navCta > div a:hover {
+    transform: translate(3px, 3px);
+  }
+  body > header nav #navCta > div a[href*=register] {
+    background: #3b82f6;
+    color: #fff;
+  }
+  body > header nav + #navOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: none;
+    z-index: 1500;
+  }
+  body > header nav.active + #navOverlay {
+    display: block;
+  }
+  site-header header nav {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100dvh;
+    width: 100vw;
+    background: #fff;
+    border-left: 4px solid #000;
+    box-shadow: -8px 0 0 #000;
+    z-index: 2000;
+    transform: translateX(100%);
+    transition: transform 0.26s cubic-bezier(0.2, 0.8, 0.2, 1);
+    overflow: hidden;
+  }
+  site-header header nav.active {
+    transform: translateX(0);
+  }
+  site-header header nav > div:first-child {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 6% 0.75rem;
+  }
+  site-header header nav #navClose {
+    position: absolute;
+    top: 1rem;
+    right: 6%;
+  }
+  site-header header nav ul a[href*="#register"] {
+    display: none;
+  }
+  site-header header nav ul {
+    flex-direction: column;
+    margin: 0.5rem 5% 0;
+    width: 90%;
+    gap: 1vh;
+    min-height: 0;
+    overflow-y: auto;
+  }
+  site-header header nav #navCta {
+    display: block;
+    padding: 4% 5%;
+    border-top: 4px solid #000;
+    background: #fbbf24;
+  }
+  site-header header nav #navCta > div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  section:first-of-type h2 {
+    font-size: 2.25rem;
+  }
+  section:first-of-type p {
+    font-size: 1rem;
+  }
+  section h2 {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 768px) {
+  article > header h1 {
+    font-size: 2rem;
+  }
+  article > div .container > div:last-child {
+    padding: 1.5rem;
+  }
+  article > div .container > div:last-child h1 {
+    font-size: 1.75rem;
+  }
+  article > div .container > div:last-child h2 {
+    font-size: 1.5rem;
+  }
+  article > div .container > div:last-child h3 {
+    font-size: 1.25rem;
+  }
+  site-header header .container {
+    justify-content: space-between;
+  }
+  site-header header button {
+    display: block;
+    order: 3;
+  }
+  site-header header .container > #menuToggle {
+    display: block !important;
+  }
+  site-header header nav {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100dvh;
+    width: 100vw;
+    background: #fff;
+    border-left: 4px solid #000;
+    box-shadow: -8px 0 0 #000;
+    z-index: 2000;
+    transform: translateX(100%);
+    transition: transform 0.26s cubic-bezier(0.2, 0.8, 0.2, 1);
+    overflow: hidden;
+  }
+  site-header header nav.active {
+    transform: translateX(0);
+  }
+  site-header header nav > div:first-child {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 6% 0.75rem;
+  }
+  site-header header nav #navClose {
+    position: absolute;
+    top: 1rem;
+    right: 6%;
+    display: block;
+  }
+  site-header header nav #navCta {
+    display: block;
+    padding: 4% 5%;
+    border-top: 4px solid #000;
+    background: #fbbf24;
+  }
+  site-header header nav #navCta > div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  site-header header nav ul {
+    flex-direction: column;
+    margin: 0.5rem 5% 0;
+    width: 90%;
+    gap: 1vh;
+    min-height: 0;
+    overflow-y: auto;
+  }
+  site-header header nav ul a[href*="#register"] {
+    display: none;
+  }
+  site-header header nav a {
+    width: calc(100% - 1rem);
+    margin: 0.5rem;
+    text-align: center;
+    padding: 0.75rem 1rem;
+    font-size: 1.25rem;
+    font-weight: 800;
+    box-shadow: 8px 8px 0 #000;
+  }
+  site-header header nav + #navOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: none;
+    z-index: 1500;
+  }
+  site-header header nav.active + #navOverlay {
+    display: block;
+  }
+}

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TTRPG Club - Roll for Adventure</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-minimal.css">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='50%' x='50%' dominant-baseline='middle' text-anchor='middle' font-size='48'%3E🎲%3C/text%3E%3C/svg%3E">
     <script type="module">
         import { marked } from 'https://cdn.jsdelivr.net/npm/marked@11.0.0/+esm';
@@ -16,32 +16,32 @@
     <site-header></site-header>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
+    <section>
+        <div>
             <h2>Roll for Adventure</h2>
             <p>Join our community of storytellers, game masters, and adventurers. Whether you're a seasoned player or brand new to tabletop RPGs, there's a seat at our table for you.</p>
-            <a href="#join" class="btn btn-primary">Join Us!</a>
+                <a href="#join" data-primary>Join Us!</a>
         </div>
     </section>
 
     <!-- Content Section 1: About -->
-    <section id="about" class="content-section">
+    <section id="about">
         <div class="container">
             <h2>About Our Club</h2>
-            <div class="content-grid">
-                <div class="card">
+                <div>
+                <div>
                     <h3>🎭 Weekly Sessions</h3>
                     <p>We meet every week to play exciting campaigns and One-Shots, with many gamemasters and systems ranging from <a href="https://nimblerpg.com" target="_blank" rel="noopener">Nimble 2e</a> to <a href="https://drawsteel.com" target="_blank" rel="noopener">Draw Steel</a> and more!</p>
                 </div>
-                <div class="card">
+                    <div>
                     <h3>👥 Welcoming Community</h3>
                     <p>Our club is open to all experience levels. New to TTRPGs? We offer beginner-friendly one-shots and mentorship programs.</p>
                 </div>
-                <div class="card">
+                    <div>
                     <h3>🏰 Multiple Tables</h3>
                     <p>With several concurrent games running, you'll find the perfect adventure for your playstyle and schedule.</p>
                 </div>
-                <div class="card">
+                    <div>
                     <h3>🎯 Our Goals</h3>
                     <ul>
                         <li>Facilitating the play of <abbr title="Tabletop Role-Playing Games">TTRPGs</abbr> at Roosevelt High School</li>
@@ -53,23 +53,23 @@
     </section>
 
     <!-- Content Section 2: Why Join -->
-    <section class="content-section alt-bg">
+    <section>
         <div class="container">
             <h2>Why Join Us?</h2>
-            <div class="content-grid">
-                <div class="card">
+                <div>
+                <div>
                     <h3>🎲 Play With Friends</h3>
                     <p>Share adventures, roll dice, and create unforgettable stories together at the table.</p>
                 </div>
-                <div class="card">
+                    <div>
                     <h3>🤝 Make Friends</h3>
                     <p>Meet new people, join a welcoming community, and build lasting friendships through play.</p>
                 </div>
-                <div class="card">
+                    <div>
                     <h3>🎉 Have Fun</h3>
                     <p>Enjoy exciting games, creative challenges, and plenty of laughs every session!</p>
                 </div>
-                <div class="card">
+                    <div>
                     <h3>🦄 Do Cool Stuff</h3>
                     <p>Embark on daring quests, solve mysteries, and let your adventurers do the coolest things imaginable!</p>
                 </div>
@@ -78,39 +78,39 @@
     </section>
 
     <!-- Games Section (Dynamic Content) -->
-    <section id="games" class="recent-items-section">
+    <section id="games" data-dynamic>
         <div class="container">
-            <div class="section-header">
+                <div>
                 <h2>Current Games</h2>
-                <a href="/games.html" class="btn btn-outline">View All Games</a>
+                    <a href="/games.html" data-outline>View All Games</a>
             </div>
-            <div class="items-grid">
+                <div class="items-grid">
                 <!-- Content loaded dynamically by TypeScript -->
-                <p class="loading-text">Loading games...</p>
+                    <p class="loading-text">Loading games...</p>
             </div>
         </div>
     </section>
 
     <!-- Events Section (Dynamic Content) -->
-    <section id="events" class="recent-items-section alt-bg">
+    <section id="events" data-dynamic data-alt>
         <div class="container">
-            <div class="section-header">
+                <div>
                 <h2>Upcoming Events</h2>
-                <a href="/events.html" class="btn btn-outline">View All Events</a>
+                    <a href="/events.html" data-outline>View All Events</a>
             </div>
-            <div class="items-grid">
+                <div class="items-grid">
                 <!-- Content loaded dynamically by TypeScript -->
-                <p class="loading-text">Loading events...</p>
+                    <p class="loading-text">Loading events...</p>
             </div>
         </div>
     </section>
 
     <!-- Resources Section -->
-    <section id="resources" class="resources-section alt-bg">
+    <section id="resources" data-resources>
         <div class="container">
             <h2>Resources</h2>
-            <div class="resources-grid">
-                <div class="resource-card">
+                <div>
+                <div>
                     <h3>📖 Rulebooks &amp; Guides</h3>
                     <ul>
                         <li><a href="#">D&amp;D 5e Basic Rules (Free)</a></li>
@@ -119,7 +119,7 @@
                         <li><a href="#">GM Tips &amp; Tricks Guide</a></li>
                     </ul>
                 </div>
-                <div class="resource-card">
+                    <div>
                     <h3>🎲 Character Tools</h3>
                     <ul>
                         <li><a href="#">D&amp;D Beyond</a></li>
@@ -128,7 +128,7 @@
                         <li><a href="#">Dice Roller App</a></li>
                     </ul>
                 </div>
-                <div class="resource-card">
+                    <div>
                     <h3>🗺️ Virtual Tabletops</h3>
                     <ul>
                         <li><a href="#">Roll20</a></li>
@@ -137,7 +137,7 @@
                         <li><a href="#">Discord for Voice</a></li>
                     </ul>
                 </div>
-                <div class="resource-card">
+                    <div>
                     <h3>📚 Learning Materials</h3>
                     <ul>
                         <li><a href="#">How to Play TTRPGs</a></li>
@@ -151,15 +151,15 @@
     </section>
 
     <!-- Call to Action Section -->
-    <section id="join" class="cta-section">
+    <section id="join" data-cta>
         <div class="container">
-            <div class="cta-content">
+                <div>
                 <h2>Ready to Play?</h2>
                 <p>Join today and come weave your story! Make your hero! New players always welcome!</p>
-                <div class="cta-buttons">
-                    <a href="#" class="btn btn-primary btn-large">Join on Discord</a>
-                    <a href="mailto:1eaunger@gmail.com" class="btn btn-outline btn-large">Contact Us</a>
-                    <a href="#register" class="btn btn-primary btn-large">Register</a>
+                    <div>
+                        <a href="#" data-primary data-large>Join on Discord</a>
+                        <a href="mailto:1eaunger@gmail.com" data-outline data-large>Contact Us</a>
+                        <a href="#register" data-primary data-large>Register</a>
                 </div>
             </div>
         </div>

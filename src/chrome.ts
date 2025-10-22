@@ -4,37 +4,37 @@ class SiteHeader extends HTMLElement {
     connectedCallback() {
         // Render into light DOM so existing CSS applies
         this.innerHTML = `
-<header class="site-header">
-  <div class="container">
-    <div class="logo">
-      <h1>🎲 <abbr title="Tabletop Role-Playing Game">TTRPG</abbr> Club</h1>
-    </div>
-    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-controls="mainNav" aria-expanded="false" type="button">
-      <span>☰</span>
-    </button>
-    <nav class="main-nav" id="mainNav" aria-label="Main">
-      <div class="mobile-nav-header">
-        <span class="mobile-logo">🎲</span>
-        <span class="mobile-club-name">TTRPG Club</span>
-      </div>
-      <button class="nav-close" id="navClose" aria-label="Close menu" type="button">&times;</button>
-      <ul>
-        <li><a href="/index.html">About</a></li>
-        <li><a href="/games.html">Games</a></li>
-        <li><a href="/events.html">Events</a></li>
-        <li><a href="mailto:1eaunger@gmail.com">Contact</a></li>
-        <li><a href="#register" class="nav-register">Register</a></li>
-      </ul>
-      <div class="nav-cta" id="navCta">
-        <div class="nav-cta-inner">
-          <a href="#register" class="btn cta-btn cta-register">Register</a>
-          <a href="mailto:1eaunger@gmail.com" class="btn cta-btn cta-contact">Email</a>
+    <header class="site-header">
+      <div class="container">
+        <div class="logo">
+          <h1>🎲 <abbr title="Tabletop Role-Playing Game">TTRPG</abbr> Club</h1>
         </div>
+        <button id="menuToggle" aria-label="Toggle menu" aria-controls="mainNav" aria-expanded="false" type="button">
+          <span>☰</span>
+        </button>
+        <nav id="mainNav" aria-label="Main">
+          <div>
+            <span>🎲</span>
+            <span>TTRPG Club</span>
+          </div>
+          <button id="navClose" aria-label="Close menu" type="button">&times;</button>
+          <ul>
+            <li><a href="/index.html">About</a></li>
+            <li><a href="/games.html">Games</a></li>
+            <li><a href="/events.html">Events</a></li>
+            <li><a href="mailto:1eaunger@gmail.com">Contact</a></li>
+            <li><a href="#register">Register</a></li>
+          </ul>
+          <div id="navCta">
+            <div>
+              <a href="#register">Register</a>
+              <a href="mailto:1eaunger@gmail.com">Email</a>
+            </div>
+          </div>
+        </nav>
+        <div id="navOverlay" aria-hidden="true"></div>
       </div>
-    </nav>
-    <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
-  </div>
-  </header>`;
+      </header>`;
     }
 }
 
