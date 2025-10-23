@@ -1219,8 +1219,6 @@ body {
         width: 100vw;
         max-width: none;
         background: var(--bg-white);
-        border-left: var(--border-width) solid var(--border);
-        box-shadow: -8px 0 0 var(--border);
         z-index: 2000;
         display: flex;
         flex-direction: column;
@@ -1338,10 +1336,20 @@ body {
 }
 
 @media (max-width: 480px) {
+    /* Stack header title and Open Archive button on very small screens */
+    .recent-items-section .section-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+    }
+    .recent-items-section .section-header .btn {
+        width: 100%;
+        font-size: 0.95rem;
+        padding: 0.75rem 1rem;
+    }
     .nav-cta-inner {
         grid-template-columns: 1fr;
     }
-}
     
     .nav-cta .cta-btn {
         display: block;
@@ -1396,14 +1404,31 @@ body {
         margin: 0 auto;
     }
     
-    /* Reduce Shadow Offset */
+    /* Reduce Shadow Offset and card sizing on very small screens */
     :root {
         --shadow-offset: 6px;
+        --card-pref: 260px; /* homepage scroller card width */
+        --card-min: 200px;  /* archive grid min card width */
     }
+
+    /* Make item cards more compact on very small screens */
+    .items-grid { gap: 0.75rem; }
+    .recent-items-section .items-grid { padding: 0.5rem; }
+    .item-thumbnail { height: 140px; }
+    .item-content { padding: 0.875rem; }
+    .item-content h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .item-content p { font-size: 0.95rem; }
+    .card-btn { font-size: 0.9rem; padding: 0.65rem 0; }
 }
 
 /* Mobile - Below 768px: typographic adjustments */
 @media (max-width: 768px) {
+    /* Make the Open Archive button a bit smaller on small screens */
+    .recent-items-section .section-header .btn {
+        font-size: 0.875rem;
+        padding: 0.6rem 0.9rem;
+    }
+
     .article-title {
         font-size: 2rem;
     }
@@ -1423,4 +1448,22 @@ body {
     .article-body h3 {
         font-size: 1.25rem;
     }
+
+    /* Shrink article/item cards for small screens */
+    :root {
+        --card-pref: 300px; /* homepage scroller card width */
+        --card-min: 240px;  /* archive grid min card width */
+    }
+    .items-grid { gap: 1rem; }
+    .recent-items-section .items-grid { padding: 0.75rem; }
+    .recent-items-section .item-card {
+        width: var(--card-pref);
+        min-width: var(--card-pref);
+        max-width: var(--card-pref);
+        flex: 0 0 var(--card-pref);
+    }
+    .item-thumbnail { height: 160px; }
+    .item-content { padding: 1rem; }
+    .item-content h3 { font-size: 1.25rem; }
+    .card-btn { font-size: 0.95rem; padding: 0.75rem 0; }
 }
