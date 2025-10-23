@@ -15,26 +15,75 @@ $shadow-offset: 8px;
 $transition: all .15s ease;
 
 // Mixins
-@mixin brutal-border {
+@mixin brutal-height {
   border: $border-width solid $border;
-}
-
-@mixin brutal-shadow {
   box-shadow: $shadow-offset $shadow-offset 0 $border;
 }
 
-@mixin brutal-hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 4px 4px 0 $border;
+@mixin brutal-hover($px, $has-shadow: true) {
+  border: $border-radius solid $border;
+  -webkit-transition: $transition;
+  -moz-transition: $transition;
+  -ms-transition: $transition;
+  -o-transition: $transition;
+  transition: $transition;
+  @if($has-shadow) { &:hover {
+    box-shadow: calc($shadow-offset + $px) calc($shadow-offset + $px) 0 $border;
+    -webkit-transform: translate(calc(-$shadow-offset - $px), calc(-$shadow-offset - $px));
+    -moz-transform: translate(calc(-$shadow-offset - $px), calc(-$shadow-offset - $px));
+    -ms-transform: translate(calc(-$shadow-offset - $px), calc(-$shadow-offset - $px));
+    -o-transform: translate(calc(-$shadow-offset - $px), calc(-$shadow-offset - $px));
+    transform: translate(calc(-$shadow-offset - $px), calc(-$shadow-offset - $px));
+  } }
+  @if (not $has-shadow) { &:hover {
+    box-shadow: $px $px 0 $border;
+    -webkit-transform: translate(calc(-$px), calc(-$px));
+    -moz-transform: translate(calc(-$px), calc(-$px));
+    -ms-transform: translate(calc(-$px), calc(-$px));
+    -o-transform: translate(calc(-$px), calc(-$px));
+    transform: translate(calc(-$px), calc(-$px));
+  } }
 }
 
-@mixin brutal-active {
-  transform: translate(-4px, -4px) !important;
-  box-shadow: none !important;
-  -webkit-transform: translate(-4px, -4px) !important;
-  -moz-transform: translate(-4px, -4px) !important;
-  -ms-transform: translate(-4px, -4px) !important;
-  -o-transform: translate(-4px, -4px) !important;
+@mixin brutal-active($px) {
+  -webkit-transform: translate(-$px, -$px);
+  -moz-transform: translate(-$px, -$px);
+  -ms-transform: translate(-$px, -$px);
+  -o-transform: translate(-$px, -$px);
+  transform: translate(-$px, -$px);
+  box-shadow: none;
+}
+
+@mixin button-styling {
+  background-color: $bg-white;
+  box-sizing: border-box;
+  font-weight: 800;
+  line-height: 21px;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+}
+
+%button-nav {
+  @include button-styling;
+  @include brutal-hover($shadow-offset, false);
+  &:active {
+    @include brutal-active($shadow-offset, false);
+  }
+}
+
+%button {
+  @include button-styling;
+  @include brutal-height;
+  @include brutal-hover($shadow-offset);
+  &:active {
+    @include brutal-active($shadow-offset)
+  }
+}
+
+%button-primary {
+  @extend button;
+  background-color: $accent;
 }
 
 @mixin grid-gap {
@@ -42,6 +91,7 @@ $transition: all .15s ease;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
 }
+
 // Mixin for item card internals (shared by home scroller and archive grid)
 @mixin item-card-structure {
   overflow: hidden;
@@ -126,8 +176,12 @@ $transition: all .15s ease;
 }
 
   &:has(> a:active) {
-    transform: translate(6px, 6px);
+    transform: translate(8px, 8px);
     box-shadow: none;
+    -webkit-transform: translate(8px, 8px);
+    -moz-transform: translate(8px, 8px);
+    -ms-transform: translate(8px, 8px);
+    -o-transform: translate(8px, 8px);
 }
 }
 
@@ -140,10 +194,22 @@ $transition: all .15s ease;
   @include brutal-shadow;
   transition: $transition;
 
+  // NOTE: Hover here moves up-left (-3px, -3px) and increases shadow to 11px.
+  // Elsewhere (nav/hero buttons) hover moves down-right (3px, 3px) with 3px shadow.
+  // Discrepancy: consider standardizing hover direction and magnitude via a parametric mixin,
+  // e.g. `@include brutal-motion($dx, $dy, $shadow)` or extend `%hover-up` vs `%hover-down`.
+
   &:hover {
     transform: translate(-3px, -3px);
     box-shadow: 11px 11px 0 $border;
   }
+}
+
+// Placeholder for article-page "card" surfaces (TOC, body, etc.)
+%article-card {
+  @include brutal-border;
+  @include brutal-shadow;
+  border-radius: $border-radius;
 }
 
 // Reset
@@ -159,7 +225,7 @@ html {
 
 body {
   font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Arial Black', sans-serif;
-  line-height: 1.5;
+  line-height: 1.5; //todo: calc for this
   color: $text;
   background-color: $bg-main;
   font-weight: 700;
@@ -191,19 +257,18 @@ body {
 body>header {
   background-color: $bg-white;
   color: $text;
-  padding: 1rem 0;
-  position: sticky;
+  padding: 1rem 0.5rem;
+  position: static;
   top: 0;
-  z-index: 1000;
+  z-index: 10;
   border-bottom: $border-width solid $border;
 
   .container {
     display: flex;
     justify-content: space-between;
+    gap: 1rem;
     align-items: center;
     flex-wrap: wrap;
-    gap: 1rem;
-    padding: 0 2rem;
 
     // Logo (first div)
     >div:first-child {
@@ -222,6 +287,8 @@ body>header {
 
   // Navigation
   nav {
+    // TODO: This nav styling is duplicated below under `site-header header nav`.
+    // Consider extracting a `%nav-links` placeholder or `@mixin nav-links()` to DRY this up.
 
     // Hide mobile-only UI by default (desktop)
     >div:first-child,
@@ -330,6 +397,8 @@ site-header {
 
     // Navigation
     nav {
+      // NOTE: Duplicates the top-level `body>header nav` rules.
+      // Consolidate via a shared placeholder/mixin to keep changes in one place.
 
       // Hide mobile-only UI by default (desktop)
       >div:first-child,
@@ -576,12 +645,20 @@ section {
           &:hover {
             transform: translate(3px, 3px);
             box-shadow: 3px 3px 0 $border;
-          }
+            -webkit-transform: translate(3px, 3px);
+            -moz-transform: translate(3px, 3px);
+            -ms-transform: translate(3px, 3px);
+            -o-transform: translate(3px, 3px);
+}
 
           &:active {
-            transform: translate(6px, 6px);
+            transform: translate(3px, 3px);
             box-shadow: none;
-          }
+            -webkit-transform: translate(3px, 3px);
+            -moz-transform: translate(3px, 3px);
+            -ms-transform: translate(3px, 3px);
+            -o-transform: translate(3px, 3px);
+}
         }
       }
 
@@ -593,8 +670,10 @@ section {
         padding: 1rem;
         gap: 1.5rem;
         margin-top: 1.5rem;
-        scrollbar-width: thin;
-        scrollbar-color: $primary transparent;
+  // NOTE: Firefox-only scrollbar styling; unsupported in many Chromium/Safari versions.
+  // Safe progressive enhancement, but consider a feature query or leaving a comment for maintainers.
+  scrollbar-width: thin;
+  scrollbar-color: $primary transparent;
 
         &::before,
         &::after {
@@ -1517,6 +1596,8 @@ article {
   &:hover { @include brutal-hover; }
   &:active { @include brutal-active; }
 }
+// NOTE: `.back-link` styles are duplicated again under `.article-header .container > a.back-link`.
+// Prefer using this single utility class and only override layout context (e.g., margins) where needed.
 
 .filters {
   display: flex;
@@ -1703,6 +1784,9 @@ article {
 
   .container {
     max-width: 1200px; // Default constraint
+    // NOTE: This is overridden later in a desktop media query with `max-width: none !important`.
+    // Consider centralizing container width rules to a single place (e.g., `.article-content` section)
+    // to avoid !important and opposing constraints.
   }
 }
 
@@ -1714,10 +1798,8 @@ article {
 
 .table-of-contents {
   background-color: $bg-main;
-  @include brutal-border;
-  border-radius: $border-radius;
+  @extend %article-card;
   padding: 1.5rem;
-  @include brutal-shadow;
   width: 100%; // Full width when stacked above article (mobile/tablet)
   min-width: 180px; // Minimum reasonable width
   max-width: 100%; // Don't overflow on mobile
@@ -1748,6 +1830,7 @@ article {
   }
 
   // Firefox scrollbar
+  // NOTE: Firefox-only properties; keep as progressive enhancement. WebKit variant is above.
   scrollbar-width: thin;
   scrollbar-color: $primary $bg-main;
 }
@@ -1774,13 +1857,11 @@ article {
 .article-body {
   background-color: $bg-white;
   padding: 3rem;
-  @include brutal-border;
-  @include brutal-shadow;
+  @extend %article-card;
   line-height: 1.8;
   // Fluid typography: scales strongly with viewport width without breakpoints
   // Even more dramatic growth for normal text (p, li, etc.)
   font-size: clamp(1rem, 0.75rem + 1.1vw, 1.75rem);
-  border-radius: $border-radius;
   flex: 1; // Take remaining space in flex layout
 
   h1, h2, h3, h4, h5, h6 {
@@ -1806,6 +1887,8 @@ article {
   hr { border: none; border-top: $border-width solid $border; margin: 2rem 0; }
 }
 .article-content {
+  // NOTE: Duplicate declaration; `.article-content` is defined above with padding/background.
+  // If only `display:flex` is needed, consider merging into the earlier block to avoid scattering.
   display: flex !important;
 }
 @media (min-width: 1024px) {
