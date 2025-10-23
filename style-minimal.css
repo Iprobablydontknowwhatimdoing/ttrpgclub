@@ -1,21 +1,134 @@
 /* Tabletop Role-Playing Game Club Club - Minimal-Class SCSS (Heavy Element Nesting) */
-.item-card, section[data-resources] .container > div > div, section[data-dynamic] .container > div:last-child > div, section[data-content] .container > div > div, section:nth-of-type(2) .container > div > div, section:nth-of-type(3) .container > div > div {
+article > header .container a, section[data-cta] .container > div > div a, section[data-dynamic] .container > div:first-child a, site-header header button, body > header button {
   background-color: #fff;
-  padding: 2rem;
+  box-sizing: border-box;
+  font-weight: 800;
+  line-height: 21px;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: #000;
+  text-decoration: none;
   border: 4px solid #000;
   border-radius: 8px;
+  transition: all 0.15s ease;
+  display: inline-block;
+  border: 4px solid #000;
   box-shadow: 8px 8px 0 #000;
+  border-radius: 8px;
+  -webkit-transition: all 0.15s ease;
+  -moz-transition: all 0.15s ease;
+  -ms-transition: all 0.15s ease;
+  -o-transition: all 0.15s ease;
+  transition: all 0.15s ease;
+}
+article > header .container a:hover, section[data-cta] .container > div > div a:hover, section[data-dynamic] .container > div:first-child a:hover, site-header header button:hover, body > header button:hover {
+  box-shadow: 8px 8px 0 #000;
+  -webkit-transform: translate(-8px, -8px);
+  -moz-transform: translate(-8px, -8px);
+  -ms-transform: translate(-8px, -8px);
+  -o-transform: translate(-8px, -8px);
+  transform: translate(-8px, -8px);
+}
+article > header .container a:active, section[data-cta] .container > div > div a:active, section[data-dynamic] .container > div:first-child a:active, site-header header button:active, body > header button:active {
+  -webkit-transform: translate(-8px, -8px);
+  -moz-transform: translate(-8px, -8px);
+  -ms-transform: translate(-8px, -8px);
+  -o-transform: translate(-8px, -8px);
+  transform: translate(-8px, -8px);
+  box-shadow: none;
+}
+
+section:first-of-type > div a, section[data-hero] > div a {
+  background-color: #fff;
+  box-sizing: border-box;
+  font-weight: 800;
+  line-height: 21px;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: #000;
+  text-decoration: none;
+  border: 4px solid #000;
+  border-radius: 8px;
+  transition: all 0.15s ease;
+  border: 4px solid #000;
+  box-shadow: 8px 8px 0 #000;
+  -webkit-transition: all 0.15s ease;
+  -moz-transition: all 0.15s ease;
+  -ms-transition: all 0.15s ease;
+  -o-transition: all 0.15s ease;
+  transition: all 0.15s ease;
+}
+section:first-of-type > div a:hover, section[data-hero] > div a:hover {
+  box-shadow: 16px 16px 0 #000;
+  -webkit-transform: translate(-16px, -16px);
+  -moz-transform: translate(-16px, -16px);
+  -ms-transform: translate(-16px, -16px);
+  -o-transform: translate(-16px, -16px);
+  transform: translate(-16px, -16px);
+}
+section:first-of-type > div a:active, section[data-hero] > div a:active {
+  -webkit-transform: translate(-8px, -8px);
+  -moz-transform: translate(-8px, -8px);
+  -ms-transform: translate(-8px, -8px);
+  -o-transform: translate(-8px, -8px);
+  transform: translate(-8px, -8px);
+  box-shadow: none;
+}
+
+section:first-of-type > div a, section[data-hero] > div a {
+  background-color: #fbbf24;
+}
+
+.item-card, section[data-resources] .container > div > div, section[data-dynamic] .container > div:last-child > div, section[data-content] .container > div > div, section:nth-of-type(2) .container > div > div, section:nth-of-type(3) .container > div > div {
+  -webkit-transition: all 0.15s ease;
+  -moz-transition: all 0.15s ease;
+  -ms-transition: all 0.15s ease;
+  -o-transition: all 0.15s ease;
   transition: all 0.15s ease;
 }
 .item-card:hover, section[data-resources] .container > div > div:hover, section[data-dynamic] .container > div:last-child > div:hover, section[data-content] .container > div > div:hover, section:nth-of-type(2) .container > div > div:hover, section:nth-of-type(3) .container > div > div:hover {
-  transform: translate(-3px, -3px);
-  box-shadow: 11px 11px 0 #000;
+  box-shadow: 16px 16px 0 #000;
+  -webkit-transform: translate(-16px, -16px);
+  -moz-transform: translate(-16px, -16px);
+  -ms-transform: translate(-16px, -16px);
+  -o-transform: translate(-16px, -16px);
+  transform: translate(-16px, -16px);
+}
+.item-card, section[data-resources] .container > div > div, section[data-dynamic] .container > div:last-child > div, section[data-content] .container > div > div, section:nth-of-type(2) .container > div > div, section:nth-of-type(3) .container > div > div {
+  border: 4px solid #000;
+  box-shadow: 8px 8px 0 #000;
+  background-color: #fff;
+  padding: 2rem;
 }
 
 .article-body, .table-of-contents {
+  -webkit-transition: all 0.15s ease;
+  -moz-transition: all 0.15s ease;
+  -ms-transition: all 0.15s ease;
+  -o-transition: all 0.15s ease;
+  transition: all 0.15s ease;
+}
+.article-body:hover, .table-of-contents:hover {
+  box-shadow: 16px 16px 0 #000;
+  -webkit-transform: translate(-16px, -16px);
+  -moz-transform: translate(-16px, -16px);
+  -ms-transform: translate(-16px, -16px);
+  -o-transform: translate(-16px, -16px);
+  transform: translate(-16px, -16px);
+}
+.article-body, .table-of-contents {
   border: 4px solid #000;
   box-shadow: 8px 8px 0 #000;
-  border-radius: 8px;
+  padding: 0;
+  max-width: 30rem;
+}
+.article-body:has(> a:hover), .table-of-contents:has(> a:hover) {
+  transform: translate(16px, 16px);
+  box-shadow: none;
 }
 
 * {
@@ -51,27 +164,21 @@ body.no-scroll {
   outline-offset: 3px;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
 body > header {
   background-color: #fff;
   color: #000;
-  padding: 1rem 0;
-  position: sticky;
+  padding: 1rem 0.5rem;
+  position: static;
   top: 0;
-  z-index: 1000;
+  z-index: 10;
   border-bottom: 4px solid #000;
 }
 body > header .container {
   display: flex;
   justify-content: space-between;
+  gap: 1rem;
   align-items: center;
   flex-wrap: wrap;
-  gap: 1rem;
-  padding: 0 2rem;
 }
 body > header .container > div:first-child {
   display: flex;
@@ -84,75 +191,193 @@ body > header .container > div:first-child h1 {
   text-transform: uppercase;
   letter-spacing: -1px;
 }
-body > header nav > div:first-child,
-body > header nav #navClose,
-body > header nav #navCta,
-body > header nav + #navOverlay {
-  display: none;
+body > header nav {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100dvh;
+  width: 100vw;
+  background: #fff;
+  border-left: 4px solid #000;
+  box-shadow: -8px 0 0 #000;
+  z-index: 2000;
+  transform: translateX(100%);
+  transition: transform 0.26s cubic-bezier(0.2, 0.8, 0.2, 1);
+  overflow: hidden;
 }
-body > header nav ul {
+body > header nav.active {
+  transform: translateX(0);
+}
+body > header nav > div:first-child {
   display: flex;
-  list-style: none;
-  gap: 0.5rem;
-  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 6% 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
 }
-body > header nav a {
+body > header nav #navClose {
+  background-color: #fff;
+  box-sizing: border-box;
+  font-weight: 800;
+  line-height: 21px;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+  cursor: pointer;
   color: #000;
   text-decoration: none;
-  font-weight: 700;
-  padding: 0.5rem 1rem;
   border: 4px solid #000;
-  background-color: #fff;
-  transition: all 0.15s ease;
-  text-transform: uppercase;
-  font-size: 0.875rem;
-  display: block;
   border-radius: 8px;
+  transition: all 0.15s ease;
+  -webkit-transition: all 0.15s ease;
+  -moz-transition: all 0.15s ease;
+  -ms-transition: all 0.15s ease;
+  -o-transition: all 0.15s ease;
+  transition: all 0.15s ease;
 }
-body > header nav a:hover {
-  transform: translate(3px, 3px);
-  box-shadow: 3px 3px 0 #000;
+body > header nav #navClose:hover {
+  box-shadow: 16px 16px 0 #000;
+  -webkit-transform: translate(-16px, -16px);
+  -moz-transform: translate(-16px, -16px);
+  -ms-transform: translate(-16px, -16px);
+  -o-transform: translate(-16px, -16px);
+  transform: translate(-16px, -16px);
 }
-body > header nav a:active {
-  transform: translate(6px, 6px);
+body > header nav #navClose:active {
+  -webkit-transform: translate(-8px, -8px);
+  -moz-transform: translate(-8px, -8px);
+  -ms-transform: translate(-8px, -8px);
+  -o-transform: translate(-8px, -8px);
+  transform: translate(-8px, -8px);
   box-shadow: none;
 }
-body > header nav a[href*=register] {
-  background-color: #fbbf24 !important;
+body > header nav #navClose {
+  position: absolute;
+  top: 1rem;
+  right: 6%;
+  display: block;
 }
-body > header button {
-  display: none;
-  padding: 0.5rem 1rem;
-  border: 4px solid #000;
+body > header nav ul {
+  flex-direction: column;
+  margin: 0.5rem 5% 0;
+  width: 90%;
+  gap: 1vh;
+  min-height: 0;
+  overflow-y: auto;
+}
+body > header nav ul a {
   background-color: #fff;
-  color: #000;
-  font-weight: 700;
+  box-sizing: border-box;
+  font-weight: 800;
+  line-height: 21px;
+  margin: 0;
+  padding: 0.5rem 1rem;
   text-transform: uppercase;
-  font-size: 0.875rem;
   cursor: pointer;
-  transition: all 0.15s ease;
+  color: #000;
+  text-decoration: none;
+  border: 4px solid #000;
   border-radius: 8px;
+  transition: all 0.15s ease;
+  -webkit-transition: all 0.15s ease;
+  -moz-transition: all 0.15s ease;
+  -ms-transition: all 0.15s ease;
+  -o-transition: all 0.15s ease;
+  transition: all 0.15s ease;
 }
-body > header button:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 4px 4px 0 #000;
+body > header nav ul a:hover {
+  box-shadow: 16px 16px 0 #000;
+  -webkit-transform: translate(-16px, -16px);
+  -moz-transform: translate(-16px, -16px);
+  -ms-transform: translate(-16px, -16px);
+  -o-transform: translate(-16px, -16px);
+  transform: translate(-16px, -16px);
 }
-body > header button:active {
-  transform: translate(-4px, -4px) !important;
-  box-shadow: none !important;
-  -webkit-transform: translate(-4px, -4px) !important;
-  -moz-transform: translate(-4px, -4px) !important;
-  -ms-transform: translate(-4px, -4px) !important;
-  -o-transform: translate(-4px, -4px) !important;
+body > header nav ul a:active {
+  -webkit-transform: translate(-8px, -8px);
+  -moz-transform: translate(-8px, -8px);
+  -ms-transform: translate(-8px, -8px);
+  -o-transform: translate(-8px, -8px);
+  transform: translate(-8px, -8px);
+  box-shadow: none;
 }
-
+body > header nav ul a {
+  display: block;
+  width: calc(100% - 1rem);
+  margin: 0.5rem;
+  padding: 0.75rem 1rem;
+}
+body > header nav ul a[href*="#register"] {
+  display: none;
+}
+body > header nav #navCta {
+  display: block;
+  padding: 4% 5%;
+  border-top: 4px solid #000;
+  background: #fbbf24;
+}
+body > header nav #navCta > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+body > header nav #navCta > div a {
+  background-color: #fff;
+  box-sizing: border-box;
+  font-weight: 800;
+  line-height: 21px;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: #000;
+  text-decoration: none;
+  border: 4px solid #000;
+  border-radius: 8px;
+  transition: all 0.15s ease;
+  border: 4px solid #000;
+  box-shadow: 8px 8px 0 #000;
+  -webkit-transition: all 0.15s ease;
+  -moz-transition: all 0.15s ease;
+  -ms-transition: all 0.15s ease;
+  -o-transition: all 0.15s ease;
+  transition: all 0.15s ease;
+}
+body > header nav #navCta > div a:hover {
+  box-shadow: 16px 16px 0 #000;
+  -webkit-transform: translate(-16px, -16px);
+  -moz-transform: translate(-16px, -16px);
+  -ms-transform: translate(-16px, -16px);
+  -o-transform: translate(-16px, -16px);
+  transform: translate(-16px, -16px);
+}
+body > header nav #navCta > div a:active {
+  -webkit-transform: translate(-8px, -8px);
+  -moz-transform: translate(-8px, -8px);
+  -ms-transform: translate(-8px, -8px);
+  -o-transform: translate(-8px, -8px);
+  transform: translate(-8px, -8px);
+  box-shadow: none;
+}
+body > header nav #navCta > div a {
+  background: #fbbf24;
+  color: #000;
+}
+body > header nav #navCta > div a[href*=register] {
+  background: #3b82f6;
+  color: #fff;
+}
 site-header header {
   background-color: #fff;
   color: #000;
   padding: 1rem 0;
-  position: sticky;
+  position: static;
   top: 0;
-  z-index: 1000;
+  z-index: 2;
   border-bottom: 4px solid #000;
 }
 site-header header .container {
@@ -174,70 +399,188 @@ site-header header .container > div:first-child h1 {
   text-transform: uppercase;
   letter-spacing: -1px;
 }
-site-header header nav > div:first-child,
-site-header header nav #navClose,
-site-header header nav #navCta,
-site-header header nav + #navOverlay {
-  display: none;
+site-header header nav {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100dvh;
+  width: 100vw;
+  background: #fff;
+  border-left: 4px solid #000;
+  box-shadow: -8px 0 0 #000;
+  z-index: 2000;
+  transform: translateX(100%);
+  transition: transform 0.26s cubic-bezier(0.2, 0.8, 0.2, 1);
+  overflow: hidden;
 }
-site-header header nav ul {
+site-header header nav.active {
+  transform: translateX(0);
+}
+site-header header nav > div:first-child {
   display: flex;
-  list-style: none;
-  gap: 0.5rem;
-  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 6% 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
 }
-site-header header nav a {
+site-header header nav #navClose {
+  background-color: #fff;
+  box-sizing: border-box;
+  font-weight: 800;
+  line-height: 21px;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+  cursor: pointer;
   color: #000;
   text-decoration: none;
-  font-weight: 700;
-  padding: 0.5rem 1rem;
   border: 4px solid #000;
-  background-color: #fff;
-  transition: all 0.15s ease;
-  text-transform: uppercase;
-  font-size: 0.875rem;
-  display: block;
   border-radius: 8px;
+  transition: all 0.15s ease;
+  -webkit-transition: all 0.15s ease;
+  -moz-transition: all 0.15s ease;
+  -ms-transition: all 0.15s ease;
+  -o-transition: all 0.15s ease;
+  transition: all 0.15s ease;
 }
-site-header header nav a:hover {
-  transform: translate(-3px, -3px);
-  box-shadow: 3px 3px 0 #000;
-  -webkit-transform: translate(-3px, -3px);
-  -moz-transform: translate(-3px, -3px);
-  -ms-transform: translate(-3px, -3px);
-  -o-transform: translate(-3px, -3px);
+site-header header nav #navClose:hover {
+  box-shadow: 16px 16px 0 #000;
+  -webkit-transform: translate(-16px, -16px);
+  -moz-transform: translate(-16px, -16px);
+  -ms-transform: translate(-16px, -16px);
+  -o-transform: translate(-16px, -16px);
+  transform: translate(-16px, -16px);
 }
-site-header header nav a:active {
-  transform: translate(6px, 6px);
+site-header header nav #navClose:active {
+  -webkit-transform: translate(-8px, -8px);
+  -moz-transform: translate(-8px, -8px);
+  -ms-transform: translate(-8px, -8px);
+  -o-transform: translate(-8px, -8px);
+  transform: translate(-8px, -8px);
   box-shadow: none;
 }
-site-header header nav a[href*=register] {
-  background-color: #fbbf24 !important;
+site-header header nav #navClose {
+  position: absolute;
+  top: 1rem;
+  right: 6%;
+  display: block;
+}
+site-header header nav ul {
+  flex-direction: column;
+  margin: 0.5rem 5% 0;
+  width: 90%;
+  gap: 1vh;
+  min-height: 0;
+  overflow-y: auto;
+}
+site-header header nav ul a {
+  background-color: #fff;
+  box-sizing: border-box;
+  font-weight: 800;
+  line-height: 21px;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: #000;
+  text-decoration: none;
+  border: 4px solid #000;
+  border-radius: 8px;
+  transition: all 0.15s ease;
+  -webkit-transition: all 0.15s ease;
+  -moz-transition: all 0.15s ease;
+  -ms-transition: all 0.15s ease;
+  -o-transition: all 0.15s ease;
+  transition: all 0.15s ease;
+}
+site-header header nav ul a:hover {
+  box-shadow: 16px 16px 0 #000;
+  -webkit-transform: translate(-16px, -16px);
+  -moz-transform: translate(-16px, -16px);
+  -ms-transform: translate(-16px, -16px);
+  -o-transform: translate(-16px, -16px);
+  transform: translate(-16px, -16px);
+}
+site-header header nav ul a:active {
+  -webkit-transform: translate(-8px, -8px);
+  -moz-transform: translate(-8px, -8px);
+  -ms-transform: translate(-8px, -8px);
+  -o-transform: translate(-8px, -8px);
+  transform: translate(-8px, -8px);
+  box-shadow: none;
+}
+site-header header nav ul a {
+  display: block;
+  width: calc(100% - 1rem);
+  margin: 0.5rem;
+  padding: 0.75rem 1rem;
+}
+site-header header nav ul a[href*="#register"] {
+  display: none;
+}
+site-header header nav #navCta {
+  display: block;
+  padding: 4% 5%;
+  border-top: 4px solid #000;
+  background: #fbbf24;
+}
+site-header header nav #navCta > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+site-header header nav #navCta > div a {
+  background-color: #fff;
+  box-sizing: border-box;
+  font-weight: 800;
+  line-height: 21px;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: #000;
+  text-decoration: none;
+  border: 4px solid #000;
+  border-radius: 8px;
+  transition: all 0.15s ease;
+  border: 4px solid #000;
+  box-shadow: 8px 8px 0 #000;
+  -webkit-transition: all 0.15s ease;
+  -moz-transition: all 0.15s ease;
+  -ms-transition: all 0.15s ease;
+  -o-transition: all 0.15s ease;
+  transition: all 0.15s ease;
+}
+site-header header nav #navCta > div a:hover {
+  box-shadow: 16px 16px 0 #000;
+  -webkit-transform: translate(-16px, -16px);
+  -moz-transform: translate(-16px, -16px);
+  -ms-transform: translate(-16px, -16px);
+  -o-transform: translate(-16px, -16px);
+  transform: translate(-16px, -16px);
+}
+site-header header nav #navCta > div a:active {
+  -webkit-transform: translate(-8px, -8px);
+  -moz-transform: translate(-8px, -8px);
+  -ms-transform: translate(-8px, -8px);
+  -o-transform: translate(-8px, -8px);
+  transform: translate(-8px, -8px);
+  box-shadow: none;
+}
+site-header header nav #navCta > div a {
+  background: #fbbf24;
+  color: #000;
+}
+site-header header nav #navCta > div a[href*=register] {
+  background: #3b82f6;
+  color: #fff;
 }
 site-header header button {
   display: none;
-  padding: 0.5rem 1rem;
-  border: 4px solid #000;
-  background-color: #fff;
-  color: #000;
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: 0.875rem;
-  cursor: pointer;
-  transition: all 0.15s ease;
-  border-radius: 8px;
-}
-site-header header button:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 4px 4px 0 #000;
-}
-site-header header button:active {
-  transform: translate(-4px, -4px) !important;
-  box-shadow: none !important;
-  -webkit-transform: translate(-4px, -4px) !important;
-  -moz-transform: translate(-4px, -4px) !important;
-  -ms-transform: translate(-4px, -4px) !important;
-  -o-transform: translate(-4px, -4px) !important;
 }
 
 section {
@@ -280,26 +623,6 @@ section:first-of-type > div p, section[data-hero] > div p {
 }
 section:first-of-type > div a, section[data-hero] > div a {
   display: inline-block;
-  padding: 0.875rem 2rem;
-  text-decoration: none;
-  font-weight: 800;
-  border: 4px solid #000;
-  text-transform: uppercase;
-  font-size: 0.95rem;
-  letter-spacing: 0.5px;
-  border-radius: 8px;
-  background-color: #fbbf24;
-  color: #000;
-  box-shadow: 6px 6px 0 #000;
-  transition: all 0.15s ease;
-}
-section:first-of-type > div a:hover, section[data-hero] > div a:hover {
-  transform: translate(3px, 3px);
-  box-shadow: 3px 3px 0 #000;
-}
-section:first-of-type > div a:active, section[data-hero] > div a:active {
-  transform: translate(6px, 6px);
-  box-shadow: none;
 }
 section[data-content], section:nth-of-type(2), section:nth-of-type(3) {
   padding: 2rem 2rem 3rem;
@@ -363,17 +686,6 @@ section[data-dynamic] .container > div:first-child h2 {
 }
 section[data-dynamic] .container > div:first-child a {
   display: inline-block;
-  padding: 0.875rem 2rem;
-  text-decoration: none;
-  font-weight: 800;
-  border: 4px solid #000;
-  text-transform: uppercase;
-  font-size: 0.95rem;
-  border-radius: 8px;
-  background-color: #fff;
-  color: #000;
-  box-shadow: 6px 6px 0 #000;
-  transition: all 0.15s ease;
 }
 section[data-dynamic] .container > div:first-child a:hover {
   transform: translate(3px, 3px);
@@ -563,14 +875,6 @@ section[data-cta] .container > div > div {
 section[data-cta] .container > div > div a {
   display: inline-block;
   padding: 0.875rem 2rem;
-  text-decoration: none;
-  font-weight: 800;
-  border: 4px solid #000;
-  text-transform: uppercase;
-  font-size: 0.95rem;
-  border-radius: 8px;
-  box-shadow: 6px 6px 0 #000;
-  transition: all 0.15s ease;
 }
 section[data-cta] .container > div > div a[data-primary] {
   background-color: #fbbf24;
@@ -666,33 +970,6 @@ article > header .container {
   position: relative;
   z-index: 1;
 }
-article > header .container a {
-  display: inline-block;
-  align-self: flex-start;
-  margin-bottom: 1.5rem;
-  color: #000;
-  text-decoration: none;
-  font-weight: 700;
-  padding: 0.5rem 1rem;
-  border: 4px solid #000;
-  background-color: #fff;
-  transition: all 0.15s ease;
-  text-transform: uppercase;
-  font-size: 0.875rem;
-  border-radius: 8px;
-}
-article > header .container a:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 4px 4px 0 #000;
-}
-article > header .container a:active {
-  transform: translate(-4px, -4px) !important;
-  box-shadow: none !important;
-  -webkit-transform: translate(-4px, -4px) !important;
-  -moz-transform: translate(-4px, -4px) !important;
-  -ms-transform: translate(-4px, -4px) !important;
-  -o-transform: translate(-4px, -4px) !important;
-}
 article > header .container h1 {
   font-size: 3rem;
   margin-bottom: 1rem;
@@ -739,9 +1016,9 @@ article > div .container {
 }
 article > div .container aside {
   background-color: #fef3c7;
-  border: 4px solid #000;
   border-radius: 8px;
   padding: 1.5rem;
+  border: 4px solid #000;
   box-shadow: 8px 8px 0 #000;
 }
 article > div .container aside h3 {
@@ -771,10 +1048,10 @@ article > div .container aside ul a:hover {
   transform: translateX(4px);
 }
 article > div .container > div:last-child {
-  background-color: #fff;
-  padding: 3rem;
   border: 4px solid #000;
   box-shadow: 8px 8px 0 #000;
+  background-color: #fff;
+  padding: 3rem;
   line-height: 1.8;
   border-radius: 8px;
 }
@@ -913,22 +1190,46 @@ article > div .container > div:last-child hr {
     letter-spacing: -0.5px;
   }
   body > header nav #navClose {
+    background-color: #fff;
+    box-sizing: border-box;
+    font-weight: 800;
+    line-height: 21px;
+    margin: 0;
+    padding: 0.5rem 1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: #000;
+    text-decoration: none;
+    border: 4px solid #000;
+    border-radius: 8px;
+    transition: all 0.15s ease;
+    -webkit-transition: all 0.15s ease;
+    -moz-transition: all 0.15s ease;
+    -ms-transition: all 0.15s ease;
+    -o-transition: all 0.15s ease;
+    transition: all 0.15s ease;
+  }
+  body > header nav #navClose:hover {
+    box-shadow: 16px 16px 0 #000;
+    -webkit-transform: translate(-16px, -16px);
+    -moz-transform: translate(-16px, -16px);
+    -ms-transform: translate(-16px, -16px);
+    -o-transform: translate(-16px, -16px);
+    transform: translate(-16px, -16px);
+  }
+  body > header nav #navClose:active {
+    -webkit-transform: translate(-8px, -8px);
+    -moz-transform: translate(-8px, -8px);
+    -ms-transform: translate(-8px, -8px);
+    -o-transform: translate(-8px, -8px);
+    transform: translate(-8px, -8px);
+    box-shadow: none;
+  }
+  body > header nav #navClose {
     position: absolute;
     top: 1rem;
     right: 6%;
     display: block;
-    background: #fff;
-    border: 4px solid #000;
-    box-shadow: 8px 8px 0 #000;
-    padding: 0.25rem 0.75rem;
-    font-size: 1.5rem;
-    font-weight: 900;
-    cursor: pointer;
-    transition: all 0.15s ease;
-  }
-  body > header nav #navClose:hover {
-    transform: translate(3px, 3px);
-    box-shadow: 5px 5px 0 #000;
   }
   body > header nav ul {
     flex-direction: column;
@@ -939,23 +1240,46 @@ article > div .container > div:last-child hr {
     overflow-y: auto;
   }
   body > header nav ul a {
+    background-color: #fff;
+    box-sizing: border-box;
+    font-weight: 800;
+    line-height: 21px;
+    margin: 0;
+    padding: 0.5rem 1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: #000;
+    text-decoration: none;
+    border: 4px solid #000;
+    border-radius: 8px;
+    transition: all 0.15s ease;
+    -webkit-transition: all 0.15s ease;
+    -moz-transition: all 0.15s ease;
+    -ms-transition: all 0.15s ease;
+    -o-transition: all 0.15s ease;
+    transition: all 0.15s ease;
+  }
+  body > header nav ul a:hover {
+    box-shadow: 16px 16px 0 #000;
+    -webkit-transform: translate(-16px, -16px);
+    -moz-transform: translate(-16px, -16px);
+    -ms-transform: translate(-16px, -16px);
+    -o-transform: translate(-16px, -16px);
+    transform: translate(-16px, -16px);
+  }
+  body > header nav ul a:active {
+    -webkit-transform: translate(-8px, -8px);
+    -moz-transform: translate(-8px, -8px);
+    -ms-transform: translate(-8px, -8px);
+    -o-transform: translate(-8px, -8px);
+    transform: translate(-8px, -8px);
+    box-shadow: none;
+  }
+  body > header nav ul a {
     display: block;
     width: calc(100% - 1rem);
     margin: 0.5rem;
     padding: 0.75rem 1rem;
-    text-align: center;
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: #000;
-    background: #fff;
-    border: 4px solid #000;
-    box-shadow: 8px 8px 0 #000;
-    text-decoration: none;
-    transition: all 0.15s ease;
-  }
-  body > header nav ul a:hover {
-    transform: translate(3px, 3px);
-    box-shadow: 5px 5px 0 #000;
   }
   body > header nav ul a[href*="#register"] {
     display: none;
@@ -972,22 +1296,46 @@ article > div .container > div:last-child hr {
     gap: 0.75rem;
   }
   body > header nav #navCta > div a {
-    display: block;
-    text-align: center;
-    padding: 0.75rem 0;
-    font-weight: 900;
+    background-color: #fff;
+    box-sizing: border-box;
+    font-weight: 800;
+    line-height: 21px;
+    margin: 0;
+    padding: 0.5rem 1rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    border: 4px solid #000;
-    border-radius: 8px;
-    box-shadow: 8px 8px 0 #000;
-    background: #fff;
+    cursor: pointer;
     color: #000;
     text-decoration: none;
+    border: 4px solid #000;
+    border-radius: 8px;
+    transition: all 0.15s ease;
+    border: 4px solid #000;
+    box-shadow: 8px 8px 0 #000;
+    -webkit-transition: all 0.15s ease;
+    -moz-transition: all 0.15s ease;
+    -ms-transition: all 0.15s ease;
+    -o-transition: all 0.15s ease;
     transition: all 0.15s ease;
   }
   body > header nav #navCta > div a:hover {
-    transform: translate(3px, 3px);
+    box-shadow: 16px 16px 0 #000;
+    -webkit-transform: translate(-16px, -16px);
+    -moz-transform: translate(-16px, -16px);
+    -ms-transform: translate(-16px, -16px);
+    -o-transform: translate(-16px, -16px);
+    transform: translate(-16px, -16px);
+  }
+  body > header nav #navCta > div a:active {
+    -webkit-transform: translate(-8px, -8px);
+    -moz-transform: translate(-8px, -8px);
+    -ms-transform: translate(-8px, -8px);
+    -o-transform: translate(-8px, -8px);
+    transform: translate(-8px, -8px);
+    box-shadow: none;
+  }
+  body > header nav #navCta > div a {
+    background: #fbbf24;
+    color: #000;
   }
   body > header nav #navCta > div a[href*=register] {
     background: #3b82f6;
@@ -1027,14 +1375,51 @@ article > div .container > div:last-child hr {
     align-items: center;
     gap: 0.75rem;
     padding: 1rem 6% 0.75rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+  }
+  site-header header nav #navClose {
+    background-color: #fff;
+    box-sizing: border-box;
+    font-weight: 800;
+    line-height: 21px;
+    margin: 0;
+    padding: 0.5rem 1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: #000;
+    text-decoration: none;
+    border: 4px solid #000;
+    border-radius: 8px;
+    transition: all 0.15s ease;
+    -webkit-transition: all 0.15s ease;
+    -moz-transition: all 0.15s ease;
+    -ms-transition: all 0.15s ease;
+    -o-transition: all 0.15s ease;
+    transition: all 0.15s ease;
+  }
+  site-header header nav #navClose:hover {
+    box-shadow: 16px 16px 0 #000;
+    -webkit-transform: translate(-16px, -16px);
+    -moz-transform: translate(-16px, -16px);
+    -ms-transform: translate(-16px, -16px);
+    -o-transform: translate(-16px, -16px);
+    transform: translate(-16px, -16px);
+  }
+  site-header header nav #navClose:active {
+    -webkit-transform: translate(-8px, -8px);
+    -moz-transform: translate(-8px, -8px);
+    -ms-transform: translate(-8px, -8px);
+    -o-transform: translate(-8px, -8px);
+    transform: translate(-8px, -8px);
+    box-shadow: none;
   }
   site-header header nav #navClose {
     position: absolute;
     top: 1rem;
     right: 6%;
-  }
-  site-header header nav ul a[href*="#register"] {
-    display: none;
+    display: block;
   }
   site-header header nav ul {
     flex-direction: column;
@@ -1043,6 +1428,51 @@ article > div .container > div:last-child hr {
     gap: 1vh;
     min-height: 0;
     overflow-y: auto;
+  }
+  site-header header nav ul a {
+    background-color: #fff;
+    box-sizing: border-box;
+    font-weight: 800;
+    line-height: 21px;
+    margin: 0;
+    padding: 0.5rem 1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: #000;
+    text-decoration: none;
+    border: 4px solid #000;
+    border-radius: 8px;
+    transition: all 0.15s ease;
+    -webkit-transition: all 0.15s ease;
+    -moz-transition: all 0.15s ease;
+    -ms-transition: all 0.15s ease;
+    -o-transition: all 0.15s ease;
+    transition: all 0.15s ease;
+  }
+  site-header header nav ul a:hover {
+    box-shadow: 16px 16px 0 #000;
+    -webkit-transform: translate(-16px, -16px);
+    -moz-transform: translate(-16px, -16px);
+    -ms-transform: translate(-16px, -16px);
+    -o-transform: translate(-16px, -16px);
+    transform: translate(-16px, -16px);
+  }
+  site-header header nav ul a:active {
+    -webkit-transform: translate(-8px, -8px);
+    -moz-transform: translate(-8px, -8px);
+    -ms-transform: translate(-8px, -8px);
+    -o-transform: translate(-8px, -8px);
+    transform: translate(-8px, -8px);
+    box-shadow: none;
+  }
+  site-header header nav ul a {
+    display: block;
+    width: calc(100% - 1rem);
+    margin: 0.5rem;
+    padding: 0.75rem 1rem;
+  }
+  site-header header nav ul a[href*="#register"] {
+    display: none;
   }
   site-header header nav #navCta {
     display: block;
@@ -1054,6 +1484,52 @@ article > div .container > div:last-child hr {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.75rem;
+  }
+  site-header header nav #navCta > div a {
+    background-color: #fff;
+    box-sizing: border-box;
+    font-weight: 800;
+    line-height: 21px;
+    margin: 0;
+    padding: 0.5rem 1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: #000;
+    text-decoration: none;
+    border: 4px solid #000;
+    border-radius: 8px;
+    transition: all 0.15s ease;
+    border: 4px solid #000;
+    box-shadow: 8px 8px 0 #000;
+    -webkit-transition: all 0.15s ease;
+    -moz-transition: all 0.15s ease;
+    -ms-transition: all 0.15s ease;
+    -o-transition: all 0.15s ease;
+    transition: all 0.15s ease;
+  }
+  site-header header nav #navCta > div a:hover {
+    box-shadow: 16px 16px 0 #000;
+    -webkit-transform: translate(-16px, -16px);
+    -moz-transform: translate(-16px, -16px);
+    -ms-transform: translate(-16px, -16px);
+    -o-transform: translate(-16px, -16px);
+    transform: translate(-16px, -16px);
+  }
+  site-header header nav #navCta > div a:active {
+    -webkit-transform: translate(-8px, -8px);
+    -moz-transform: translate(-8px, -8px);
+    -ms-transform: translate(-8px, -8px);
+    -o-transform: translate(-8px, -8px);
+    transform: translate(-8px, -8px);
+    box-shadow: none;
+  }
+  site-header header nav #navCta > div a {
+    background: #fbbf24;
+    color: #000;
+  }
+  site-header header nav #navCta > div a[href*=register] {
+    background: #3b82f6;
+    color: #fff;
   }
   section:first-of-type h2 {
     font-size: 2.25rem;
@@ -1061,106 +1537,19 @@ article > div .container > div:last-child hr {
   section:first-of-type p {
     font-size: 1rem;
   }
-  section h2 {
-    font-size: 2rem;
-  }
-}
-@media (max-width: 768px) {
-  article > header h1 {
-    font-size: 2rem;
-  }
-  article > div .container > div:last-child {
-    padding: 1.5rem;
-  }
-  article > div .container > div:last-child h1 {
-    font-size: 1.75rem;
-  }
-  article > div .container > div:last-child h2 {
-    font-size: 1.5rem;
-  }
-  article > div .container > div:last-child h3 {
-    font-size: 1.25rem;
-  }
-  site-header header .container {
-    justify-content: space-between;
-  }
-  site-header header button {
-    display: block;
-    order: 3;
-  }
-  site-header header .container > #menuToggle {
-    display: block !important;
-  }
-  site-header header nav {
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 100dvh;
-    width: 100vw;
-    background: #fff;
-    border-left: 4px solid #000;
-    box-shadow: -8px 0 0 #000;
-    z-index: 2000;
-    transform: translateX(100%);
-    transition: transform 0.26s cubic-bezier(0.2, 0.8, 0.2, 1);
-    overflow: hidden;
-  }
-  site-header header nav.active {
-    transform: translateX(0);
-  }
-  site-header header nav > div:first-child {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 1rem 6% 0.75rem;
-  }
-  site-header header nav #navClose {
-    position: absolute;
-    top: 1rem;
-    right: 6%;
-    display: block;
-  }
-  site-header header nav #navCta {
-    display: block;
-    padding: 4% 5%;
-    border-top: 4px solid #000;
-    background: #fbbf24;
-  }
-  site-header header nav #navCta > div {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.75rem;
-  }
-  site-header header nav ul {
-    flex-direction: column;
-    margin: 0.5rem 5% 0;
-    width: 90%;
-    gap: 1vh;
-    min-height: 0;
-    overflow-y: auto;
-  }
-  site-header header nav ul a[href*="#register"] {
-    display: none;
-  }
-  site-header header nav a {
-    width: calc(100% - 1rem);
-    margin: 0.5rem;
-    text-align: center;
-    padding: 0.75rem 1rem;
-    font-size: 1.25rem;
-    font-weight: 800;
-    box-shadow: 8px 8px 0 #000;
-  }
-  site-header header nav + #navOverlay {
+  section:first-of-type p body > header nav + #navOverlay,
+  section:first-of-type p site-header header nav + #navOverlay {
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.4);
     display: none;
     z-index: 1500;
   }
-  site-header header nav.active + #navOverlay {
+  section:first-of-type p body > header nav.active + #navOverlay,
+  section:first-of-type p site-header header nav.active + #navOverlay {
+    display: block;
+  }
+  section nav.active + #navOverlay {
     display: block;
   }
 }
@@ -1309,28 +1698,38 @@ article > div .container > div:last-child hr {
   border-radius: 8px;
 }
 .back-link:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 4px 4px 0 #000;
+  -webkit-transition: all 0.15s ease;
+  -moz-transition: all 0.15s ease;
+  -ms-transition: all 0.15s ease;
+  -o-transition: all 0.15s ease;
+  transition: all 0.15s ease;
+}
+.back-link:hover:hover {
+  box-shadow: 8px 8px 0 #000;
+  -webkit-transform: translate(-8px, -8px);
+  -moz-transform: translate(-8px, -8px);
+  -ms-transform: translate(-8px, -8px);
+  -o-transform: translate(-8px, -8px);
+  transform: translate(-8px, -8px);
 }
 .back-link:active {
-  transform: translate(-4px, -4px) !important;
-  box-shadow: none !important;
-  -webkit-transform: translate(-4px, -4px) !important;
-  -moz-transform: translate(-4px, -4px) !important;
-  -ms-transform: translate(-4px, -4px) !important;
-  -o-transform: translate(-4px, -4px) !important;
+  -webkit-transform: translate(-8px, -8px);
+  -moz-transform: translate(-8px, -8px);
+  -ms-transform: translate(-8px, -8px);
+  -o-transform: translate(-8px, -8px);
+  transform: translate(-8px, -8px);
+  box-shadow: none;
 }
 
 .filters {
+  border: 4px solid #000;
+  box-shadow: 8px 8px 0 #000;
   display: flex;
   gap: 1.5rem;
   flex-wrap: wrap;
   align-items: flex-end;
   padding: 2rem;
   background-color: #dbeafe;
-  border: 4px solid #000;
-  border-radius: 8px;
-  box-shadow: 8px 8px 0 #000;
   margin-bottom: 3rem;
 }
 
@@ -1387,16 +1786,27 @@ article > div .container > div:last-child hr {
   color: #000;
 }
 .btn-outline:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 4px 4px 0 #000;
+  -webkit-transition: all 0.15s ease;
+  -moz-transition: all 0.15s ease;
+  -ms-transition: all 0.15s ease;
+  -o-transition: all 0.15s ease;
+  transition: all 0.15s ease;
+}
+.btn-outline:hover:hover {
+  box-shadow: 8px 8px 0 #000;
+  -webkit-transform: translate(-8px, -8px);
+  -moz-transform: translate(-8px, -8px);
+  -ms-transform: translate(-8px, -8px);
+  -o-transform: translate(-8px, -8px);
+  transform: translate(-8px, -8px);
 }
 .btn-outline:active {
-  transform: translate(-4px, -4px) !important;
-  box-shadow: none !important;
-  -webkit-transform: translate(-4px, -4px) !important;
-  -moz-transform: translate(-4px, -4px) !important;
-  -ms-transform: translate(-4px, -4px) !important;
-  -o-transform: translate(-4px, -4px) !important;
+  -webkit-transform: translate(-8px, -8px);
+  -moz-transform: translate(-8px, -8px);
+  -ms-transform: translate(-8px, -8px);
+  -o-transform: translate(-8px, -8px);
+  transform: translate(-8px, -8px);
+  box-shadow: none;
 }
 
 .archive-section {
@@ -1458,16 +1868,27 @@ article > div .container > div:last-child hr {
   margin-right: auto;
 }
 .article-header .container > a.back-link:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 4px 4px 0 #000;
+  -webkit-transition: all 0.15s ease;
+  -moz-transition: all 0.15s ease;
+  -ms-transition: all 0.15s ease;
+  -o-transition: all 0.15s ease;
+  transition: all 0.15s ease;
+}
+.article-header .container > a.back-link:hover:hover {
+  box-shadow: 8px 8px 0 #000;
+  -webkit-transform: translate(-8px, -8px);
+  -moz-transform: translate(-8px, -8px);
+  -ms-transform: translate(-8px, -8px);
+  -o-transform: translate(-8px, -8px);
+  transform: translate(-8px, -8px);
 }
 .article-header .container > a.back-link:active {
-  transform: translate(-4px, -4px) !important;
-  box-shadow: none !important;
-  -webkit-transform: translate(-4px, -4px) !important;
-  -moz-transform: translate(-4px, -4px) !important;
-  -ms-transform: translate(-4px, -4px) !important;
-  -o-transform: translate(-4px, -4px) !important;
+  -webkit-transform: translate(-8px, -8px);
+  -moz-transform: translate(-8px, -8px);
+  -ms-transform: translate(-8px, -8px);
+  -o-transform: translate(-8px, -8px);
+  transform: translate(-8px, -8px);
+  box-shadow: none;
 }
 
 .article-title {
@@ -1720,5 +2141,3 @@ article > div .container > div:last-child hr {
     padding: 0 2rem;
   }
 }
-
-/*# sourceMappingURL=style-minimal.css.map */

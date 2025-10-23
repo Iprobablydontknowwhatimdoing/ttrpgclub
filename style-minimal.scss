@@ -15,37 +15,36 @@ $shadow-offset: 8px;
 $transition: all .15s ease;
 
 // Mixins
+@mixin brutal-border {
+  border: $border-width solid $border;
+}
 @mixin brutal-height {
   border: $border-width solid $border;
   box-shadow: $shadow-offset $shadow-offset 0 $border;
 }
-
-@mixin brutal-hover($px, $has-shadow: true) {
-  border: $border-radius solid $border;
+@mixin brutal-shadow {
+  box-shadow: $shadow-offset $shadow-offset 0 $border;
+}
+// Raise element up-left on hover while keeping the shadow visually in place.
+// $px adds extra raise beyond the base $shadow-offset.
+@mixin brutal-hover($px: 0px) {
   -webkit-transition: $transition;
   -moz-transition: $transition;
   -ms-transition: $transition;
   -o-transition: $transition;
   transition: $transition;
-  @if($has-shadow) { &:hover {
+  &:hover {
     box-shadow: calc($shadow-offset + $px) calc($shadow-offset + $px) 0 $border;
-    -webkit-transform: translate(calc(-$shadow-offset - $px), calc(-$shadow-offset - $px));
-    -moz-transform: translate(calc(-$shadow-offset - $px), calc(-$shadow-offset - $px));
-    -ms-transform: translate(calc(-$shadow-offset - $px), calc(-$shadow-offset - $px));
-    -o-transform: translate(calc(-$shadow-offset - $px), calc(-$shadow-offset - $px));
-    transform: translate(calc(-$shadow-offset - $px), calc(-$shadow-offset - $px));
-  } }
-  @if (not $has-shadow) { &:hover {
-    box-shadow: $px $px 0 $border;
-    -webkit-transform: translate(calc(-$px), calc(-$px));
-    -moz-transform: translate(calc(-$px), calc(-$px));
-    -ms-transform: translate(calc(-$px), calc(-$px));
-    -o-transform: translate(calc(-$px), calc(-$px));
-    transform: translate(calc(-$px), calc(-$px));
-  } }
+    // Move element up-left by base+extra so the shadow appears stationary
+    -webkit-transform: translate(-($shadow-offset + $px), -($shadow-offset + $px));
+    -moz-transform: translate(-($shadow-offset + $px), -($shadow-offset + $px));
+    -ms-transform: translate(-($shadow-offset + $px), -($shadow-offset + $px));
+    -o-transform: translate(-($shadow-offset + $px), -($shadow-offset + $px));
+    transform: translate(-($shadow-offset + $px), -($shadow-offset + $px));
+  }
 }
 
-@mixin brutal-active($px) {
+@mixin brutal-active($px: $shadow-offset) {
   -webkit-transform: translate(-$px, -$px);
   -moz-transform: translate(-$px, -$px);
   -ms-transform: translate(-$px, -$px);
@@ -62,14 +61,23 @@ $transition: all .15s ease;
   margin: 0;
   padding: 0.5rem 1rem;
   text-transform: uppercase;
+  cursor: pointer;
+  color: $text;
+  text-decoration: none;
+  border: 4px solid $border;
+  border-radius: $border-radius;
+  transition: $transition;
+
+
 }
 
 %button-nav {
   @include button-styling;
-  @include brutal-hover($shadow-offset, false);
-  &:active {
-    @include brutal-active($shadow-offset, false);
-  }
+  display: inline-block;
+  @include brutal-height; // baseline border + shadow
+  border-radius: $border-radius;
+  @include brutal-hover(0px); // raise by base offset, keep shadow stationary
+  &:active { @include brutal-active($shadow-offset); }
 }
 
 %button {
@@ -82,7 +90,7 @@ $transition: all .15s ease;
 }
 
 %button-primary {
-  @extend button;
+  @extend %button;
   background-color: $accent;
 }
 
@@ -187,29 +195,22 @@ $transition: all .15s ease;
 
 // Placeholder selectors
 %card {
+  @include brutal-hover($shadow-offset);
+  @include brutal-height;
   background-color: $bg-white;
   padding: 2rem;
-  @include brutal-border;
-  border-radius: $border-radius;
-  @include brutal-shadow;
-  transition: $transition;
-
-  // NOTE: Hover here moves up-left (-3px, -3px) and increases shadow to 11px.
-  // Elsewhere (nav/hero buttons) hover moves down-right (3px, 3px) with 3px shadow.
-  // Discrepancy: consider standardizing hover direction and magnitude via a parametric mixin,
-  // e.g. `@include brutal-motion($dx, $dy, $shadow)` or extend `%hover-up` vs `%hover-down`.
-
-  &:hover {
-    transform: translate(-3px, -3px);
-    box-shadow: 11px 11px 0 $border;
-  }
 }
 
 // Placeholder for article-page "card" surfaces (TOC, body, etc.)
 %article-card {
-  @include brutal-border;
-  @include brutal-shadow;
-  border-radius: $border-radius;
+  @include brutal-hover($shadow-offset);
+  @include brutal-height;
+  padding: 0;
+  max-width: 30rem; // so they don't cover the entire screen.
+  &:has(> a:hover) {
+    transform: translate($shadow-offset * 2, $shadow-offset * 2);
+    box-shadow: none;
+  }
 }
 
 // Reset
@@ -247,10 +248,96 @@ body {
   outline-offset: 3px;
 }
 
-// Layout
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
+// Mobile drawer shared mixin
+@mixin nav-mobile-drawer-shared() {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100dvh;
+  width: 100vw;
+  background: $bg-white;
+  border-left: $border-width solid $border;
+  box-shadow: (-$shadow-offset) 0 0 $border;
+  z-index: 2000;
+  transform: translateX(100%);
+  transition: transform .26s cubic-bezier(.2, .8, .2, 1);
+  overflow: hidden;
+
+  &.active { transform: translateX(0); }
+
+  // Mobile header row (icon + title)
+  >div:first-child {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    padding: 1rem 6% .75rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -.5px;
+  }
+
+  // Close button - positioned absolutely
+  #navClose {
+    // Inline the nav button look (avoid @extend across media queries)
+    @include button-styling;
+    @include brutal-hover($shadow-offset);
+    &:active { @include brutal-active($shadow-offset); }
+    position: absolute;
+    top: 1rem;
+    right: 6%;
+    display: block;
+  }
+
+  ul {
+    flex-direction: column;
+    margin: .5rem 5% 0;
+    width: 90%;
+    gap: 1vh;
+    min-height: 0;
+    overflow-y: auto;
+
+    a {
+      // Inline the nav button look (avoid @extend across media queries)
+      @include button-styling;
+      @include brutal-hover($shadow-offset);
+
+      &:active { @include brutal-active($shadow-offset); }
+      display: block;
+      width: calc(100% - 1rem);
+      margin: .5rem;
+      padding: .75rem 1rem;
+    }
+
+    // Hide register link in mobile menu
+    a[href*="#register"] { display: none; }
+  }
+
+  // CTA shelf at bottom (grid row 3)
+  #navCta {
+    display: block;
+    padding: 4% 5%;
+    border-top: $border-width solid $border;
+    background: $accent;
+
+    >div {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .75rem;
+
+      a {
+        // Inline the primary button look
+        @include button-styling;
+        @include brutal-height;
+        @include brutal-hover($shadow-offset);
+        &:active { @include brutal-active($shadow-offset); }
+        background: $accent;
+        color: $text;
+        &[href*="register"] { background: $primary; color: $bg-white; }
+      }
+    }
+  }
 }
 
 // Header - site navbar (top-level only)
@@ -285,81 +372,16 @@ body>header {
     }
   }
 
-  // Navigation
-  nav {
-    // TODO: This nav styling is duplicated below under `site-header header nav`.
-    // Consider extracting a `%nav-links` placeholder or `@mixin nav-links()` to DRY this up.
-
-    // Hide mobile-only UI by default (desktop)
-    >div:first-child,
-    // mobile header row
-    #navClose,
-    #navCta,
-    +#navOverlay {
-      display: none;
-    }
-
-    ul {
-      display: flex;
-      list-style: none;
-      gap: .5rem;
-      flex-wrap: wrap;
-    }
-
-    a {
-      color: $text;
-      text-decoration: none;
-      font-weight: 700;
-      padding: .5rem 1rem;
-      @include brutal-border;
-      background-color: $bg-white;
-      transition: $transition;
-      text-transform: uppercase;
-      font-size: .875rem;
-      display: block;
-      border-radius: $border-radius;
-
-      // Hover/active: dip toward the shadow (down-right), consistent with hero CTA
-      &:hover {
-        transform: translate(3px, 3px);
-        box-shadow: 3px 3px 0 $border;
-      }
-
-      &:active {
-        transform: translate(6px, 6px);
-        box-shadow: none;
-      }
-
-      // Target register link by href
-      &[href*="register"] {
-        background-color: $accent !important;
-      }
-    }
-  }
+  // Navigation (desktop defaults)
+  nav { @include nav-mobile-drawer-shared(); }
 
   // Mobile toggle button
   button {
-    display: none;
-    padding: .5rem 1rem;
-    @include brutal-border;
-    background-color: $bg-white;
-    color: $text;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: .875rem;
-    cursor: pointer;
-    transition: $transition;
-    border-radius: $border-radius;
-
-    &:hover {
-      @include brutal-hover;
-    }
-
-    &:active {
-      @include brutal-active;
-    }
+    @extend %button-nav;
   }
 }
+
+// (moved) nav-mobile-drawer-shared mixin is defined in the mixins section above
 
 // Mirror header styles for <site-header> web component wrapper
 site-header {
@@ -367,9 +389,9 @@ site-header {
     background-color: $bg-white;
     color: $text;
     padding: 1rem 0;
-    position: sticky;
+    position: static;
     top: 0;
-    z-index: 1000;
+    z-index: 2;
     border-bottom: $border-width solid $border;
 
     .container {
@@ -395,83 +417,13 @@ site-header {
       }
     }
 
-    // Navigation
-    nav {
-      // NOTE: Duplicates the top-level `body>header nav` rules.
-      // Consolidate via a shared placeholder/mixin to keep changes in one place.
-
-      // Hide mobile-only UI by default (desktop)
-      >div:first-child,
-      // mobile header row
-      #navClose,
-      #navCta,
-      +#navOverlay {
-        display: none;
-      }
-
-      ul {
-        display: flex;
-        list-style: none;
-        gap: .5rem;
-        flex-wrap: wrap;
-      }
-
-      a {
-        color: $text;
-        text-decoration: none;
-        font-weight: 700;
-        padding: .5rem 1rem;
-        @include brutal-border;
-        background-color: $bg-white;
-        transition: $transition;
-        text-transform: uppercase;
-        font-size: .875rem;
-        display: block;
-        border-radius: $border-radius;
-
-        // Hover/active: dip toward the shadow (down-right), consistent with hero CTA
-        &:hover {
-          transform: translate(-3px, -3px);
-          box-shadow: 3px 3px 0 $border;
-          -webkit-transform: translate(-3px, -3px);
-          -moz-transform: translate(-3px, -3px);
-          -ms-transform: translate(-3px, -3px);
-          -o-transform: translate(-3px, -3px);
-}
-
-        &:active {
-          transform: translate(6px, 6px);
-          box-shadow: none;
-        }
-
-        // Target register link by href
-        &[href*="register"] {
-          background-color: $accent !important;
-        }
-      }
-    }
+  // Navigation (desktop defaults)
+  nav { @include nav-mobile-drawer-shared(); }
 
     // Mobile toggle button
     button {
+      @extend %button-nav;
       display: none;
-      padding: .5rem 1rem;
-      @include brutal-border;
-      background-color: $bg-white;
-      color: $text;
-      font-weight: 700;
-      text-transform: uppercase;
-      font-size: .875rem;
-      cursor: pointer;
-      transition: $transition;
-      border-radius: $border-radius;
-
-      &:hover {
-        @include brutal-hover;
-      }
-
-      &:active {
-        @include brutal-active;
-      }
     }
   }
 }
@@ -521,29 +473,8 @@ section {
       }
 
       a {
+        @extend %button-primary;
         display: inline-block;
-        padding: .875rem 2rem;
-        text-decoration: none;
-        font-weight: 800;
-        @include brutal-border;
-        text-transform: uppercase;
-        font-size: .95rem;
-        letter-spacing: .5px;
-        border-radius: $border-radius;
-        background-color: $accent;
-        color: $text;
-        box-shadow: 6px 6px 0 $border;
-        transition: $transition;
-
-        &:hover {
-          transform: translate(3px, 3px);
-          box-shadow: 3px 3px 0 $border;
-        }
-
-        &:active {
-          transform: translate(6px, 6px);
-          box-shadow: none;
-        }
       }
     }
   }
@@ -629,18 +560,8 @@ section {
         }
 
         a {
+          @extend %button-nav;
           display: inline-block;
-          padding: .875rem 2rem;
-          text-decoration: none;
-          font-weight: 800;
-          @include brutal-border;
-          text-transform: uppercase;
-          font-size: .95rem;
-          border-radius: $border-radius;
-          background-color: $bg-white;
-          color: $text;
-          box-shadow: 6px 6px 0 $border;
-          transition: $transition;
 
           &:hover {
             transform: translate(3px, 3px);
@@ -779,16 +700,9 @@ section {
         flex-wrap: wrap;
 
         a {
+          @extend %button-nav;
           display: inline-block;
           padding: .875rem 2rem;
-          text-decoration: none;
-          font-weight: 800;
-          @include brutal-border;
-          text-transform: uppercase;
-          font-size: .95rem;
-          border-radius: $border-radius;
-          box-shadow: 6px 6px 0 $border;
-          transition: $transition;
 
           &[data-primary] {
             background-color: $accent;
@@ -914,27 +828,7 @@ article {
 
       // Back link
       a {
-        display: inline-block;
-        align-self: flex-start;
-        margin-bottom: 1.5rem;
-        color: $text;
-        text-decoration: none;
-        font-weight: 700;
-        padding: .5rem 1rem;
-        @include brutal-border;
-        background-color: $bg-white;
-        transition: $transition;
-        text-transform: uppercase;
-        font-size: .875rem;
-        border-radius: $border-radius;
-
-        &:hover {
-          @include brutal-hover;
-        }
-
-        &:active {
-          @include brutal-active;
-        }
+        @extend %button-nav;
       }
 
       h1 {
@@ -990,10 +884,9 @@ article {
       // TOC (aside element)
       aside {
         background-color: $bg-main;
-        @include brutal-border;
         border-radius: $border-radius;
         padding: 1.5rem;
-        @include brutal-shadow;
+        @include brutal-height;
 
         h3 {
           font-size: 1rem;
@@ -1029,10 +922,9 @@ article {
 
       // Main content (last div)
       >div:last-child {
+        @include brutal-height;
         background-color: $bg-white;
         padding: 3rem;
-        @include brutal-border;
-        @include brutal-shadow;
         line-height: 1.8;
         border-radius: $border-radius;
 
@@ -1169,132 +1061,7 @@ article {
       display: block !important;
     }
 
-    nav {
-      display: grid;
-      grid-template-rows: auto 1fr auto;
-      position: fixed;
-      top: 0;
-      right: 0;
-      height: 100dvh;
-      width: 100vw;
-      background: $bg-white;
-      border-left: $border-width solid $border;
-      box-shadow: (-$shadow-offset) 0 0 $border;
-      z-index: 2000;
-      transform: translateX(100%);
-      transition: transform .26s cubic-bezier(.2, .8, .2, 1);
-      overflow: hidden;
-
-      &.active {
-        transform: translateX(0);
-      }
-
-      // Mobile header row (icon + title)
-      >div:first-child {
-        display: flex;
-        align-items: center;
-        gap: .75rem;
-        padding: 1rem 6% .75rem;
-        font-weight: 900;
-        text-transform: uppercase;
-        letter-spacing: -.5px;
-      }
-
-      // Close button - positioned absolutely
-      #navClose {
-        position: absolute;
-        top: 1rem;
-        right: 6%;
-        display: block;
-        background: $bg-white;
-        border: $border-width solid $border;
-        box-shadow: $shadow-offset $shadow-offset 0 $border;
-        padding: .25rem .75rem;
-        font-size: 1.5rem;
-        font-weight: 900;
-        cursor: pointer;
-        transition: all .15s ease;
-
-        &:hover {
-          transform: translate(3px, 3px);
-          box-shadow: ($shadow-offset - 3px) ($shadow-offset - 3px) 0 $border;
-        }
-      }
-
-      ul {
-        flex-direction: column;
-        margin: .5rem 5% 0;
-        width: 90%;
-        gap: 1vh;
-        min-height: 0;
-        overflow-y: auto;
-
-        a {
-          display: block;
-          width: calc(100% - 1rem);
-          margin: .5rem;
-          padding: .75rem 1rem;
-          text-align: center;
-          font-size: 1.25rem;
-          font-weight: 800;
-          color: $text;
-          background: $bg-white;
-          border: $border-width solid $border;
-          box-shadow: $shadow-offset $shadow-offset 0 $border;
-          text-decoration: none;
-          transition: all .15s ease;
-
-          &:hover {
-            transform: translate(3px, 3px);
-            box-shadow: ($shadow-offset - 3px) ($shadow-offset - 3px) 0 $border;
-          }
-        }
-
-        // Hide register link in mobile menu
-        a[href*="#register"] {
-          display: none;
-        }
-      }
-
-      // CTA shelf at bottom (grid row 3)
-      #navCta {
-        display: block;
-        padding: 4% 5%;
-        border-top: $border-width solid $border;
-        background: $accent;
-
-        >div {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: .75rem;
-
-          a {
-            display: block;
-            text-align: center;
-            padding: .75rem 0;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: $border-width solid $border;
-            border-radius: 8px;
-            box-shadow: $shadow-offset $shadow-offset 0 $border;
-            background: $bg-white;
-            color: $text;
-            text-decoration: none;
-            transition: all .15s ease;
-
-            &:hover {
-              transform: translate(3px, 3px);
-            }
-
-            &[href*="register"] {
-              background: $primary;
-              color: $bg-white;
-            }
-          }
-        }
-      }
-    }
+    nav { @include nav-mobile-drawer-shared(); }
 
     // Overlay for mobile drawer
     nav+#navOverlay {
@@ -1310,70 +1077,8 @@ article {
     }
   }
 
-  // Apply the same styles to the web component
-  site-header {
-    header {
-      nav {
-        display: grid;
-        grid-template-rows: auto 1fr auto;
-        position: fixed;
-        top: 0;
-        right: 0;
-        height: 100dvh;
-        width: 100vw;
-        background: $bg-white;
-        border-left: $border-width solid $border;
-        box-shadow: (-$shadow-offset) 0 0 $border;
-        z-index: 2000;
-        transform: translateX(100%);
-        transition: transform .26s cubic-bezier(.2, .8, .2, 1);
-        overflow: hidden;
-
-        &.active {
-          transform: translateX(0);
-        }
-
-        >div:first-child {
-          display: flex;
-          align-items: center;
-          gap: .75rem;
-          padding: 1rem 6% .75rem;
-        }
-
-        #navClose {
-          position: absolute;
-          top: 1rem;
-          right: 6%;
-        }
-
-        ul {
-          a[href*="#register"] {
-            display: none;
-          }
-
-          flex-direction: column;
-          margin: .5rem 5% 0;
-          width: 90%;
-          gap: 1vh;
-          min-height: 0;
-          overflow-y: auto;
-        }
-
-        #navCta {
-          display: block;
-          padding: 4% 5%;
-          border-top: $border-width solid $border;
-          background: $accent;
-
-          >div {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: .75rem;
-          }
-        }
-      }
-    }
-  }
+  // Apply the same mobile nav styles to the web component
+  site-header { header { nav { @include nav-mobile-drawer-shared(); } } }
 
   section {
     &:first-of-type h2 {
@@ -1382,133 +1087,17 @@ article {
 
     &:first-of-type p {
       font-size: 1rem;
+    // Overlay for both header types
+    body>header nav+#navOverlay,
+    site-header header nav+#navOverlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .4);
+      display: none;
+      z-index: 1500;
     }
-
-    h2 {
-      font-size: 2rem;
-    }
-  }
-}
-
-@media (max-width: 768px) {
-  article {
-    >header h1 {
-      font-size: 2rem;
-    }
-
-    >div .container>div:last-child {
-      padding: 1.5rem;
-
-      h1 {
-        font-size: 1.75rem;
-      }
-
-      h2 {
-        font-size: 1.5rem;
-      }
-
-      h3 {
-        font-size: 1.25rem;
-      }
-    }
-  }
-
-  // Mirror responsive header behavior for <site-header>
-  site-header {
-    header {
-      .container {
-        justify-content: space-between;
-      }
-
-      button {
-        display: block;
-        order: 3;
-      }
-
-      // Ensure the main toggle button always shows inside web component
-      .container>#menuToggle {
-        display: block !important;
-      }
-
-      nav {
-        display: grid;
-        grid-template-rows: auto 1fr auto;
-        position: fixed;
-        top: 0;
-        right: 0;
-        height: 100dvh;
-        width: 100vw;
-        background: $bg-white;
-        border-left: $border-width solid $border;
-        box-shadow: (-$shadow-offset) 0 0 $border;
-        z-index: 2000;
-        transform: translateX(100%);
-        transition: transform .26s cubic-bezier(.2, .8, .2, 1);
-        overflow: hidden;
-
-        &.active {
-          transform: translateX(0);
-        }
-
-        // Header row
-        >div:first-child {
-          display: flex;
-          align-items: center;
-          gap: .75rem;
-          padding: 1rem 6% .75rem;
-        }
-
-        #navClose {
-          position: absolute;
-          top: 1rem;
-          right: 6%;
-          display: block;
-        }
-
-        #navCta {
-          display: block;
-          padding: 4% 5%;
-          border-top: $border-width solid $border;
-          background: $accent;
-
-          >div {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: .75rem;
-          }
-        }
-
-        ul {
-          flex-direction: column;
-          margin: .5rem 5% 0;
-          width: 90%;
-          gap: 1vh;
-          min-height: 0;
-          overflow-y: auto;
-
-          a[href*="#register"] {
-            display: none;
-          }
-        }
-
-        a {
-          width: calc(100% - 1rem);
-          margin: .5rem;
-          text-align: center;
-          padding: .75rem 1rem;
-          font-size: 1.25rem;
-          font-weight: 800;
-          @include brutal-shadow;
-        }
-      }
-
-      // Overlay for mobile drawer
-      nav+#navOverlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, .4);
-        display: none;
-        z-index: 1500;
+    body>header nav.active+#navOverlay,
+    site-header header nav.active+#navOverlay { display: block; }
       }
 
       nav.active+#navOverlay {
@@ -1516,7 +1105,6 @@ article {
       }
     }
   }
-}
 
 // ---------------------------------------------------------
 // Shared utilities for archives and article class-based pages
@@ -1600,15 +1188,13 @@ article {
 // Prefer using this single utility class and only override layout context (e.g., margins) where needed.
 
 .filters {
+  @include brutal-height;
   display: flex;
   gap: 1.5rem;
   flex-wrap: wrap;
   align-items: flex-end;
   padding: 2rem;
   background-color: $bg-alt;
-  @include brutal-border;
-  border-radius: $border-radius;
-  @include brutal-shadow;
   margin-bottom: 3rem;
 }
 
