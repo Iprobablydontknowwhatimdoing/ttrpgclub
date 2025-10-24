@@ -2,7 +2,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 const root = resolve(process.cwd());
-const pages = ['index.html', 'games.html', 'events.html', 'article.html'];
+const pages = ['index.html', 'games.html', 'updates.html', 'article.html'];
 const headerPath = resolve(root, 'partials/header.html');
 const footerPath = resolve(root, 'partials/footer.html');
 

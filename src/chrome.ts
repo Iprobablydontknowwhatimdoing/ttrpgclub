@@ -21,7 +21,7 @@ class SiteHeader extends HTMLElement {
       <ul>
         <li><a href="/index.html">About</a></li>
         <li><a href="/games.html">Games</a></li>
-        <li><a href="/events.html">Events</a></li>
+        <li><a href="/updates.html">Updates</a></li>
         <li><a href="mailto:1eaunger@gmail.com">Contact</a></li>
         <li><a href="#register" class="nav-register">Register</a></li>
       </ul>
@@ -53,7 +53,7 @@ class SiteFooter extends HTMLElement {
         <ul>
           <li><a href="/index.html">About</a></li>
           <li><a href="/games.html">Current Games</a></li>
-          <li><a href="/events.html">Events</a></li>
+          <li><a href="/updates.html">Updates</a></li>
         </ul>
       </div>
       <div class="footer-section">

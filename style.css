@@ -5,7 +5,7 @@
     width: 100vw;
 }
 /* ============================================================================
-   TTRPG CLUB - NEOBRUTALISM STYLESHEET
+   <abbr title="Tabletop Role-Playing Game">TTRPG</abbr> CLUB - NEOBRUTALISM STYLESHEET
    A bold, high-contrast design with thick borders, hard shadows, and vibrant colors
    ============================================================================ */
 
@@ -408,7 +408,7 @@ body {
 }
 
 /* ============================================================================
-   8. RECENT ITEMS SECTIONS (Games & Events)
+   8. RECENT ITEMS SECTIONS (Games & Updates)
    ============================================================================ */
 
 .recent-items-section {
@@ -503,10 +503,12 @@ body {
     border-radius: 0;
     box-shadow: 2px 2px 0 var(--border);
 }
-/* Firefox scrollbar styling */
-.recent-items-section .items-grid {
-    scrollbar-width: thin;
-    scrollbar-color: var(--primary) transparent;
+/* Firefox scrollbar styling (apply only where supported) */
+@supports (scrollbar-width: thin) {
+    .recent-items-section .items-grid {
+        scrollbar-width: thin;
+        scrollbar-color: var(--primary) transparent;
+    }
 }
 
 
@@ -524,12 +526,12 @@ body {
 
 
 .item-card:has(.card-btn:hover) {
-    transform: translate(4px, 4px);
     box-shadow: calc(var(--shadow-offset) - 4px) calc(var(--shadow-offset) - 4px) 0 var(--border);
     -webkit-transform: translate(4px, 4px);
     -moz-transform: translate(4px, 4px);
     -ms-transform: translate(4px, 4px);
     -o-transform: translate(4px, 4px);
+    transform: translate(4px, 4px);
 }
 
 .item-card:has(.card-btn:active) {
@@ -1022,7 +1024,7 @@ body {
 }
 
 /* ============================================================================
-   13. ARCHIVE PAGES (Games & Events)
+   13. ARCHIVE PAGES (Games & Updates)
    ============================================================================ */
 
 /* Archive top band with primary background */
@@ -1413,7 +1415,7 @@ body {
 
     /* Make item cards more compact on very small screens */
     .items-grid { gap: 0.75rem; }
-    .recent-items-section .items-grid { padding: 0.5rem; }
+    .recent-items-section .items-grid { padding: 0.5rem 0; width: 100%;}
     .item-thumbnail { height: 140px; }
     .item-content { padding: 0.875rem; }
     .item-content h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }

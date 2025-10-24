@@ -1,6 +1,6 @@
 /**
  * Article page loader
- * Handles loading and displaying individual game/event pages
+ * Handles loading and displaying individual game/updates pages
  */
 
 import { loadArticlePage } from './markdown-loader.js';

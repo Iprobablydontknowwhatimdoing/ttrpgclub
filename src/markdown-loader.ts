@@ -211,15 +211,12 @@ function generateMetaHtml(frontmatter: Frontmatter): string {
         items.push(`<span class="meta-item">👥 ${frontmatter.players}</span>`);
     }
     
-    // Event-specific metadata
+    // Update-specific metadata
     if (frontmatter.date) {
         items.push(`<span class="meta-item">📅 ${frontmatter.date}</span>`);
     }
     if (frontmatter.time) {
         items.push(`<span class="meta-item">🕐 ${frontmatter.time}</span>`);
-    }
-    if (frontmatter.location) {
-        items.push(`<span class="meta-item">📍 ${frontmatter.location}</span>`);
     }
     if (frontmatter.type) {
         items.push(`<span class="meta-item">🏷️ ${frontmatter.type}</span>`);

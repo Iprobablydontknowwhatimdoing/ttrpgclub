@@ -3,30 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Events - TTRPG Club</title>
-    <link rel="stylesheet" href="/style.css">
+    <title>All Updates - TTRPG Club</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='50%' x='50%' dominant-baseline='middle' text-anchor='middle' font-size='48'%3E🎲%3C/text%3E%3C/svg%3E">
-    <script type="module">
-        import { marked } from 'https://cdn.jsdelivr.net/npm/marked@11.0.0/+esm';
-        window.marked = marked;
-    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/marked@11.2.0/marked.min.js"></script>
 </head>
 <body>
     <!-- Synced Header (Web Component) -->
     <site-header></site-header>
 
-    <!-- Events Archive Header Band -->
+    <!-- Updates Archive Header Band -->
     <section class="archive-hero">
         <div class="container">
             <div class="archive-header">
-                <h1>All Events</h1>
+                <h1>All Updates</h1>
                 <a href="/" class="back-link">← Back to Home</a>
             </div>
             <!-- Filters in header band -->
             <div class="filters">
                 <div class="filter-group">
                     <label for="searchInput">Search:</label>
-                    <input type="text" id="searchInput" class="filter-input" placeholder="Search events...">
+                    <input type="text" id="searchInput" class="filter-input" placeholder="Search updates...">
                 </div>
                 <div class="filter-group">
                     <label for="sortSelect">Sort By:</label>
@@ -42,12 +39,12 @@
         </div>
     </section>
 
-    <!-- Events Archive Section -->
+    <!-- Updates Archive Section -->
     <section class="archive-section">
         <div class="container">
-            <!-- Events Grid -->
-            <div class="items-grid" id="eventsGrid">
-                <p class="loading-text">Loading events...</p>
+            <!-- Updates Grid -->
+            <div class="items-grid" id="updatesGrid">
+                <p class="loading-text">Loading updates...</p>
             </div>
         </div>
     </section>
@@ -55,8 +52,8 @@
     <!-- Synced Footer (Web Component) -->
     <site-footer></site-footer>
 
-    <script type="module" src="/dist/chrome.js"></script>
-    <script type="module" src="/dist/events-page.js"></script>
-    <script type="module" src="/dist/ui.js"></script>
+    <script type="module" src="./dist/chrome.js"></script>
+    <script type="module" src="./dist/updates-page.js"></script>
+    <script type="module" src="./dist/ui.js"></script>
 </body>
 </html>

@@ -1,15 +1,26 @@
 /**
- * Shared preview card renderer for games and events
+ * Shared preview card renderer for games and updates
  */
 
 import type { MarkdownContent } from './markdown-loader.js';
 
-type Kind = 'game' | 'event';
+type Kind = 'game' | 'update';
 type Context = 'home' | 'archive';
 
 function buildArticleLink(kind: Kind, filePath: string): string {
     const filename = filePath.split('/').pop() || filePath;
-    const mdPath = `${kind === 'game' ? 'games' : 'events'}/${filename}`;
+    let folder: string;
+    switch (kind) {
+        case 'game':
+            folder = 'games';
+            break;
+        case 'update':
+            folder = 'updates';
+            break;
+        default:
+            folder = '';
+    }
+    const mdPath = folder ? `${folder}/${filename}` : filename;
     return `/article.html?md=${encodeURIComponent(mdPath)}`;
 }
 
@@ -35,12 +46,12 @@ function buildMetaChips(data: MarkdownContent, kind: Kind, _context: Context): s
         if (fm.system) chips.push(`System: ${escapeHtml(String(fm.system))}`);
         if (fm.players) chips.push(`Players: ${escapeHtml(String(fm.players))}`);
     }
-    // No chips for events
+    // No chips for updates
     return chips;
 }
 
 /**
- * Create a card HTML element for games/events
+ * Create a card HTML element for games/updates
  */
 export function createPreviewCard(data: MarkdownContent, kind: Kind, filePath: string, context: Context): string {
     const { frontmatter } = data;

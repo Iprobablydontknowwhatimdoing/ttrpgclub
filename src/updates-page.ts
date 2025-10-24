@@ -1,31 +1,27 @@
 /**
- * Events archive page with filtering
+ * Updates archive page with filtering
  */
 
-import { fetchMarkdown, type MarkdownContent } from './markdown-loader.js';
+import { fetchMarkdown, listMarkdownFiles, type MarkdownContent } from './markdown-loader.js';
 import { createPreviewCard } from './cards.js';
 import './ui.js';
 
-const EVENTS_FILES = [
-    'events/newbie-night-november.md',
-    'events/gm-workshop-november.md'
-];
+// Files discovered via updates/index.json manifest
 
-let allEvents: Array<{ data: MarkdownContent; file: string }> = [];
+let allUpdates: Array<{ data: MarkdownContent; file: string }> = [];
 
-async function loadAllEvents(): Promise<void> {
-    const container = document.getElementById('eventsGrid');
+async function loadAllUpdates(): Promise<void> {
+    const container = document.getElementById('updatesGrid');
     if (!container) return;
 
     try {
-        const eventPromises = EVENTS_FILES.map(file => 
-            fetchMarkdown(file).then(data => ({ data, file }))
+        const files = await listMarkdownFiles('updates');
+        allUpdates = await Promise.all(
+            files.map(file => fetchMarkdown(file).then(data => ({ data, file })))
         );
         
-        allEvents = await Promise.all(eventPromises);
-        
         // Sort by date (most recent first)
-        allEvents.sort((a, b) => {
+        allUpdates.sort((a, b) => {
             const dateA = a.data.frontmatter.date || '';
             const dateB = b.data.frontmatter.date || '';
             return dateB.localeCompare(dateA);
@@ -34,29 +30,29 @@ async function loadAllEvents(): Promise<void> {
         // Populate filters
         populateFilters();
         
-        // Display all events
-        displayEvents(allEvents);
+        // Display all updates
+        displayUpdates(allUpdates);
         
     } catch (error) {
-        console.error('Error loading events:', error);
-        container.innerHTML = '<p class="loading-text">Error loading events. Please refresh the page.</p>';
+        console.error('Error loading updates:', error);
+        container.innerHTML = '<p class="loading-text">Error loading updates. Please refresh the page.</p>';
     }
 }
 
 function populateFilters(): void {
-    // No filter dropdowns needed for events, just search and sort
+    // No filter dropdowns needed for updates, just search and sort
 }
 
-function displayEvents(events: Array<{ data: MarkdownContent; file: string }>): void {
-    const container = document.getElementById('eventsGrid');
+function displayUpdates(updates: Array<{ data: MarkdownContent; file: string }>): void {
+    const container = document.getElementById('updatesGrid');
     if (!container) return;
     
-    if (events.length === 0) {
-        container.innerHTML = '<p class="loading-text">No events found matching your filters.</p>';
+    if (updates.length === 0) {
+        container.innerHTML = '<p class="loading-text">No updates found matching your filters.</p>';
         return;
     }
     
-    const html = events.map(({ data, file }) => createPreviewCard(data, 'event', file, 'archive')).join('');
+    const html = updates.map(({ data, file }) => createPreviewCard(data, 'update', file, 'archive')).join('');
     
     container.innerHTML = html;
 }
@@ -65,11 +61,10 @@ function applyFilters(): void {
     const searchTerm = (document.getElementById('searchInput') as HTMLInputElement)?.value.toLowerCase() || '';
     const sortBy = (document.getElementById('sortSelect') as HTMLSelectElement)?.value || 'date-desc';
     
-    let filtered = allEvents.filter(({ data }) => {
+    let filtered = allUpdates.filter(({ data }) => {
         const matchSearch = !searchTerm || 
             data.frontmatter.title.toLowerCase().includes(searchTerm) ||
             data.frontmatter.description.toLowerCase().includes(searchTerm) ||
-            (data.frontmatter.location && data.frontmatter.location.toLowerCase().includes(searchTerm)) ||
             (data.frontmatter.date && data.frontmatter.date.toLowerCase().includes(searchTerm));
         
         return matchSearch;
@@ -91,7 +86,7 @@ function applyFilters(): void {
         }
     });
     
-    displayEvents(filtered);
+    displayUpdates(filtered);
 }
 
 function clearFilters(): void {
@@ -101,11 +96,11 @@ function clearFilters(): void {
     if (searchInput) searchInput.value = '';
     if (sortSelect) sortSelect.value = 'date-desc';
     
-    displayEvents(allEvents);
+    displayUpdates(allUpdates);
 }
 
 // Initialize
-loadAllEvents();
+loadAllUpdates();
 
 // Attach event listeners
 document.getElementById('searchInput')?.addEventListener('input', applyFilters);
